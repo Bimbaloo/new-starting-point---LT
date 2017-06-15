@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>radio</title>
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@1.3.6/lib/index.js"></script>
+
+    <link rel="stylesheet" href="//unpkg.com/element-ui@1.3.6/lib/theme-default/index.css">
+</head>
+<body>
+
+<div id="app">
+<el-switch v-model="value1" on-text="" off-text>
+</el-switch>
+<el-switch v-model="value2" on-color="#13ce66" off-color="#ff4949" @change>
+</el-switch>
+</div>
+<script>
+  var Main = {
+    data() {
+      return {
+        value1: true,
+        value2: true
+      }
+    },
+    methods: {
+      change(val) {
+        console.log(val)
+      }
+    }
+  };
+var Ctor = Vue.extend(Main)
+var app = new Ctor().$mount('#app')
+</script>
+</body>
+</html>

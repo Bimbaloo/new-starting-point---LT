@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>radio</title>
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@1.3.6/lib/index.js"></script>
+
+    <link rel="stylesheet" href="//unpkg.com/element-ui@1.3.6/lib/theme-default/index.css">
+</head>
+<body>
+
+<div id="app">
+    <template>
+        <el-radio disabled v-model="radio1" label="禁用">备选项</el-radio>
+        <el-radio disabled v-model="radio1" label="选中且禁用">备选项</el-radio>
+    </template>
+</div>
+<script>
+    var Main = {
+        data () {
+            return {
+                radio1: '选中且禁用'
+            };
+        }
+    }
+
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+</script>
+</body>
+</html>

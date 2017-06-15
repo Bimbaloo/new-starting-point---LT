@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>radio</title>
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@1.3.6/lib/index.js"></script>
+
+    <link rel="stylesheet" href="//unpkg.com/element-ui@1.3.6/lib/theme-default/index.css">
+</head>
+<body>
+
+<div id="app">
+<template>
+  <div class="block">
+    <span class="demonstration">默认</span>
+    <el-date-picker v-model="value1" type="date" placeholder="选择日期" :picker-options="pickerOptions0">
+    </el-date-picker>
+  </div>
+  <div class="block">
+    <span class="demonstration">带快捷选项</span>
+    <el-date-picker v-model="value2" align="right" type="date" placeholder="选择日期" :picker-options="pickerOptions1">
+    </el-date-picker>
+  </div>
+</template>
+</div>
+
+<script>
+  var Main = {
+    data() {
+      return {
+        pickerOptions0: {
+          disabledDate(time) {
+            debugger
+            return time.getTime() < Date.now() - 8.64e7;
+          }
+        },
+        pickerOptions1: {
+          shortcuts: [{
+            text: '今天',
+            onClick(picker) {
+              picker.$emit('pick', new Date());
+            }
+          }, {
+            text: '昨天',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit('pick', date);
+            }
+          }, {
+            text: '一周前',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', date);
+            }
+          }]
+        },
+        value1: '',
+        value2: '',
+      };
+    }
+  };
+var Ctor = Vue.extend(Main)
+var app = new Ctor().$mount('#app')
+</script>
+</body>
+</html>
