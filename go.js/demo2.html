@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.7.12/go-debug.js"></script>
+</head>
+<body>
+  <div id='myDiagramDiv' style = 'border: solid 1px black; width: 400px; height: 400px'></div >
+</body>
+<script>
+
+var $ = go.GraphObject.make;
+var myDiagram =
+  $(go.Diagram, "myDiagramDiv",
+    {
+      initialContentAlignment: go.Spot.Center, // center Diagram contents
+      "undoManager.isEnabled": true // enable Ctrl-Z to undo and Ctrl-Y to redo
+    });
+
+// define a simple Node template
+myDiagram.nodeTemplate =
+  $(go.Node, "Horizontal",
+    // the entire node will have a light-blue background
+    { background: "#3397fc" },
+    $(go.Picture,
+      // Pictures should normally have an explicit width and height.
+      // This picture has a red background, only visible when there is no source set
+      // or when the image is partially transparent.
+      { margin: 10, width: 50, height: 50, background: "red" },
+      // Picture.source is data bound to the "source" attribute of the model data
+      new go.Binding("source")),
+    $(go.TextBlock,
+      "Default 22Text",,// the initial value for TextBlock.text
+      // some room around the text, a larger font, and a white stroke:
+      { margin: 12, stroke: "white", font: "bold 16px sans-serif" },
+      // TextBlock.text is data bound to the "name" attribute of the model data
+      new go.Binding("text", "name"))
+  );
+
+var model = $(go.Model);
+model.nodeDataArray =
+[ // note that each node data object holds whatever properties it needs;
+  // for this app we add the "name" and "source" properties
+  { name: "Don", source: "img/a.png" },
+  { name: "Copricat", source: "img/b.png" },
+  { name: "Demeter",  source: "img/c.png" },
+  { /* Empty node data */  }
+];
+myDiagram.model = model;
+</script>
+
+</html>

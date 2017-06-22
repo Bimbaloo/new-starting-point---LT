@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.7.12/go-debug.js"></script>
+</head>
+<body>
+  <div id='myDiagramDiv' style = 'border: solid 1px black; width: 400px; height: 400px'></div >
+</body>
+<script>
+
+
+    var $ = go.GraphObject.make;  //为了简洁
+
+    myDiagram = $(go.Diagram, "myDiagramDiv",  // create a Diagram for the DIV HTML element
+               {
+                 initialContentAlignment: go.Spot.Center,  // 对齐方式 ： 居中
+                 "undoManager.isEnabled": true  // 能否ctrl-z 撤销和 ctrl-y 复原
+               });
+
+
+
+var myModel = $(go.Model);
+// in the model data, each node is represented by a JavaScript object:
+myModel.nodeDataArray = [
+  { key: "Alpha" },
+  { key: "Beta" },
+  { key: "Gamma" }
+];
+myDiagram.model = myModel;
+</script>
+
+</html>

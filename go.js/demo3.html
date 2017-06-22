@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.7.12/go-debug.js"></script>
+</head>
+<body>
+  <div id='myDiagramDiv' style = 'border: solid 1px black; width: 100%; height: 800px'></div >
+</body>
+<script>
+
+var $ = go.GraphObject.make;
+var myDiagram =
+  $(go.Diagram, "myDiagramDiv",
+    {
+      initialContentAlignment: go.Spot.Center, // center Diagram contents
+      "undoManager.isEnabled": true // enable Ctrl-Z to undo and Ctrl-Y to redo
+    });
+
+// the template we defined earlier
+myDiagram.nodeTemplate =
+  $(go.Node, "Horizontal",  //图片文字间的位置关系
+    { background: "#44CCFF" },
+    $(go.Picture,
+      { margin: 10, width: 50, height: 50, background: "red" },
+      new go.Binding("source")),
+    $(go.TextBlock, "Default Text",
+      { margin: 12, stroke: "white", font: "bold 16px sans-serif" },
+      new go.Binding("text", "name"))
+  );
+
+var model = $(go.TreeModel);
+model.nodeDataArray =
+[ // the "key" and "parent" property names are required,
+  // but you can add whatever data properties you need for your app
+  { key: "1",              name: "1", source: "cat1.png" },
+  { key: "2", parent: "1", name: "2", source: "cat2.png" },
+  { key: "3", parent: "1", name: "3", source: "cat3.png" },
+  { key: "4", parent: "3", name: "4", source: "cat4.png" },
+  { key: "5", parent: "3", name: "5", source: "cat5.png" },
+  { key: "6", parent: "2", name: "6", source: "cat6.png" }
+];
+
+myDiagram.model = model;
+</script>
+
+</html>
