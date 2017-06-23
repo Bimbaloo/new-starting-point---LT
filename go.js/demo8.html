@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.7.12/go-debug.js"></script>
+
+    
+</head>
+<body>
+  <div id='myDiagramDiv' style = 'border: solid 1px black; width: 400px; height: 400px'></div >
+</body>
+<script>
+  var $ = go.GraphObject.make;
+
+
+    myDiagram = $(go.Diagram, "myDiagramDiv",  // create a Diagram for the DIV HTML element
+               {
+                 initialContentAlignment: go.Spot.Center,  // 对齐方式 ： 居中
+                 "undoManager.isEnabled": true  // 能否ctrl-z 撤销和 ctrl-y 复原
+               });
+// the node template describes how each Node should be constructed
+myDiagram.nodeTemplate =
+  $(go.Node, "Auto",  // 形状自动符合TextBlock周围
+
+    $(go.Shape, "RoundedRectangle", //圆角矩形
+      // bind Shape.fill to Node.data.color  把shape.fill（填充色）属性用color绑定
+      new go.Binding("fill", "color")),
+    $(go.TextBlock,
+      { margin: 3 },  // 文字周围的margin
+      // bind TextBlock.text to Node.data.a
+      new go.Binding("text", "key"))
+  );
+
+// the Model holds only the essential information describing the diagram
+myDiagram.model = new go.GraphLinksModel(
+[ // a JavaScript Array of JavaScript objects, one per node
+  { key: "Alpha", color: "lightblue" },
+  { key: "Beta", color: "orange" },
+  { key: "Gamma", color: "lightgreen" },
+  { key: "Delta", color: "pink" }
+],
+[ // a JavaScript Array of JavaScript objects, one per link
+  { from: "Alpha", to: "Beta" },
+  { from: "Alpha", to: "Gamma" },
+  { from: "Beta", to: "Beta" },
+  { from: "Gamma", to: "Delta" },
+  { from: "Delta", to: "Alpha" },
+   { from: "Delta", to: "Gamma" }
+]);
+
+myDiagram.initialContentAlignment = go.Spot.Center;
+// enable Ctrl-Z to undo and Ctrl-Y to redo
+myDiagram.undoManager.isEnabled = true;
+</script>
+</html>
