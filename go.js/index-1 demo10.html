@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/gojs/1.7.12/go-debug.js"></script>
+
+
+</head>
+
+<body>
+
+
+  <div id="sample">
+    <div id="myDiagramDiv" style="border: solid 1px black; width:100%; height:400px;"></div>
+  </div>
+  <script>
+        var $ = go.GraphObject.make;
+        var myDiagram = $(go.Diagram, "myDiagramDiv", // 定义画布
+          {
+            initialContentAlignment: go.Spot.Center,  // 默认居中
+            "undoManager.isEnabled": true             // 开启默认键盘操作
+          });
+
+
+        var myModel = $(go.Model);
+        // in the model data, each node is represented by a JavaScript object:
+        // 模型中的数据,每个节点代表一个JavaScript对象
+        myModel.nodeDataArray = [
+          { key: "Alpha" },
+          { key: "Beta" },
+          { key: "Gamma" }
+        ];
+        myDiagram.model = myModel;
+
+  </script>
+</body>
+
+</html>

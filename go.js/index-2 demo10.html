@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/gojs/1.7.12/go-debug.js"></script>
+
+
+</head>
+
+<body>
+
+
+  <div id="sample">
+    <div id="myDiagramDiv" style="border: solid 1px black; width:100%; height:400px;"></div>
+  </div>
+  <script>
+          var $ = go.GraphObject.make;
+          var myDiagram = $(go.Diagram, "myDiagramDiv",
+              {
+                initialContentAlignment: go.Spot.Center, // 默认居中
+                "undoManager.isEnabled": true            // 开启默认键盘操作
+              });
+
+          // 定义一个简单的节点模板
+          myDiagram.nodeTemplate =
+            $(go.Node, "Horizontal",                    // 水平排列 
+              // 定义节点的背景色
+              { background: "#44CCFF" },
+              $(go.Picture,                             // 定义图片
+              'img/cat3.png',
+                // 照片通常应该有一个明确的宽度和高度
+                // 这张照片的背景是红色的,只有当没有可见源图像时设置或部分透明。
+                // 当图片不可见或者不存在时，图片背景色为红色(可设置半透明)
+                { margin: 10, width: 50, height: 50, background: "red" },
+                // 将图片绑定到 'source' 的属性上
+                new go.Binding("source")),
+              $(go.TextBlock,                           // 定义文字
+                "Default Text",                         // 可以设置内容的默认值（也可以不设置）
+                // 字体的 'margin'值和颜色、样式等
+                { margin: 12, stroke: "white", font: "bold 16px sans-serif" },
+                // 将 'TextBlock.text' 属性绑定到 'source' 上
+                new go.Binding("text", "name"))
+            );
+
+          var model = $(go.Model);
+          model.nodeDataArray =
+            [   //  注意,每个节点数据对象持有任何属性需要;对于这个程序我们加入“name”和“源”的特性
+                //  注意,每个节点数据对象持有任何属性需要;对于这个程序我们加入“name”和“源”的特性
+              { name: "Don Meow", source: "img/cat1.png" },
+              { name: "Copricat", source: "img/cat2.png" },
+              { name: "Demeter", source: "img/cat3.png" },
+              { /* Empty node data */ }
+            ];
+          myDiagram.model = model;
+
+  </script>
+</body>
+
+</html>
