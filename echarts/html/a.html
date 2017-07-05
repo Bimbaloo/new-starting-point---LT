@@ -15,33 +15,6 @@
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
 
-        // 指定图表的配置项和数据
-        // var option = {
-        //     title: {
-        //         text: 'ECharts 入门示例'
-        //     },
-        //     tooltip: {},
-        //     legend: {
-        //         data:['销量']
-        //     },
-        //     xAxis: {
-        //         data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-        //     },
-        //     yAxis: {
-
-        //     },
-        //     series: [{
-        //         name: '销量',
-        //         type: 'bar',
-        //         data: [5, 20, 36, 10, 10, 20]
-        //     }]
-        // };
-
-        // // 使用刚指定的配置项和数据显示图表。
-        // myChart.setOption(option);
-
-
-
         option = {
             // color: ['#f00', '#00f', '#eda02d', '#ccc', '#00f', '#0f0'],
             title: {
@@ -61,7 +34,7 @@
                 type: 'sankey',
                 layout: 'none',
                 nodeWidth: '50',
-                // layoutIterations:0,
+                layoutIterations: 0,
                 label: {
                     normal: {
                         show: true,
@@ -74,9 +47,7 @@
                 },
                 data: [{
                         name: '生产',
-                        aaa: '30万头',
-
-
+                        aaa: '60万头',
                     }, {
                         name: '供本市',
                         aaa: '30万头',
@@ -140,11 +111,11 @@
                 ],
                 links: [{
                     source: '生产',
-                    target: '供本市',
+                    target: '外销',
                     value: 7
                 }, {
                     source: '生产',
-                    target: '外销',
+                    target: '供本市',
                     value: 3
                 }, {
                     source: '外销',
