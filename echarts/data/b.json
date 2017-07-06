@@ -1,268 +1,36 @@
 {
     "r": [
         {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 1,
-            "name1": "熔炼-不良品",
-            "value": "",
-            "remarks": "#ff7070"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 2,
-            "name1": "熔炼-在制品",
-            "value": "",
-            "remarks": "#47a3e3"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 3,
-            "name1": "熔炼-未知损耗",
-            "value": "83.00",
-            "remarks": "#dae347"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "020",
-            "TYPE": 0,
-            "name1": "除气",
-            "value": "17.00",
-            "remarks": "#696e73"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 1,
-            "name1": "除气-不良品",
-            "value": "",
-            "remarks": "#ff7070"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 2,
-            "name1": "除气-在制品",
-            "value": "5.00",
-            "remarks": "#47a3e3"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 3,
-            "name1": "除气-未知损耗",
-            "value": "",
-            "remarks": "#dae347"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "030",
-            "TYPE": 0,
-            "name1": "浇铸",
-            "value": "17.00",
-            "remarks": "#696e73"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 1,
-            "name1": "浇铸-不良品",
-            "value": "",
-            "remarks": "#ff7070"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 2,
-            "name1": "浇铸-在制品",
-            "value": "8.10",
-            "remarks": "#47a3e3"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 3,
-            "name1": "浇铸-未知损耗",
-            "value": "1.90",
-            "remarks": "#dae347"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "040",
-            "TYPE": 0,
-            "name1": "毛胚检验",
-            "value": "10.10",
-            "remarks": "#696e73"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 1,
-            "name1": "毛胚检验-不良品",
-            "value": "",
-            "remarks": "#ff7070"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 2,
-            "name1": "毛胚检验-在制品",
-            "value": "",
-            "remarks": "#47a3e3"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 3,
-            "name1": "毛胚检验-未知损耗",
-            "value": "",
-            "remarks": "#dae347"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "050",
-            "TYPE": 0,
-            "name1": "锯浇道",
-            "value": "2.00",
-            "remarks": "#696e73"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 1,
-            "name1": "锯浇道-不良品",
-            "value": "",
-            "remarks": "#ff7070"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 2,
-            "name1": "锯浇道-在制品",
-            "value": "0.20",
-            "remarks": "#47a3e3"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 3,
-            "name1": "锯浇道-未知损耗",
-            "value": "",
-            "remarks": "#dae347"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "060",
-            "TYPE": 0,
-            "name1": "锯冒口",
-            "value": "2.00",
-            "remarks": "#696e73"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 1,
-            "name1": "锯冒口-不良品",
-            "value": "",
-            "remarks": "#ff7070"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 2,
-            "name1": "锯冒口-在制品",
-            "value": "0.30",
-            "remarks": "#47a3e3"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 3,
-            "name1": "锯冒口-未知损耗",
-            "value": "",
-            "remarks": "#dae347"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "080",
-            "TYPE": 0,
-            "name1": "高温热处理",
-            "value": "1.80",
-            "remarks": "#696e73"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 1,
-            "name1": "高温热处理-不良品",
-            "value": "",
-            "remarks": "#ff7070"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 2,
-            "name1": "高温热处理-在制品",
-            "value": "",
-            "remarks": "#47a3e3"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "",
-            "TYPE": 3,
-            "name1": "高温热处理-未知损耗",
-            "value": "",
-            "remarks": "#dae347"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "090",
-            "TYPE": 0,
-            "name1": "低温热处理",
-            "value": "3.50",
-            "remarks": "#696e73"
-        },
-        {
-            "USAGE": "nodes",
+            "USAGE": "index",
             "name2": "",
             "TYPE": 4,
             "name1": "合格品",
             "value": "3.50",
-            "remarks": "#48e19b"
+            "remarks": ""
         },
         {
-            "USAGE": "nodes",
+            "USAGE": "index",
             "name2": "",
             "TYPE": 4,
             "name1": "不良品",
             "value": "",
-            "remarks": "#ff7070"
+            "remarks": ""
         },
         {
-            "USAGE": "nodes",
+            "USAGE": "index",
             "name2": "",
             "TYPE": 4,
             "name1": "在制品",
             "value": "13.60",
-            "remarks": "#47a3e3"
+            "remarks": ""
         },
         {
-            "USAGE": "nodes",
+            "USAGE": "index",
             "name2": "",
             "TYPE": 4,
             "name1": "未知损耗",
             "value": "84.90",
-            "remarks": "#dae347"
-        },
-        {
-            "USAGE": "nodes",
-            "name2": "010",
-            "TYPE": 0,
-            "name1": "熔炼",
-            "value": "100.00",
-            "remarks": "#696e73"
+            "remarks": ""
         },
         {
             "USAGE": "links",
@@ -338,6 +106,230 @@
         },
         {
             "USAGE": "links",
+            "name2": "除气-不良品",
+            "TYPE": 1,
+            "name1": "除气",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "浇铸-不良品",
+            "TYPE": 1,
+            "name1": "浇铸",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "毛胚检验-不良品",
+            "TYPE": 1,
+            "name1": "毛胚检验",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯浇道-不良品",
+            "TYPE": 1,
+            "name1": "锯浇道",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯冒口-不良品",
+            "TYPE": 1,
+            "name1": "锯冒口",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "高温热处理-不良品",
+            "TYPE": 1,
+            "name1": "高温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "熔炼-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "除气-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "浇铸-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "毛胚检验-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "锯浇道-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "锯冒口-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "高温热处理-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "低温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "低温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "高温热处理-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "锯冒口-在制品",
+            "value": "3",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "锯浇道-在制品",
+            "value": "2",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "毛胚检验-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "浇铸-在制品",
+            "value": "81",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "除气-在制品",
+            "value": "50",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "熔炼-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "高温热处理-在制品",
+            "TYPE": 2,
+            "name1": "高温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯冒口-在制品",
+            "TYPE": 2,
+            "name1": "锯冒口",
+            "value": "3",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯浇道-在制品",
+            "TYPE": 2,
+            "name1": "锯浇道",
+            "value": "2",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "毛胚检验-在制品",
+            "TYPE": 2,
+            "name1": "毛胚检验",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "浇铸-在制品",
+            "TYPE": 2,
+            "name1": "浇铸",
+            "value": "81",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "除气-在制品",
+            "TYPE": 2,
+            "name1": "除气",
+            "value": "50",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
             "name2": "熔炼-在制品",
             "TYPE": 2,
             "name1": "熔炼",
@@ -354,42 +346,10 @@
         },
         {
             "USAGE": "links",
-            "name2": "除气-不良品",
-            "TYPE": 1,
-            "name1": "除气",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "除气-在制品",
-            "TYPE": 2,
-            "name1": "除气",
-            "value": "50",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
             "name2": "除气-未知损耗",
             "TYPE": 3,
             "name1": "除气",
             "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "浇铸-不良品",
-            "TYPE": 1,
-            "name1": "浇铸",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "浇铸-在制品",
-            "TYPE": 2,
-            "name1": "浇铸",
-            "value": "81",
             "remarks": ""
         },
         {
@@ -402,42 +362,10 @@
         },
         {
             "USAGE": "links",
-            "name2": "毛胚检验-不良品",
-            "TYPE": 1,
-            "name1": "毛胚检验",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "毛胚检验-在制品",
-            "TYPE": 2,
-            "name1": "毛胚检验",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
             "name2": "毛胚检验-未知损耗",
             "TYPE": 3,
             "name1": "毛胚检验",
             "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "锯浇道-不良品",
-            "TYPE": 1,
-            "name1": "锯浇道",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "锯浇道-在制品",
-            "TYPE": 2,
-            "name1": "锯浇道",
-            "value": "2",
             "remarks": ""
         },
         {
@@ -450,41 +378,9 @@
         },
         {
             "USAGE": "links",
-            "name2": "锯冒口-不良品",
-            "TYPE": 1,
-            "name1": "锯冒口",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "锯冒口-在制品",
-            "TYPE": 2,
-            "name1": "锯冒口",
-            "value": "3",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
             "name2": "锯冒口-未知损耗",
             "TYPE": 3,
             "name1": "锯冒口",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "高温热处理-不良品",
-            "TYPE": 1,
-            "name1": "高温热处理",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "高温热处理-在制品",
-            "TYPE": 2,
-            "name1": "高温热处理",
             "value": "",
             "remarks": ""
         },
@@ -498,42 +394,10 @@
         },
         {
             "USAGE": "links",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "熔炼-不良品",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "在制品",
-            "TYPE": 2,
-            "name1": "熔炼-在制品",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
             "name2": "未知损耗",
             "TYPE": 3,
             "name1": "熔炼-未知损耗",
             "value": "830",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "除气-不良品",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "在制品",
-            "TYPE": 2,
-            "name1": "除气-在制品",
-            "value": "50",
             "remarks": ""
         },
         {
@@ -546,42 +410,10 @@
         },
         {
             "USAGE": "links",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "浇铸-不良品",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "在制品",
-            "TYPE": 2,
-            "name1": "浇铸-在制品",
-            "value": "81",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
             "name2": "未知损耗",
             "TYPE": 3,
             "name1": "浇铸-未知损耗",
             "value": "19",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "毛胚检验-不良品",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "在制品",
-            "TYPE": 2,
-            "name1": "毛胚检验-在制品",
-            "value": "",
             "remarks": ""
         },
         {
@@ -594,22 +426,6 @@
         },
         {
             "USAGE": "links",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "锯浇道-不良品",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "在制品",
-            "TYPE": 2,
-            "name1": "锯浇道-在制品",
-            "value": "2",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
             "name2": "未知损耗",
             "TYPE": 3,
             "name1": "锯浇道-未知损耗",
@@ -618,41 +434,9 @@
         },
         {
             "USAGE": "links",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "锯冒口-不良品",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "在制品",
-            "TYPE": 2,
-            "name1": "锯冒口-在制品",
-            "value": "3",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
             "name2": "未知损耗",
             "TYPE": 3,
             "name1": "锯冒口-未知损耗",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "高温热处理-不良品",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "在制品",
-            "TYPE": 2,
-            "name1": "高温热处理-在制品",
             "value": "",
             "remarks": ""
         },
@@ -666,22 +450,6 @@
         },
         {
             "USAGE": "links",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "低温热处理",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
-            "name2": "在制品",
-            "TYPE": 2,
-            "name1": "低温热处理",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "links",
             "name2": "未知损耗",
             "TYPE": 3,
             "name1": "低温热处理",
@@ -689,59 +457,275 @@
             "remarks": ""
         },
         {
-            "USAGE": "index",
+            "USAGE": "nodes",
+            "name2": "010",
+            "TYPE": 0,
+            "name1": "熔炼",
+            "value": "100.00",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "090",
+            "TYPE": 0,
+            "name1": "低温热处理",
+            "value": "3.50",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "060",
+            "TYPE": 0,
+            "name1": "锯冒口",
+            "value": "2.00",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "080",
+            "TYPE": 0,
+            "name1": "高温热处理",
+            "value": "1.80",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "020",
+            "TYPE": 0,
+            "name1": "除气",
+            "value": "17.00",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "030",
+            "TYPE": 0,
+            "name1": "浇铸",
+            "value": "17.00",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "040",
+            "TYPE": 0,
+            "name1": "毛胚检验",
+            "value": "10.10",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "050",
+            "TYPE": 0,
+            "name1": "锯浇道",
+            "value": "2.00",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "锯浇道-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "毛胚检验-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "浇铸-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "除气-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "高温热处理-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "锯冒口-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "熔炼-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "熔炼-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "锯冒口-在制品",
+            "value": "0.30",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "高温热处理-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "除气-在制品",
+            "value": "5.00",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "浇铸-在制品",
+            "value": "8.10",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "毛胚检验-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "锯浇道-在制品",
+            "value": "0.20",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "锯浇道-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "毛胚检验-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "浇铸-未知损耗",
+            "value": "1.90",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "除气-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "高温热处理-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "锯冒口-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "熔炼-未知损耗",
+            "value": "83.00",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
             "name2": "",
             "TYPE": 4,
             "name1": "合格品",
             "value": "3.50",
-            "remarks": ""
+            "remarks": "#48e19b"
         },
         {
-            "USAGE": "index",
+            "USAGE": "nodes",
             "name2": "",
             "TYPE": 4,
             "name1": "不良品",
             "value": "",
-            "remarks": ""
+            "remarks": "#ff7070"
         },
         {
-            "USAGE": "index",
+            "USAGE": "nodes",
             "name2": "",
             "TYPE": 4,
             "name1": "在制品",
             "value": "13.60",
-            "remarks": ""
+            "remarks": "#47a3e3"
         },
         {
-            "USAGE": "index",
+            "USAGE": "nodes",
             "name2": "",
             "TYPE": 4,
             "name1": "未知损耗",
             "value": "84.90",
-            "remarks": ""
+            "remarks": "#dae347"
         },
         {
             "USAGE": "table",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "熔炼",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "在制品",
-            "TYPE": 2,
-            "name1": "熔炼",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "未知损耗",
-            "TYPE": 3,
-            "name1": "熔炼",
-            "value": "830",
+            "name2": "合格品",
+            "TYPE": 0,
+            "name1": "低温热处理",
+            "value": "35",
             "remarks": ""
         },
         {
@@ -754,9 +738,121 @@
         },
         {
             "USAGE": "table",
+            "name2": "合格品",
+            "TYPE": 0,
+            "name1": "除气",
+            "value": "170",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "合格品",
+            "TYPE": 0,
+            "name1": "浇铸",
+            "value": "101",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "合格品",
+            "TYPE": 0,
+            "name1": "毛胚检验",
+            "value": "20",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "合格品",
+            "TYPE": 0,
+            "name1": "锯浇道",
+            "value": "20",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "合格品",
+            "TYPE": 0,
+            "name1": "锯冒口",
+            "value": "18",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "合格品",
+            "TYPE": 0,
+            "name1": "高温热处理",
+            "value": "35",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "低温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "高温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "锯冒口",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "锯浇道",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "毛胚检验",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "浇铸",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
             "name2": "不良品",
             "TYPE": 1,
             "name1": "除气",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "熔炼",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "熔炼",
             "value": "",
             "remarks": ""
         },
@@ -770,30 +866,6 @@
         },
         {
             "USAGE": "table",
-            "name2": "未知损耗",
-            "TYPE": 3,
-            "name1": "除气",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "合格品",
-            "TYPE": 0,
-            "name1": "除气",
-            "value": "170",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "浇铸",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
             "name2": "在制品",
             "TYPE": 2,
             "name1": "浇铸",
@@ -802,57 +874,9 @@
         },
         {
             "USAGE": "table",
-            "name2": "未知损耗",
-            "TYPE": 3,
-            "name1": "浇铸",
-            "value": "19",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "合格品",
-            "TYPE": 0,
-            "name1": "浇铸",
-            "value": "101",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "毛胚检验",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
             "name2": "在制品",
             "TYPE": 2,
             "name1": "毛胚检验",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "未知损耗",
-            "TYPE": 3,
-            "name1": "毛胚检验",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "合格品",
-            "TYPE": 0,
-            "name1": "毛胚检验",
-            "value": "20",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "锯浇道",
             "value": "",
             "remarks": ""
         },
@@ -866,30 +890,6 @@
         },
         {
             "USAGE": "table",
-            "name2": "未知损耗",
-            "TYPE": 3,
-            "name1": "锯浇道",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "合格品",
-            "TYPE": 0,
-            "name1": "锯浇道",
-            "value": "20",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "锯冒口",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
             "name2": "在制品",
             "TYPE": 2,
             "name1": "锯冒口",
@@ -898,57 +898,9 @@
         },
         {
             "USAGE": "table",
-            "name2": "未知损耗",
-            "TYPE": 3,
-            "name1": "锯冒口",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "合格品",
-            "TYPE": 0,
-            "name1": "锯冒口",
-            "value": "18",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "高温热处理",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
             "name2": "在制品",
             "TYPE": 2,
             "name1": "高温热处理",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "未知损耗",
-            "TYPE": 3,
-            "name1": "高温热处理",
-            "value": "",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "合格品",
-            "TYPE": 0,
-            "name1": "高温热处理",
-            "value": "35",
-            "remarks": ""
-        },
-        {
-            "USAGE": "table",
-            "name2": "不良品",
-            "TYPE": 1,
-            "name1": "低温热处理",
             "value": "",
             "remarks": ""
         },
@@ -970,10 +922,58 @@
         },
         {
             "USAGE": "table",
-            "name2": "合格品",
-            "TYPE": 0,
-            "name1": "低温热处理",
-            "value": "35",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "高温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "锯冒口",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "锯浇道",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "毛胚检验",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "浇铸",
+            "value": "19",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "除气",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "table",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "熔炼",
+            "value": "830",
             "remarks": ""
         },
         {
