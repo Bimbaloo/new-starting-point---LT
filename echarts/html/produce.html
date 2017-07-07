@@ -25,8 +25,9 @@
             var oTable = null,
                 oSankey = null,
                 oData = {},
-                aTableData = [];
-
+                aTableData = [],
+                jSankey = null,
+                oOption = null;
 
 
             $.getJSON('../data/b.json', function (res) {
@@ -41,8 +42,6 @@
                 }
 
             });
-
-
             /**
              * 数据处理
              * 
@@ -67,13 +66,9 @@
                         case "tips": oData.tips.push(r[i]);
                             break;
                     }
-
                 }
                 //表格数据处理(表格数据要自己拼)
                 tableDataChange(oData.table);
-
-
-
 
                 /**
                  * 构造节点数据
@@ -83,16 +78,13 @@
                 function addNodes(nodes) {
                     var thisNode = nodes;
                     var oThisNode = {};
-
                     if (thisNode.value) {
                         oThisNode.name = thisNode.name1;
                         oThisNode.value = thisNode.value + "%";
                         oThisNode.type = thisNode.TYPE;
                         oThisNode.code = thisNode.name2;
                         oThisNode.itemStyle = { "normal": { "color": thisNode.remarks } };
-
                         oData.nodes.push(oThisNode);
-
                         if (oThisNode.name == "未知损耗") {
                             $(".show_text").find("span").eq(2).text(oThisNode.value);
                         }
@@ -102,9 +94,7 @@
                         if (oThisNode.name == "不良品") {
                             $(".show_text").find("span").eq(1).text(oThisNode.value);
                         }
-
                     }
-
                 }
                 //		{"source": "低温热处理","target": "低温热处理-在制品", "value": 182},
 
@@ -120,10 +110,8 @@
                         oThisLink.source = thisLink.name1;
                         oThisLink.target = thisLink.name2;
                         oThisLink.value = thisLink.value;
-
                         oData.links.push(oThisLink);
                     }
-
                 }
 
                 /**
@@ -196,19 +184,18 @@
                 }
             }
 
-
             /**
              * 绘制sankey
              * @param{Object} 画图的数据
              * @return {void}
              */
             function createSankey(oData) {
-                console.log(oData);
+               // console.log(oData);
                 //画桑基图
-                var jSankey = document.getElementById('sankey');
+                 jSankey = document.getElementById('sankey');
                 data = oData;
 
-                var oOption = {
+                 oOption = {
                     tooltip: {
                         trigger: 'item',
                         triggerOn: 'mousemove',
@@ -221,7 +208,7 @@
                             layoutIterations: 0,   //  如果想指定结果的纵向顺序，那么可以把 layoutIterations 设为 0，此时纵向的顺序依照数据在 links 中出现的顺序。
                             links: data.links,
                             data: data.nodes,
-
+                           // animation:false,
                             itemStyle: {
                                 normal: {
                                     borderWidth: 1,
@@ -247,10 +234,24 @@
                 oSankey.setOption(oOption);
                
             }
-
-
-
+             
+            window.onresize = function () { 
+                 var option = oSankey.getOption()
+                 option.animation = false
+                 console.log(option)
+                debugger
+                oSankey = echarts.init(jSankey);
+                oSankey.clear();
+                debugger
+                // oSankey.setOption({
+                        
+                //             animation:false
+                        
+                // });
+                 oSankey.setOption(option);
+            }
         }
+       
     </script>
 </body>
 
