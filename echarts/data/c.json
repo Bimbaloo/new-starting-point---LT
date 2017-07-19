@@ -1,0 +1,1261 @@
+{
+    "r": [
+        {
+            "USAGE": "links",
+            "name2": "毛胚检验",
+            "TYPE": 0,
+            "name1": "浇铸",
+            "value": "980",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯浇道",
+            "TYPE": 0,
+            "name1": "毛胚检验",
+            "value": "917",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯冒口",
+            "TYPE": 0,
+            "name1": "锯浇道",
+            "value": "917",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "修披锋",
+            "TYPE": 0,
+            "name1": "锯冒口",
+            "value": "917",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "低温热处理",
+            "TYPE": 0,
+            "name1": "修披锋",
+            "value": "917",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "盐芯",
+            "TYPE": 0,
+            "name1": "低温热处理",
+            "value": "917",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "盐芯",
+            "TYPE": 0,
+            "name1": "盐芯",
+            "value": "917",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "探伤",
+            "TYPE": 0,
+            "name1": "FGB检验-其他工序",
+            "value": "405",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "石墨工序",
+            "TYPE": 0,
+            "name1": "探伤",
+            "value": "372",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "环化",
+            "TYPE": 0,
+            "name1": "石墨工序",
+            "value": "253",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "环化",
+            "TYPE": 0,
+            "name1": "石墨工序",
+            "value": "116",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配",
+            "TYPE": 0,
+            "name1": "石墨工序",
+            "value": "253",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配",
+            "TYPE": 0,
+            "name1": "石墨工序",
+            "value": "116",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配",
+            "TYPE": 0,
+            "name1": "环化",
+            "value": "228",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配",
+            "TYPE": 0,
+            "name1": "装配",
+            "value": "228",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配",
+            "TYPE": 0,
+            "name1": "装配",
+            "value": "228",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "浇铸-不良品",
+            "TYPE": 1,
+            "name1": "浇铸",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "毛胚检验-不良品",
+            "TYPE": 1,
+            "name1": "毛胚检验",
+            "value": "26",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯浇道-不良品",
+            "TYPE": 1,
+            "name1": "锯浇道",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯冒口-不良品",
+            "TYPE": 1,
+            "name1": "锯冒口",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "修披锋-不良品",
+            "TYPE": 1,
+            "name1": "修披锋",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "低温热处理-不良品",
+            "TYPE": 1,
+            "name1": "低温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "盐芯-不良品",
+            "TYPE": 1,
+            "name1": "盐芯",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "FGB检验-其他工序-不良品",
+            "TYPE": 1,
+            "name1": "FGB检验-其他工序",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "探伤-不良品",
+            "TYPE": 1,
+            "name1": "探伤",
+            "value": "1",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "石墨工序-不良品",
+            "TYPE": 1,
+            "name1": "石墨工序",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "石墨工序-不良品",
+            "TYPE": 1,
+            "name1": "石墨工序",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "环化-不良品",
+            "TYPE": 1,
+            "name1": "环化",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配-不良品",
+            "TYPE": 1,
+            "name1": "装配",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配-不良品",
+            "TYPE": 1,
+            "name1": "装配",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "浇铸-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "毛胚检验-不良品",
+            "value": "26",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "锯浇道-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "锯冒口-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "修披锋-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "低温热处理-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "盐芯-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "FGB检验-其他工序-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "探伤-不良品",
+            "value": "1",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "石墨工序-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "石墨工序-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "环化-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "装配-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "不良品",
+            "TYPE": 1,
+            "name1": "装配-不良品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "装配-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "装配-在制品",
+            "value": "-112",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "环化-在制品",
+            "value": "25",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "石墨工序-在制品",
+            "value": "256",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "石墨工序-在制品",
+            "value": "119",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "探伤-在制品",
+            "value": "32",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "FGB检验-其他工序-在制品",
+            "value": "314",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "盐芯-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "低温热处理-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "修披锋-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "锯冒口-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "锯浇道-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "毛胚检验-在制品",
+            "value": "37",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "在制品",
+            "TYPE": 2,
+            "name1": "浇铸-在制品",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配-在制品",
+            "TYPE": 2,
+            "name1": "装配",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配-在制品",
+            "TYPE": 2,
+            "name1": "装配",
+            "value": "-112",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "环化-在制品",
+            "TYPE": 2,
+            "name1": "环化",
+            "value": "25",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "石墨工序-在制品",
+            "TYPE": 2,
+            "name1": "石墨工序",
+            "value": "256",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "石墨工序-在制品",
+            "TYPE": 2,
+            "name1": "石墨工序",
+            "value": "119",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "探伤-在制品",
+            "TYPE": 2,
+            "name1": "探伤",
+            "value": "32",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "FGB检验-其他工序-在制品",
+            "TYPE": 2,
+            "name1": "FGB检验-其他工序",
+            "value": "314",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "盐芯-在制品",
+            "TYPE": 2,
+            "name1": "盐芯",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "低温热处理-在制品",
+            "TYPE": 2,
+            "name1": "低温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "修披锋-在制品",
+            "TYPE": 2,
+            "name1": "修披锋",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯冒口-在制品",
+            "TYPE": 2,
+            "name1": "锯冒口",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯浇道-在制品",
+            "TYPE": 2,
+            "name1": "锯浇道",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "毛胚检验-在制品",
+            "TYPE": 2,
+            "name1": "毛胚检验",
+            "value": "37",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "浇铸-在制品",
+            "TYPE": 2,
+            "name1": "浇铸",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "浇铸-未知损耗",
+            "TYPE": 3,
+            "name1": "浇铸",
+            "value": "3111",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "毛胚检验-未知损耗",
+            "TYPE": 3,
+            "name1": "毛胚检验",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯浇道-未知损耗",
+            "TYPE": 3,
+            "name1": "锯浇道",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "锯冒口-未知损耗",
+            "TYPE": 3,
+            "name1": "锯冒口",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "修披锋-未知损耗",
+            "TYPE": 3,
+            "name1": "修披锋",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "低温热处理-未知损耗",
+            "TYPE": 3,
+            "name1": "低温热处理",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "盐芯-未知损耗",
+            "TYPE": 3,
+            "name1": "盐芯",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "FGB检验-其他工序-未知损耗",
+            "TYPE": 3,
+            "name1": "FGB检验-其他工序",
+            "value": "10",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "探伤-未知损耗",
+            "TYPE": 3,
+            "name1": "探伤",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "石墨工序-未知损耗",
+            "TYPE": 3,
+            "name1": "石墨工序",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "石墨工序-未知损耗",
+            "TYPE": 3,
+            "name1": "石墨工序",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "环化-未知损耗",
+            "TYPE": 3,
+            "name1": "环化",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配-未知损耗",
+            "TYPE": 3,
+            "name1": "装配",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "装配-未知损耗",
+            "TYPE": 3,
+            "name1": "装配",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "浇铸-未知损耗",
+            "value": "3111",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "毛胚检验-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "锯浇道-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "锯冒口-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "修披锋-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "低温热处理-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "盐芯-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "FGB检验-其他工序-未知损耗",
+            "value": "10",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "探伤-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "石墨工序-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "石墨工序-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "环化-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "装配-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "links",
+            "name2": "未知损耗",
+            "TYPE": 3,
+            "name1": "装配-未知损耗",
+            "value": "",
+            "remarks": ""
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "190",
+            "TYPE": 0,
+            "name1": "装配",
+            "value": "2.84",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "TYPE": 0,
+            "name1": "装配",
+            "value": "5.57",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "030",
+            "TYPE": 0,
+            "name1": "浇铸",
+            "value": "100.00",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "151",
+            "TYPE": 0,
+            "name1": "石墨工序",
+            "value": "9.88",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "180",
+            "TYPE": 0,
+            "name1": "环化",
+            "value": "9.09",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "190",
+            "TYPE": 0,
+            "name1": "装配",
+            "value": "9.09",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "190",
+            "TYPE": 0,
+            "name1": "装配",
+            "value": "6.18",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "040",
+            "TYPE": 0,
+            "name1": "毛胚检验",
+            "value": "23.96",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "050",
+            "TYPE": 0,
+            "name1": "锯浇道",
+            "value": "23.32",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "060",
+            "TYPE": 0,
+            "name1": "锯冒口",
+            "value": "22.42",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "070",
+            "TYPE": 0,
+            "name1": "修披锋",
+            "value": "22.42",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "090",
+            "TYPE": 0,
+            "name1": "低温热处理",
+            "value": "22.42",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "100",
+            "TYPE": 0,
+            "name1": "盐芯",
+            "value": "22.42",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "TYPE": 0,
+            "name1": "盐芯",
+            "value": "22.42",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "145",
+            "TYPE": 0,
+            "name1": "探伤",
+            "value": "17.58",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "探伤-不良品",
+            "value": "0.02",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "FGB检验-其他工序-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "盐芯-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "低温热处理-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "修披锋-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "锯冒口-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "锯浇道-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "毛胚检验-不良品",
+            "value": "0.64",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "装配-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "环化-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "石墨工序-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "石墨工序-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "浇铸-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 1,
+            "name1": "装配-不良品",
+            "value": "",
+            "remarks": "#ff7070"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "装配-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "浇铸-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "石墨工序-在制品",
+            "value": "2.91",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "石墨工序-在制品",
+            "value": "6.26",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "环化-在制品",
+            "value": "0.61",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "装配-在制品",
+            "value": "-2.74",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "毛胚检验-在制品",
+            "value": "0.90",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "锯浇道-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "锯冒口-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "修披锋-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "低温热处理-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "盐芯-在制品",
+            "value": "",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "FGB检验-其他工序-在制品",
+            "value": "7.68",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 2,
+            "name1": "探伤-在制品",
+            "value": "0.78",
+            "remarks": "#47a3e3"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "探伤-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "FGB检验-其他工序-未知损耗",
+            "value": "0.24",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "盐芯-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "低温热处理-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "修披锋-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "锯冒口-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "锯浇道-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "毛胚检验-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "装配-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "环化-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "石墨工序-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "石墨工序-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "浇铸-未知损耗",
+            "value": "76.04",
+            "remarks": "#dae347"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "",
+            "TYPE": 3,
+            "name1": "装配-未知损耗",
+            "value": "",
+            "remarks": "#dae347"
+        }
+        
+    ],
+    "c": 1,
+    "d": ""
+}

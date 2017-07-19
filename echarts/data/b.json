@@ -461,7 +461,15 @@
             "name2": "010",
             "TYPE": 0,
             "name1": "熔炼",
-            "value": "100.00",
+            "value": "-1",
+            "remarks": "#696e73"
+        },
+        {
+            "USAGE": "nodes",
+            "name2": "010",
+            "TYPE": 0,
+            "name1": "熔炼",
+            "value": "",
             "remarks": "#696e73"
         },
         {
