@@ -1,11 +1,21 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');     //自动将js绑定在html的插件
+const CleanWebpackPlugin = require('clean-webpack-plugin');   //自动清理指定[dist]的插件
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        print: './src/print.js',
-        app: './src/index.js'
+        app: './src/index.js',
+        print: './src/print.js'
+    },
+    devtool: 'inline-source-map',               // 启用source map
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        host: '127.0.0.1',
+        port: 9000,
+        open: true,
+        openPage: 'index.html',
+        compress: true,                         // 启动gzip压缩
     },
     plugins: [  //插件
         new CleanWebpackPlugin(['dist']),       //清理dist文件
