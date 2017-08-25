@@ -24,10 +24,11 @@ module.exports = {
             chunks: ['print', 'app'],
             chunksSortMode: 'manual'  //手动排序
         }),
-        new webpack.HotModuleReplacementPlugin() // webpack内置的hot插件
+        //new webpack.HotModuleReplacementPlugin() // webpack内置的hot插件
     ],
     output: {
-        filename: '[name].js',
+        // filename: '[name].js',
+        filename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist')
     },
     module: {  //loader
