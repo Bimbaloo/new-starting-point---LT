@@ -66,18 +66,18 @@
             }
         },
         visualMap: {
-            top: 10,
-            right: 10,
+            show: false,
+            dimension: 1,
             pieces: [{
                 gt: 0,
-                lte: 4,
+                lte: 3.5,
                 color: '#ff0000'
             }, {
-                gt: 4,
-                lte: 21,
+                gt: 3.5,
+                lte: 21.4,
                 color: '#ffde33'
             }, {
-                gt: 21,
+                gt: 21.4,
                 lte: 100,
                 color: '#ff0000'
             }],
@@ -105,7 +105,7 @@
                 markLine: {
                     data: [
                         {
-                            yAxis: 21,
+                            yAxis: '21.5',
                             name: '上限',
                             lineStyle: {
                                 normal: {
@@ -113,7 +113,7 @@
                                 }
                             }
                         },
-                        { yAxis: 4, name: '下限' }
+                        { yAxis: '3.5', name: '下限' }
                     ]
                 }
             }
