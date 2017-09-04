@@ -34,13 +34,17 @@
     var option = {
         title: {
             text: 'XX 参数图表',
-            subtext: ''
+            textStyle: {
+                fontSize: 16,
+                fontFamily: "Microsoft YaHei",
+                fontWeight: '400'
+            }
         },
         tooltip: {
             trigger: 'axis'
         },
         legend: {
-            data: ['XX参数',]
+            data: ['XX参数', ]
         },
         toolbox: {
             show: true,
@@ -48,8 +52,12 @@
                 dataZoom: {
                     yAxisIndex: 'none'
                 },
-                dataView: { readOnly: false },
-                magicType: { type: ['line', 'bar'] },
+                dataView: {
+                    readOnly: false
+                },
+                magicType: {
+                    type: ['line', 'bar']
+                },
                 restore: {},
                 saveAsImage: {}
             }
@@ -57,13 +65,37 @@
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']
+            data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'],
+            axisLine: {
+                lineStyle: {
+                    color: "#999"
+                }
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#333'
+                }
+            },
         },
         yAxis: {
             type: 'value',
             axisLabel: {
                 formatter: '{value} '
+            },
+            axisLine: {
+                lineStyle: {
+                    color: "#999"
+                }
+            },
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#333'
+                }
             }
+            
         },
         visualMap: {
             show: false,
@@ -85,39 +117,27 @@
                 color: '#999'
             }
         },
-        series: [
-            {
-                name: 'XX参数',
-                type: 'line',
-                data: [11, 12, 2, 25, 18, 2, 10, 11, 12, 2, 25, 18, 2, 10, 11, 12, 2, 25, 18, 2, 10],
-                //itemStyle: {
-                // normal: {
-                // 	lineStyle: {
-                // 		color: '#3397fc'
-                // 	}
-                // },
-                // lineStyle: {
-                // 	normal: {
-                // 		color: '#3397fc'
-                // 	}
-                // }
-                //},
-                markLine: {
-                    data: [
-                        {
-                            yAxis: '21.5',
-                            name: '上限',
-                            lineStyle: {
-                                normal: {
-                                    color: "#3397fc"
-                                }
+        series: [{
+            name: 'XX参数',
+            type: 'line',
+            data: [11, 12, 2, 25, 18, 2, 10, 11, 12, 2, 25, 18, 2, 10, 11, 12, 2, 25, 18, 2, 10],
+            markLine: {
+                data: [{
+                        yAxis: '21.5',
+                        name: '上限',
+                        lineStyle: {
+                            normal: {
+                                color: "#3397fc"
                             }
-                        },
-                        { yAxis: '3.5', name: '下限' }
-                    ]
-                }
+                        }
+                    },
+                    {
+                        yAxis: '3.5',
+                        name: '下限'
+                    }
+                ]
             }
-        ]
+        }]
     };
 
     echart.setOption(option);
