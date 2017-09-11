@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>
+    <script>
+        res = {
+            "errorCode": 0,
+            "errorMsg": "",
+            "data": [{
+                "barcode": "条码1",
+                "batchNo": "批次号1",
+                "doCode": "派工单号1",
+                "equipmentId": "设备ID1",
+                "equipmentName": "设备名称1",
+                "happenTime": "2017-09-11T08:18:43.733Z",
+                "in": [{
+                    "barcode": "条码01",
+                    "batchNo": "批次号01",
+                    "doCode": "派工单号01",
+                    "equipmentId": "设备ID01",
+                    "equipmentName": "设备名称01",
+                    "happenTime": "2017-09-11T08:18:43.733Z",
+                    "materialCode": "物料编码01",
+                    "materialName": "物料名称01",
+                    "personName": "操作人01",
+                    "quantity": "数量01",
+                    "shiftName": "班次01"
+                }],
+                "materialCode": "物料编码1",
+                "materialName": "物料名称1",
+                "moldCode": "模号1",
+                "personName": "操作人1",
+                "qualifiedNum": "合格数1",
+                "quantity": "数量1",
+                "scrapNum": "报废数1",
+                "shiftName": "班次1",
+                "unqualifiedNum": "不合格数1"
+            }, {
+                "barcode": "条码2",
+                "batchNo": "批次号2",
+                "doCode": "派工单号2",
+                "equipmentId": "设备ID2",
+                "equipmentName": "设备名称2",
+                "happenTime": "2017-09-11T08:18:43.733Z",
+                "in": [{
+                    "barcode": "条码2",
+                    "batchNo": "批次号2",
+                    "doCode": "派工单号2",
+                    "equipmentId": "设备ID2",
+                    "equipmentName": "设备名称2",
+                    "happenTime": "2017-09-11T08:18:43.733Z",
+                    "materialCode": "物料编码2",
+                    "materialName": "物料名称2",
+                    "personName": "操作人2",
+                    "quantity": "数量2",
+                    "shiftName": "班次2"
+                }],
+                "materialCode": "物料编码2",
+                "materialName": "物料名称2",
+                "moldCode": "模号2",
+                "personName": "操作人2",
+                "qualifiedNum": "合格数2",
+                "quantity": "数量2",
+                "scrapNum": "报废数2",
+                "shiftName": "班次2",
+                "unqualifiedNum": "不合格数2"
+            }, {
+                "barcode": "条码3",
+                "batchNo": "批次号3",
+                "doCode": "派工单号3",
+                "equipmentId": "设备ID3",
+                "equipmentName": "设备名称3",
+                "happenTime": "2017-09-11T08:18:43.733Z",
+                "in": [{
+                    "barcode": "条码3",
+                    "batchNo": "批次号3",
+                    "doCode": "派工单号3",
+                    "equipmentId": "设备ID3",
+                    "equipmentName": "设备名称3",
+                    "happenTime": "2017-09-11T08:18:43.733Z",
+                    "materialCode": "物料编码3",
+                    "materialName": "物料名称3",
+                    "personName": "操作人3",
+                    "quantity": "数量3",
+                    "shiftName": "班次3"
+                }],
+                "materialCode": "物料编码3",
+                "materialName": "物料名称3",
+                "moldCode": "模号3",
+                "personName": "操作人3",
+                "qualifiedNum": "合格数3",
+                "quantity": "数量3",
+                "scrapNum": "报废数3",
+                "shiftName": "班次3",
+                "unqualifiedNum": "不合格数3"
+            }, {
+                "barcode": "条码4",
+                "batchNo": "批次号4",
+                "doCode": "派工单号4",
+                "equipmentId": "设备ID4",
+                "equipmentName": "设备名称2",
+                "happenTime": "2017-09-11T08:18:43.733Z",
+                "in": [{
+                    "barcode": "条码4",
+                    "batchNo": "批次号4",
+                    "doCode": "派工单号4",
+                    "equipmentId": "设备ID4",
+                    "equipmentName": "设备名称4",
+                    "happenTime": "2017-09-11T08:18:43.733Z",
+                    "materialCode": "物料编码4",
+                    "materialName": "物料名称4",
+                    "personName": "操作人4",
+                    "quantity": "数量4",
+                    "shiftName": "班次4"
+                }],
+                "materialCode": "物料编码4",
+                "materialName": "物料名称4",
+                "moldCode": "模号4",
+                "personName": "操作人4",
+                "qualifiedNum": "合格数4",
+                "quantity": "数量4",
+                "scrapNum": "报废数4",
+                "shiftName": "班次4",
+                "unqualifiedNum": "不合格数4"
+            }]
+        }
+        function cc(){
+            console.log("indata")
+            console.log(indata)
+            console.log("outdata")
+            console.log(outdata)
+            console.log("tabledata")
+            console.log(tabledata)
+        }
+        var oData = res.data
+        var indata = []
+        var outdata  = []
+        var tabledata = []
+
+        oData.forEach((e,index)=>{
+            indata.push(e.in[0])
+            delete e["in"]
+            outdata.push(e)
+            tabledata.push(outdata[index])
+            tabledata.push(indata[index])
+        });
+
+
+        
+        
+    </script>
+</head>
+
+<body>
+    <button onclick="cc()" style="width:200px;height:100px;"></button>
+</body>
+
+</html>
