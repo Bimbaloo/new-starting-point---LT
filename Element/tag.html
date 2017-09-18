@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+    <script src="https://cdn.bootcss.com/element-ui/1.4.3/index.js"></script>
+    <link href="https://cdn.bootcss.com/element-ui/1.4.3/theme-default/index.css" rel="stylesheet">
+    <style>
+        .transition-box {
+            margin-bottom: 10px;
+            width: 200px;
+            height: 100px;
+            border-radius: 4px;
+            background-color: #20A0FF;
+            text-align: center;
+            color: #fff;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <template>
+            <el-tabs v-model="activeName" @tab-click="handleClick">
+                <el-tab-pane label="用户管理" name="first">
+                    <transition name="el-zoom-in-center">
+                        <div v-show="show1" class="transition-box">.el-zoom-in-center</div>
+                    </transition>
+                </el-tab-pane>
+                <el-tab-pane label="配置管理" name="second">
+                    <transition name="el-zoom-in-top">
+                        <div v-show="show2" class="transition-box">.el-zoom-in-top</div>
+                    </transition>
+                </el-tab-pane>
+                <el-tab-pane label="角色管理" name="third">
+                    <transition name="el-zoom-in-bottom">
+                        <div v-show="show3" class="transition-box">.el-zoom-in-bottom</div>
+                    </transition>
+                </el-tab-pane>
+            </el-tabs>
+        </template>
+    </div>
+</body>
+
+<script>
+    var Main = {
+        data() {
+            return {
+                activeName: 'second',
+                show1: false,
+                show2: true,
+                show3: false
+            };
+        },
+        methods: {
+            handleClick(tab, event) {
+                console.log(tab, event);
+                const index = tab.index
+                switch (index) {
+                    case "0":
+                        this.show1 = true
+                        this.show2 = false
+                        this.show3 = false
+                        break;
+                    case "1":
+                        this.show1 = false
+                        this.show2 = true
+                        this.show3 = false
+                        break;
+                    case "2":
+                        this.show1 = false
+                        this.show2 = false
+                        this.show3 = true
+                        break;
+                }
+            }
+        }
+    };
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+
+</script>
+
+</html>

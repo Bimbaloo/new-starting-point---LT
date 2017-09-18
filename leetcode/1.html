@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+    给定一个整数数组，返回两个数字的索引，使它们相加到一个特定的目标。
+    您可以假设每个输入都只有一个解决方案，而您可能不会使用相同的元素两次。
+ */
+        var twoSum = function (nums, target) {
+            let arr =  []
+            nums.forEach((e, i) => {
+                for (let j = i + 1; j < nums.length; j++) {
+                    if (e + nums[j] === target) {
+                        arr = [i, j]
+                    }
+                }
+            })
+            return arr
+        };
+        var nums = [3, 2, 4]
+        a= twoSum(nums, 6)
+        console.log(a)
+    </script>
+</body>
+
+</html>
