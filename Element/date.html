@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>radio</title>
+  <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/1.4.3/index.js"></script>
+  <link href="https://cdn.bootcss.com/element-ui/1.4.3/theme-default/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="app">
+    <h3>正常选择日期时间保存没有问题</h3>
+    <el-form :rules="rules" ref="form" :model="form" label-width="100px">
+      <el-form-item label="正常保存" prop="date1">
+        <el-date-picker v-model="form.date1" type="date" placeholder="选择日期">
+        </el-date-picker>
+      </el-form-item>
+      <h3>如果事先给值，不修改，直接保存的时候虽然验证通过了，但是控制台会报错：value.getTime is not a function</h3>
+      <el-form-item label="给值保存" prop="date2">
+        <el-date-picker v-model="form.date2" type="date" placeholder="选择日期">
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submit">提交</el-button>
+        <el-button @click="reset">重置</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
+
+  <script>
+    var Main = {
+      data() {
+        return {
+          form: {
+            date1: '',
+            date2: '2017-01-01'
+          },
+          resume: [],
+          rules: {
+            date1: [{
+              type: 'date',
+              required: true,
+              message: '请输入日期',
+              trigger: 'change'
+            }],
+            date2: [{
+              type: 'date',
+              required: true,
+              message: '请输入日期',
+              trigger: 'change'
+            }],
+          }
+        }
+      },
+      methods: {
+        reset() {
+          this.$refs.form.resetFields();
+        },
+        submit() {
+          this.$refs.form.validate(valid => {
+            if (!valid) {
+              return false;
+            } else {
+              // console.log(JSON.parse(JSON.stringify(this.form)))
+              console.log(JSON.parse(JSON.stringify(this.form)));
+            }
+          });
+        }
+      },
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+  </script>
+</body>
+
+</html>
