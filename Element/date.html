@@ -12,20 +12,18 @@
 <body>
 
   <div id="app">
-    <h3>正常选择日期时间保存没有问题</h3>
-    <el-form :rules="rules" ref="form" :model="form" label-width="100px">
-      <el-form-item label="正常保存" prop="date1">
-        <el-date-picker v-model="form.date1" type="date" placeholder="选择日期">
-        </el-date-picker>
-      </el-form-item>
-      <h3>如果事先给值，不修改，直接保存的时候虽然验证通过了，但是控制台会报错：value.getTime is not a function</h3>
-      <el-form-item label="给值保存" prop="date2">
-        <el-date-picker v-model="form.date2" type="date" placeholder="选择日期">
-        </el-date-picker>
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+
+
+      <el-form-item label="活动时间" required>
+          <el-form-item prop="date">
+            <el-date-picker type="datetime" placeholder="选择日期" v-model="ruleForm.date" style="width: 100%;"></el-date-picker>
+            </el-date-picker>
+          </el-form-item>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submit">提交</el-button>
-        <el-button @click="reset">重置</el-button>
+        <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+        <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -34,42 +32,35 @@
     var Main = {
       data() {
         return {
-          form: {
-            date1: '',
-            date2: '2017-01-01'
+          ruleForm: {
+            date: '2017-08-07 17:28:02',
           },
-          resume: [],
           rules: {
-            date1: [{
+            date: [{
               type: 'date',
               required: true,
-              message: '请输入日期',
+              message: '请选择时间',
               trigger: 'change'
-            }],
-            date2: [{
-              type: 'date',
-              required: true,
-              message: '请输入日期',
-              trigger: 'change'
-            }],
+            }]
           }
-        }
+        };
       },
       methods: {
-        reset() {
-          this.$refs.form.resetFields();
-        },
-        submit() {
-          this.$refs.form.validate(valid => {
-            if (!valid) {
-              return false;
+        submitForm(formName) {
+          this.$refs[formName].validate((valid) => {
+            if (valid) {
+              alert('submit!');
+              console.log('error submit!!');
             } else {
-              // console.log(JSON.parse(JSON.stringify(this.form)))
-              console.log(JSON.parse(JSON.stringify(this.form)));
+              console.log('error submit!!');
+              return false;
             }
           });
+        },
+        resetForm(formName) {
+          this.$refs[formName].resetFields();
         }
-      },
+      }
     }
     var Ctor = Vue.extend(Main)
     new Ctor().$mount('#app')
