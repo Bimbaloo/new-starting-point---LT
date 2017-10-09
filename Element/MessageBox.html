@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>radio</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+    <script src="https://cdn.bootcss.com/element-ui/1.4.3/index.js"></script>
+    <link href="https://cdn.bootcss.com/element-ui/1.4.3/theme-default/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <template>
+            <el-button type="text" @click="open">点击打开 Message Box</el-button>
+        </template>
+    </div>
+    <script>
+        var Main = {
+            data() {
+                return {
+                    printRemark: false
+                };
+            },
+            methods: {
+                open() {
+                    const h = this.$createElement;
+                    this.$msgbox({
+                        title: '打印选项',
+                        message: h('p', null, [
+                            h('el-checkbox v-model="printRemark"'),
+                            h('span', null, '是否打印备注栏 ')
+                        ]),
+                        showCancelButton: true,
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        beforeClose: (action, instance, done) => {
+                            if (action === 'confirm') {
+                                instance.confirmButtonLoading = true;
+                                instance.confirmButtonText = '执行中...';
+                                setTimeout(() => {
+                                    done();
+                                    setTimeout(() => {
+                                        instance.confirmButtonLoading = false;
+                                    }, 300);
+                                }, 3000);
+                            } else {
+                                done();
+                            }
+                        }
+                    }).then(action => {
+                        this.$message({
+                            type: 'info',
+                            message: 'action: ' + action
+                        });
+                    });
+                },
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    </script>
+</body>
+
+</html>
