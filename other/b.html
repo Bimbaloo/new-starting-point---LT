@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>
+    <script>
+        res = {
+            "errorCode": 0,
+            "errorMsg": "",
+            "data": [{
+                "barcode": "条码0",
+                "batchNo": "a",
+            }, {
+                "barcode": "条码1",
+                "batchNo": "b",
+                
+            }, {
+                "barcode": "条码0",
+                "batchNo": "c",
+               
+            }, {
+                "barcode": "条码2",
+                "batchNo": "d",
+               
+            }, {
+                "barcode": "条码1",
+                "batchNo": "e",
+               
+            }, {
+                "barcode": "条码1",
+                "batchNo": "f",
+               
+            }]
+        }
+        function cc(){
+            console.log("oData")
+            console.log(oData)
+            console.log("arr")
+            console.log(arr)
+        }
+
+     //   needArr = [{"设备":xxx,"时间":[1,2,3,6,7]}]
+
+        var oData = res.data
+
+        var arr = []
+
+
+        oData.forEach((el,i)=>{
+            timeArr = []
+            a = {
+                "设备":"",
+                "时间":[]
+            }
+            a["设备"] = el["barcode"]
+            a["时间"].push(el["batchNo"])
+            arr.push(a)
+            for (j = i+1 ; j < oData.length; j++){
+                if (el["barcode"] === oData[j]["barcode"]){
+                    a["时间"].push(oData[j]["batchNo"])
+                    oData.splice(j, 1)
+                    j=j-1   
+                }
+            }
+        })
+
+
+
+        
+        
+    </script>
+</head>
+
+<body>
+    <button onclick="cc()" style="width:200px;height:100px;"></button>
+</body>
+
+</html>
+
+
+
