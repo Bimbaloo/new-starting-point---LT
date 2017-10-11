@@ -1,0 +1,34 @@
+[
+    {
+        "time":"2017-10-11 18:00",
+        "oData":{
+            "keys":{
+                "batchNo": "020400067"
+            },
+            "radio":"0",
+            "tab":"stock"
+        }
+    },
+    {
+        "time":"2017-10-10 16:00",
+        "oData":{
+            "keys":{
+                "materialCode": "20000111"
+            },
+            "radio":"0",
+            "tab":"stock"
+        }
+    },
+    {
+        "time":"2017-10-09 15:00",
+        "oData":{
+            "keys":{
+                "batchNo": "020400067",
+                "materialCode": "20000111"
+            },
+            "radio":"0",
+            "tab":"stock"
+        }
+    }
+]
+

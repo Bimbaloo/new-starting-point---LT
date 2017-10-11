@@ -2,9 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$ajax = axios;
+Vue.prototype.$get = (sUrl, oParams) => axios.get(sUrl, {"params": oParams})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
