@@ -8,65 +8,135 @@
     <title>Document</title>
     <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>
     <script>
-        res = {
-            "errorCode": 0,
-            "errorMsg": "",
-            "data": [{
-                "barcode": "条码0",
-                "batchNo": "a",
-            }, {
-                "barcode": "条码1",
-                "batchNo": "b",
-                
-            }, {
-                "barcode": "条码0",
-                "batchNo": "c",
-               
-            }, {
-                "barcode": "条码2",
-                "batchNo": "d",
-               
-            }, {
-                "barcode": "条码1",
-                "batchNo": "e",
-               
-            }, {
-                "barcode": "条码1",
-                "batchNo": "f",
-               
-            }]
+        res = [
+        {
+            "id": 111,
+            "dateTime": "2017-10-11 18:00",
+            "oData": {
+                "keys": {
+                    "batchNo": "18:00",
+                    "batchNo2": "18:00"
+                },
+                "radio": "0",
+                "tab": "stock"
+            }
+        },
+        {
+            "id": 222,
+            "dateTime": "2017-10-11 17:00",
+            "oData": {
+                "keys": {
+                    "batchNo": "17:00"
+                },
+                "radio": "0",
+                "tab": "stock"
+            }
+        },
+        {
+            "id": 333,
+            "dateTime": "2017-10-10 16:00",
+            "oData": {
+                "keys": {
+                    "materialCode": "16:00"
+                },
+                "radio": "0",
+                "tab": "stock"
+            }
+        },
+        {
+            "id": 444,
+            "dateTime": "2017-10-10 15:00",
+            "oData": {
+                "keys": {
+                    "materialCode": "15:00"
+                },
+                "radio": "0",
+                "tab": "stock"
+            }
+        },
+        {
+            "id": 555,
+            "dateTime": "2017-10-10 14:00",
+            "oData": {
+                "keys": {
+                    "materialCode": "14:00"
+                },
+                "radio": "0",
+                "tab": "stock"
+            }
+        },
+        {
+            "id": 666,
+            "dateTime": "2017-10-09 13:00",
+            "oData": {
+                "keys": {
+                    "batchNo": "020400067",
+                    "materialCode": "20000111"
+                },
+                "radio": "0",
+                "tab": "stock"
+            }
         }
+    ]
         function cc(){
-            console.log("oData")
-            console.log(oData)
+            console.log("oDatas")
+            console.log(oDatas)
             console.log("arr")
             console.log(arr)
         }
 
      //   needArr = [{"设备":xxx,"时间":[1,2,3,6,7]}]
 
-        var oData = res.data
+        var oDatas = res
 
         var arr = []
-
-
-        oData.forEach((el,i)=>{
-            timeArr = []
-            a = {
-                "设备":"",
-                "时间":[]
-            }
-            a["设备"] = el["barcode"]
-            a["时间"].push(el["batchNo"])
-            arr.push(a)
-            for (j = i+1 ; j < oData.length; j++){
-                if (el["barcode"] === oData[j]["barcode"]){
-                    a["时间"].push(oData[j]["batchNo"])
-                    oData.splice(j, 1)
-                    j=j-1   
+        arr = switchData(oDatas)
+        function switchData(oldData){
+            let newData = []
+            oData = JSON.parse(JSON.stringify(oldData))
+            oData.forEach((el,i)=>{
+                a = {
+                    "date":"",
+                    "data":[]
                 }
-            }
-        })
+                a["date"] = el.dateTime.split(" ")[0]
+                el.time = el.dateTime.split(" ")[1]
+                el.oData.keys = Object.entries(el.oData.keys)
+                a["data"].push(el)
+                newData.push(a)
+                for (j = i+1 ; j < oData.length; j++){
+                    if (a["date"] === oData[j].dateTime.split(" ")[0]){
+                        oData[j].time = oData[j].dateTime.split(" ")[1]
+                        oData[j].oData.keys = Object.entries(oData[j].oData.keys)
+                        a["data"].push(oData[j])
+                        oData.splice(j, 1)
+                        j=j-1   
+                    }
+                }
+            })
+            return newData
+        }
+        // oData = JSON.parse(JSON.stringify(oDatas))
+        // oData.forEach((el,i)=>{
+        //     a = {
+        //         "date":"",
+        //         "data":[]
+        //     }
+        //     a["date"] = el.dateTime.split(" ")[0]
+        //     el.time = el.dateTime.split(" ")[1]
+        //     el.oData.keys = Object.entries(el.oData.keys)
+        //     a["data"].push(el)
+        //     arr.push(a)
+        //     for (j = i+1 ; j < oData.length; j++){
+        //         if (a["date"] === oData[j].dateTime.split(" ")[0]){
+        //             oData[j].time = oData[j].dateTime.split(" ")[1]
+        //             oData[j].oData.keys = Object.entries(oData[j].oData.keys)
+        //             a["data"].push(oData[j])
+        //             oData.splice(j, 1)
+        //             j=j-1   
+        //         }
+        //     }
+        // })
 
 
 

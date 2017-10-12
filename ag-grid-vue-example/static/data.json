@@ -1,34 +1,70 @@
 [
     {
-        "time":"2017-10-11 18:00",
-        "oData":{
-            "keys":{
-                "batchNo": "020400067"
+        "id": 111,
+        "dateTime": "2017-10-11 18:00",
+        "oData": {
+            "keys": {
+                "batchNo": "18:00",
+                "batchNo2": "18:00"
             },
-            "radio":"0",
-            "tab":"stock"
+            "radio": "0",
+            "tab": "stock"
         }
     },
     {
-        "time":"2017-10-10 16:00",
-        "oData":{
-            "keys":{
-                "materialCode": "20000111"
+        "id": 222,
+        "dateTime": "2017-10-11 17:00",
+        "oData": {
+            "keys": {
+                "batchNo": "17:00"
             },
-            "radio":"0",
-            "tab":"stock"
+            "radio": "0",
+            "tab": "stock"
         }
     },
     {
-        "time":"2017-10-09 15:00",
-        "oData":{
-            "keys":{
+        "id": 333,
+        "dateTime": "2017-10-10 16:00",
+        "oData": {
+            "keys": {
+                "materialCode": "16:00"
+            },
+            "radio": "0",
+            "tab": "stock"
+        }
+    },
+    {
+        "id": 444,
+        "dateTime": "2017-10-10 15:00",
+        "oData": {
+            "keys": {
+                "materialCode": "15:00"
+            },
+            "radio": "0",
+            "tab": "stock"
+        }
+    },
+    {
+        "id": 555,
+        "dateTime": "2017-10-10 14:00",
+        "oData": {
+            "keys": {
+                "materialCode": "14:00"
+            },
+            "radio": "0",
+            "tab": "stock"
+        }
+    },
+    {
+        "id": 666,
+        "dateTime": "2017-10-09 13:00",
+        "oData": {
+            "keys": {
                 "batchNo": "020400067",
                 "materialCode": "20000111"
             },
-            "radio":"0",
-            "tab":"stock"
+            "radio": "0",
+            "tab": "stock"
         }
     }
 ]
-

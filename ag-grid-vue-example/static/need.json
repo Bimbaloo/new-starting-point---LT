@@ -1,0 +1,105 @@
+[
+    {
+        "date": "2017-10-11",
+        "data": [
+            {
+                "id": 111,
+                "time": "18:00",
+                "oData": {
+                    "keys": [
+                        [
+                            "batchNo",
+                            "18:00"
+                        ],
+                        [
+                            "batchNo2",
+                            "18:00"
+                        ]
+                    ],
+                    "radio": "0",
+                    "tab": "stock"
+                }
+            },
+            {
+                "id": 222,
+                "time": "17:00",
+                "oData": {
+                    "keys": [
+                        [
+                            "batchNo",
+                            "17:00"
+                        ]
+                    ],
+                    "radio": "0",
+                    "tab": "stock"
+                }
+            }
+        ]
+    },
+    {
+        "date": "2017-10-10",
+        "data": [
+            {
+                "id": 333,
+                "time": "16:00",
+                "oData": {
+                    "keys": [
+                        [
+                            "batchNo",
+                            "16:00"
+                        ]
+                    ],
+                    "radio": "0",
+                    "tab": "stock"
+                }
+            },
+            {
+                "id": 444,
+                "time": "15:00",
+                "oData": {
+                    "keys": [
+                        [
+                            "batchNo",
+                            "15:00"
+                        ]
+                    ],
+                    "radio": "0",
+                    "tab": "stock"
+                }
+            },
+            {
+                "id": 555,
+                "time": "14:00",
+                "oData": {
+                    "keys": [
+                        [
+                            "batchNo",
+                            "14:00"
+                        ]
+                    ],
+                    "radio": "0",
+                    "tab": "stock"
+                }
+            }
+        ]
+    },
+    {
+        "date": "2017-10-09",
+        "data": [
+            {
+                "id": 666,
+                "time": "13:00",
+                "oData": {
+                    "keys": [
+                        [
+                            "batchNo",
+                            "13:00"
+                        ]
+                    ],
+                    "radio": "0",
+                    "tab": "stock"
+                }
+            }
+        ]
+    }
+]
