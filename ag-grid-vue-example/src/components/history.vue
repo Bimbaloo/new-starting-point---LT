@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <h2>{{msg}}</h2>
+    <h2>{{a}}</h2>
+    <button style="width:100px;height:20px" @click="a = '66666'"></button>
     <ul v-for="ul in needDate">
       <li class="date-box" style='font-size: 16px;font-weight:bold'>{{ul.date}}</li>
       <li v-for="data in ul.data">
@@ -32,18 +33,28 @@
 </template>
 
 <script>
+import { bus } from '../assets/bus.js'
 export default {
   name: 'hello',
+  props: {
+    msg: String
+  },
   data() {
     return {
-      msg: '查询记录功能尝试',
       liData: [],
       needDate: [],
       myLocalStorage: [],
-      needArr: []
+      needArr: [],
+      a:''
     }
   },
   created() {
+    this.a = this.msg
+    let _that = this
+    bus.$on('id-selected', function (id) {
+      _that.a = id
+      
+    })
     this.myLocalStorage = JSON.parse(window.localStorage.getItem("history"))
     this.fetchData(); //获取数据
   },
@@ -55,6 +66,7 @@ export default {
   computed: {
   },
   methods: {
+
     fetchData() {
       this.$get('static/data.json').then((oDatas) => {
         this.liData = oDatas.data
