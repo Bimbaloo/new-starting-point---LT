@@ -4,8 +4,7 @@
         "dateTime": "2017-10-11 18:00",
         "oData": {
             "keys": {
-                "batchNo": "18:00",
-                "batchNo2": "18:00"
+                "batchNo": "18:00"
             },
             "radio": "0",
             "tab": "stock"

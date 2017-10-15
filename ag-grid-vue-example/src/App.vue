@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <history :msg='msg'></history>
-    <button style="width:100px;height:20px" @click="a"></button>
+    <!-- <button style="width:100px;height:20px" @click="a"></button> -->
   </div>
 </template>
 
@@ -27,12 +27,15 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+html,body, #app {
+    height: 100%;
+    width: 100%;
 }
+body {
+    background-color: #f2f2f2;
+    background: url(./assets/bg.jpg);
+    background-size: cover;
+    margin: 0;
+  }
+
 </style>
