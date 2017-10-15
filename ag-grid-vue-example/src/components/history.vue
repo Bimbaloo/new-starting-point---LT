@@ -1,33 +1,34 @@
 <template>
   <div class="hello">
-    <div class='history-box' v-show="showHistory">
-      <i class="el-icon-arrow-left" @click="showHistory = !showHistory"></i>
-      <div class='history-panal'>
-        <h2>查询记录</h2>
-        <ul class='history-content' v-for="ul in liData" >
-          <li class="ecorded-time">
-            <h3>{{ul.date}}</h3>
-          </li>
-          <li class="history-messages-everyday" v-for="data in ul.data" @click="findId(data.id)" :data-id='data.id'>
-            <ul class='information-record'>
-              <li>
-                <span class='circle'></span>
-              </li>
-              <li class="ecorded-data">{{data.time}}</li>
-              <li class="ecorded-module">{{data.oData.tab}}</li>
-              <li class='records'>
-                <ul class="detail-record-box">
-                  <li class="detail-record" v-for="li in data.oData.keys">{{li[0]}}:{{li[1]}}</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+    <div :class="['history-box',{ 'min-history-box': showHistory },{ 'max-history-box': !showHistory }]">
+      <i class="el-icon-arrow-left" @click="showHistory = !showHistory" v-show="!showHistory"></i>
+      <i class="el-icon-arrow-right" @click="showHistory = !showHistory" v-show="showHistory"></i>
+        <div class='history-panal' v-show="!showHistory">
+          <h2>查询记录</h2>
+          <ul class='history-content' v-for="ul in liData" >
+            <li class="ecorded-time">
+              <h3>{{ul.date}}</h3>
+            </li>
+            <li class="history-messages-everyday" v-for="data in ul.data" @click="findId(data.id)" :data-id='data.id'>
+              <ul class='information-record'>
+                <li>
+                  <span class='circle'></span>
+                </li>
+                <li class="ecorded-data">{{data.time}}</li>
+                <li class="ecorded-module">{{data.oData.tab}}</li>
+                <li class='records'>
+                  <ul class="detail-record-box">
+                    <li class="detail-record" v-for="li in data.oData.keys">{{li[0]}}:{{li[1]}}</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
     </div>
-    <div class='history-box' v-show="!showHistory" style='width:50px'>
+    <!-- <div class='history-box' v-show="!showHistory" style='width:50px'>
       <i class="el-icon-arrow-right" @click="showHistory = !showHistory"></i>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -156,7 +157,6 @@ export default {
 <style lang="less" scoped>
 .history-box {
   position: fixed;
-  width: 400px;
   background-color: rgba(255, 255, 255, 0.1);
   height: 100%;
   left: 0;
@@ -174,6 +174,8 @@ export default {
     margin-top: 50px;
     padding-left: 15px;
     padding-right: 15px;
+    opacity: 1;
+    transition: opacity .8s;
     &>h2 {
       color: #fff;
       text-align: center;
@@ -242,7 +244,14 @@ export default {
     }
   }
 }
-
+.max-history-box {
+  transition: width .8s ease;
+  width: 400px;
+}
+.min-history-box {
+  transition: width .5s ease;
+  width: 50px;
+}
 ul {
   padding: 0;
 }
@@ -250,4 +259,5 @@ ul {
 li {
   list-style: none;
 }
+
 </style>
