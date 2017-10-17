@@ -4,9 +4,9 @@
         "dateTime": "2017-10-11 18:00",
         "oData": {
             "keys": {
-                "batchNo": "18:00"
+                "barcode": "18:00"
             },
-            "radio": "0",
+            "radio": "1",
             "tab": "stock"
         }
     },
@@ -15,9 +15,9 @@
         "dateTime": "2017-10-11 17:00",
         "oData": {
             "keys": {
-                "batchNo": "17:00"
+                "barcode": "17:00"
             },
-            "radio": "0",
+            "radio": "1",
             "tab": "stock"
         }
     },
@@ -26,9 +26,10 @@
         "dateTime": "2017-10-10 16:00",
         "oData": {
             "keys": {
+                "batchNo": "020400067",
                 "materialCode": "16:00"
             },
-            "radio": "0",
+            "radio": "2",
             "tab": "stock"
         }
     },
@@ -37,9 +38,10 @@
         "dateTime": "2017-10-10 15:00",
         "oData": {
             "keys": {
-                "materialCode": "15:00"
+                "batchNo": "020400067",
+                "materialCode": "16:00"
             },
-            "radio": "0",
+            "radio": "2",
             "tab": "stock"
         }
     },
@@ -48,10 +50,10 @@
         "dateTime": "2017-10-10 14:00",
         "oData": {
             "keys": {
-                "materialCode": "14:00"
+                "barcode": "17:00"
             },
-            "radio": "0",
-            "tab": "stock"
+            "radio": "1",
+            "tab": "trace"
         }
     },
     {
@@ -60,10 +62,10 @@
         "oData": {
             "keys": {
                 "batchNo": "020400067",
-                "materialCode": "20000111"
+                "materialCode": "16:00"
             },
-            "radio": "0",
-            "tab": "stock"
+            "radio": "2",
+            "tab": "track"
         }
     }
 ]
