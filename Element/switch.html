@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>radio</title>
+  <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/1.4.3/index.js"></script>
+  <link href="https://cdn.bootcss.com/element-ui/1.4.3/theme-default/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="app">
+    <el-tooltip :content="'Switch value: ' + value" placement="top">
+      <el-switch
+        v-model="value"
+        on-color="#13ce66"
+        off-color="#13ce66"
+        on-text="表格"
+        off-text="图表"
+        on-value="100"
+        off-value="0">
+      </el-switch>
+    </el-tooltip>
+  </div>
+
+  <script>
+    var Main = {
+      data() {
+        return {
+          value: '100'
+          }
+      },
+      methods: {
+        submitForm(formName) {
+          this.$refs[formName].validate((valid) => {
+            if (valid) {
+              alert('submit!');
+              console.log('error submit!!');
+            } else {
+              console.log('error submit!!');
+              return false;
+            }
+          });
+        },
+        resetForm(formName) {
+          this.$refs[formName].resetFields();
+        }
+      }
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+  </script>
+</body>..
+
+</html>

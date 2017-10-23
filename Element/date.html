@@ -16,10 +16,11 @@
 
 
       <el-form-item label="活动时间" required>
-          <el-form-item prop="date">
-            <el-date-picker type="datetime" placeholder="选择日期" v-model="ruleForm.date" style="width: 100%;"></el-date-picker>
-            </el-date-picker>
-          </el-form-item>
+        <el-form-item prop="date">
+          <el-date-picker type="datetime" placeholder="选择日期" v-model="ruleForm.date" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="datetime" placeholder="选择日期" v-model="ruleForm.date" style="width: 100%;"></el-date-picker>
+          </el-date-picker>
+        </el-form-item>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
@@ -29,41 +30,82 @@
   </div>
 
   <script>
-    var Main = {
-      data() {
-        return {
-          ruleForm: {
-            date: '2017-08-07 17:28:02',
-          },
-          rules: {
-            date: [{
-              type: 'date',
-              required: true,
-              message: '请选择时间',
-              trigger: 'change'
-            }]
-          }
-        };
-      },
-      methods: {
-        submitForm(formName) {
-          this.$refs[formName].validate((valid) => {
-            if (valid) {
-              alert('submit!');
-              console.log('error submit!!');
-            } else {
-              console.log('error submit!!');
-              return false;
-            }
-          });
+    var app = new Vue({
+      el: '#app',
+      data: {
+        ruleForm: {
+          date: '2017-08-07 17:28:02',
         },
-        resetForm(formName) {
-          this.$refs[formName].resetFields();
+        rules: {
+          oForm = this.ruleForm,
+          oKeys = this.keys,
+          // 溯源及追踪的参数。
+          aParams =["barcode", "materialCode", "equipmentCode", "doCode"],
+          // 验证条码
+          validateBarcode = (rule, value, callback) => {
+            if (!value.trim()) {
+              callback(new Error("请输入条码"));
+            } else {
+              callback();
+            }
+          },
+          // 验证批次。
+          validateBatch = (rule, value, callback) => {
+            if (!value.trim()) {
+              callback(new Error("请输入批次"));
+            } else {
+              callback();
+            }
+          },
+          // 验证物料。
+          validateMaterialcode = (rule, value, callback) => {
+            if (!value) {
+              callback(new Error("请选择物料"));
+            } else {
+              callback();
+            }
+          },
+          // 验证开始时间。
+          validateStartTime = (rule, value, callback) => {
+            let sTime = value.trim(),
+              nNow = +new Date();
+
+            if (!sTime) {
+              callback(new Error("请输入开始时间"))
+            } else if (!window.Rt.utils.isDateTime(sTime)) {
+              callback(new Error("请输入正确的时间格式"));
+            } else if (+new Date(value) > nNow) {
+              callback(new Error("时间不能超过当前时间"));
+            } else {
+              callback();
+            }
+          },
+          // 验证结束时间。
+          validateEndTime = (rule, value, callback) => {
+            let sStart = oForm.startTime,
+              sTime = value.trim(),
+              bIsFormat = window.Rt.utils.isDateTime(sTime),
+              bIsStartFormat = window.Rt.utils.isDateTime(sStart),
+              nNow = +new Date();
+
+            if (!sTime) {
+              callback(new Error("请输入结束时间"))
+            } else if (!bIsFormat) {
+              callback(new Error("请输入正确的时间格式"));
+            } else if (+new Date(sTime) > nNow) {
+              callback(new Error("时间不能超过当前时间"));
+            } else if (sStart && bIsStartFormat && +new Date(sStart) > +new Date(sTime)) {
+              // 如果开始时间存在，而且开始时间大于结束时间。
+              callback(new Error("结束时间必须大于开始时间"));
+            } else {
+              callback();
+            }
+
+          }
         }
       }
-    }
-    var Ctor = Vue.extend(Main)
-    new Ctor().$mount('#app')
+    })
+
   </script>
 </body>
 
