@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function loadImageAsync(url) {
+            return new Promise(function (resolve, reject) {
+                var image = new Image();
+
+                image.onload = function () {
+                    resolve(image);
+                };
+
+                image.onerror = function () {
+                    reject(new Error('Could not load image at ' + url));
+                };
+
+                image.src = url;
+            });
+        }
+        for (var i = 0; i < 10; i++) {
+            setTimeout(((i) => {
+                console.log(i);
+            })(i), 0);
+        }
+    </script>
+    <script type="text/javascript">
+       
+        //平台、设备和操作系统
+        var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+
+        } else {
+            window.location.href = "http://wap.baidu.com";
+        }
+      
+    </script>
+
+
+</body>
+
+</html>
