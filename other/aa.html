@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function cc(num) {
+            let a = num + ''
+            let arr = []
+            for (let i = 1; i < a.length+1; i++) {
+                arr[i-1] = a.split("")[i-1] * Math.pow(10, a.length-i)
+            }
+            let b = ''
+            //console.log(arr)
+            for(let i = 0 ;i>arr.length; i++){
+                b = arr[i]+"+"+b
+            }
+            console.log(b)
+        }
+    </script>
+
+</body>
+
+</html>
