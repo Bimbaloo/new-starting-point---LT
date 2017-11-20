@@ -4,6 +4,7 @@
     <HelloWorld/> -->
     <!-- <exampleVue/> -->
     <Demo/>
+    <exampleVue/>
   </div>
 </template>
 

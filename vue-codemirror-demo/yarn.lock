@@ -1135,6 +1135,10 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/code-point-at/download/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
+codemirror-formatting@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/codemirror-formatting/download/codemirror-formatting-1.0.0.tgz#879cc1fdd9018343c1d5511769ce5360d705ebf2"
+
 codemirror@^5.30.0:
   version "5.31.0"
   resolved "http://registry.npm.taobao.org/codemirror/download/codemirror-5.31.0.tgz#ecf3d057eb74174147066bfc7c5f37b4c4e07df2"

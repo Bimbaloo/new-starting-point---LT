@@ -2,20 +2,17 @@
 <div>   
       <!-- Bidirectional data binding（双向数据绑定） -->
   <codemirror ref="myEditor" v-model="code" :options="editorOptions"></codemirror>
-
-  <!-- or to manually control the datasynchronization（或者手动控制数据流，需要像这样手动监听changed事件） -->
-  <!-- <codemirror ref="myEditor"
-              :code="code" 
-              :options="editorOptions"
-              @ready="onEditorReady"
-              @focus="onEditorFocus"
-              @change="onEditorCodeChange">
-  </codemirror> -->
+  <button @click="autoFormatSelection()">Autoformat Selected</button>
+  <button @click="commentSelection(true)">Comment Selected</button>
+  <button @click="commentSelection(false)">Uncomment Selected</button>
 </div>
 
 </template>
 
 <script>
+  // 格式化插件
+  require('codemirror-formatting/formatting.js')
+
   // require active-line.js
   require('codemirror/addon/selection/active-line.js')
 
@@ -81,7 +78,15 @@ export default {
           matchBrackets: true,
           showCursorWhenSelecting: true,
           theme: "monokai",
-          extraKeys: { "Ctrl": "autocomplete" }
+          extraKeys: {
+            Ctrl: "autocomplete",
+            F11(cm) {
+              cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+            },
+            Esc(cm) {
+              if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+            }
+          }
       }
     }
   },
@@ -95,7 +100,18 @@ export default {
     onEditorCodeChange(newCode) {
       console.log('this is new code', newCode)
       this.code = newCode
-    }
+    },
+    getSelectedRange() {
+        return { from: this.editor.getCursor(true), to: this.editor.getCursor(false) };
+    },
+    autoFormatSelection() {
+      let range = this.getSelectedRange();
+      this.editor.autoFormatRange(range.from, range.to);
+    },
+    commentSelection(isComment) {
+      let range = this.getSelectedRange();
+      this.editor.commentRange(isComment, range.from, range.to);
+    }      
   },
   computed: {
     editor() {
