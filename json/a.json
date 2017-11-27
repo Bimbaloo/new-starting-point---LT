@@ -1,0 +1,42 @@
+库存转储:
+{
+ "operationIdList":
+  [
+   "c8c4211c-9f87-4d31-a59e-e69e0bf3bdb8"
+  ]
+}
+
+库存调整(单条数据):
+{
+ "operationIdList":
+  [
+   "d620b17d-ac3b-44a5-aafb-46a8a0a7c4ef"
+  ]
+}
+
+库存调整(多条数据):
+{
+ "operationIdList":
+  [
+   "1c82bf5c-7a53-4fa1-96fc-edf30b607ed3",
+   "d73ff55a-c3a6-49aa-b5c5-20827dfa2a33",
+   "7178bf16-ff9f-4975-8771-88e66b5c03ba",
+   "727e4c32-e1be-4498-b99a-45b976b0fa86"
+  ]
+}
+
+入库:
+{
+ "operationIdList":
+  [
+   "00a4d4ff-4395-4d3a-a1ea-4524eaacdfda"
+  ]
+}
+
+出库:
+{
+ "operationIdList":
+  [
+   "120851a2-65d5-4956-8997-01b711febe5f"
+  ]
+}
