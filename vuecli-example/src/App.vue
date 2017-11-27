@@ -22,6 +22,8 @@ import history from "./components/history";
 import click from "./components/click";
 import dbclick from "./components/dbclick";
 import { bus } from "./assets/bus.js";
+import { myName } from "./assets/a.js";
+
 export default {
   name: "app",
   data() {
@@ -87,6 +89,9 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
+  },
+  created () {
+    myName.myName("mazao")
   }
 };
 </script>
