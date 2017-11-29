@@ -10,19 +10,37 @@
 
 <body>
     <script>
-        function cc(num) {
-            let a = num + ''
-            let arr = []
-            for (let i = 1; i < a.length+1; i++) {
-                arr[i-1] = a.split("")[i-1] * Math.pow(10, a.length-i)
+        function removeSmallest(numbers) {
+            let arr = numbers
+            let mySet2 = new Set(arr);
+            let newArr =  [...mySet2]; 
+            const b = arr.indexOf( Math.min(...newArr) )
+            arr.splice(b,1)
+            return arr
+          }
+
+          removeSmallest([1,2,3])
+
+
+          function sumArray(array) {
+              let arr = array || []
+              if(arr.length>2){
+
+              
+                    const max = Math.max(...arr)
+                    const min = Math.min(...arr)
+
+                    let total = 0
+
+                    arr.forEach(element => {
+                        total += element     
+                    });
+                    
+                    return total = total - max -min
+                }else{
+                    return 0
+                }
             }
-            let b = ''
-            //console.log(arr)
-            for(let i = 0 ;i>arr.length; i++){
-                b = arr[i]+"+"+b
-            }
-            console.log(b)
-        }
     </script>
 
 </body>
