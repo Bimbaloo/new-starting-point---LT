@@ -99,7 +99,7 @@ const userPromise = databasePromise
     .then(e => {
         return getBorrower("mazao")
     });
-//console.time("开始")
+console.time("开始")
 Promise.all([
     booksPromise,
     userPromise
