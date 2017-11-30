@@ -8,141 +8,22 @@
     <title>Document</title>
     <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>
     <script>
-             dataName = [{
-                itemCode: "stock",
-                itemName: "查出库"
-            }, {
-                itemCode: "trace",
-                itemName: "溯源"
-            }, {
-                itemCode: "track",
-                itemName: "追踪"
-            }, {
-                itemCode: "restrain",
-                itemName: "履历"
-            }, {
-                itemCode: "link",
-                itemName: "断链"
-            }, {
-                itemCode: "batchNo",
-                itemName: "条码"
-            }, {
-                itemCode: "materialCode",
-                itemName: "物料编码"
-            }],
-            res = [{
-                    "id": 111,
-                    "dateTime": "2017-10-11 18:00",
-                    "oData": {
-                        "keys": {
-                            "batchNo": "18:00",
-                            "batchNo2": "18:00"
-                        },
-                        "radio": "0",
-                        "tab": "stock"
-                    }
-                },
-                {
-                    "id": 222,
-                    "dateTime": "2017-10-11 17:00",
-                    "oData": {
-                        "keys": {
-                            "batchNo": "17:00"
-                        },
-                        "radio": "0",
-                        "tab": "stock"
-                    }
-                },
-                {
-                    "id": 333,
-                    "dateTime": "2017-10-10 16:00",
-                    "oData": {
-                        "keys": {
-                            "materialCode": "16:00"
-                        },
-                        "radio": "0",
-                        "tab": "stock"
-                    }
-                },
-                {
-                    "id": 444,
-                    "dateTime": "2017-10-10 15:00",
-                    "oData": {
-                        "keys": {
-                            "materialCode": "15:00"
-                        },
-                        "radio": "0",
-                        "tab": "stock"
-                    }
-                },
-                {
-                    "id": 555,
-                    "dateTime": "2017-10-10 14:00",
-                    "oData": {
-                        "keys": {
-                            "materialCode": "14:00"
-                        },
-                        "radio": "0",
-                        "tab": "stock"
-                    }
-                },
-                {
-                    "id": 666,
-                    "dateTime": "2017-10-09 13:00",
-                    "oData": {
-                        "keys": {
-                            "batchNo": "020400067",
-                            "materialCode": "20000111"
-                        },
-                        "radio": "0",
-                        "tab": "stock"
-                    }
-                }
-            ]
-
-        function cc() {
-            console.log("oDatas")
-            console.log(oDatas)
-            console.log("arr")
-            console.log(arr)
+       function fn(){
+            return function(name){
+                name.sex = "22"
+                console.log(name)
+            }
         }
-
-
-        var oDatas = res
-
-        var arr = []
-        arr = switchData(oDatas)
-
-        function switchData(oldData) {
-            let newData = []
-            let oData = JSON.parse(JSON.stringify(oldData))
-            oData.forEach((el, i) => {
-                let a = {
-                    "date": "",
-                    "data": []
-                }
-                a["date"] = el.dateTime.split(" ")[0]
-                el.time = el.dateTime.split(" ")[1]
-                el.oData.keys = Object.entries(el.oData.keys)
-                a["data"].push(el)
-                newData.push(a)
-                for (let j = i + 1; j < oData.length; j++) {
-                    if (a["date"] === oData[j].dateTime.split(" ")[0]) {
-                        oData[j].time = oData[j].dateTime.split(" ")[1]
-                        oData[j].oData.keys = Object.entries(oData[j].oData.keys)
-                        a["data"].push(oData[j])
-                        oData.splice(j, 1)
-                        j = j - 1
-                    }
-                }
-            })
-            return newData
+        let mazao = {
+            sex:"body",
+            age: "25"
         }
+        fn()(mazao)
     </script>
 </head>
 
 <body>
-    <button onclick="cc()" style="width:200px;height:100px;"></button>
+    
 </body>
 
 </html>
