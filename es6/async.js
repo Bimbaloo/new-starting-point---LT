@@ -1,4 +1,6 @@
 
+
+
 var rp = require('request-promise');
 
 
@@ -8,12 +10,15 @@ console.log("1")
 
 async function async1() {
     console.log('async1 start');
-    await async2();
+    await async2()  //相当于返回一个promise,promise里面的函数是同步的，只有返回的resolve和reject才是异步的
+    // const a =await async2();
+    // console.log(a)
     console.log('async1 end');
 }
 
 async function async2() {
     console.log('async2');
+    // return Promise.resolve("20")
 }
 
  console.log('script start');
@@ -33,8 +38,18 @@ new Promise(function (resolve) {
 
  console.log('script end');
 
-// 1 
+
+// 1
 // script start
+// async1 start
+// async2
+// promise1
+// script end
+// async1 end
+// promise2
+// setTimeout
+
+
 
 
 
