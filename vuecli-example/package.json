@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "alloyfinger": "^0.1.10",
+    "awe-dnd": "^0.3.0",
     "element-ui": "^1.4.9",
     "vue": "^2.4.2"
   },

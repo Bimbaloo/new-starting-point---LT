@@ -1,112 +1,189 @@
 <template>
   <div id="app">
-    <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="年龄" prop="age">
-        <el-input v-model.number="ruleForm2.age"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-      </el-form-item>
-    </el-form>
+    <div class="playground">
+        <div class="color-list">
+            <div
+            class="color-item" 
+            v-for="color in colors" 
+            v-dragging="{ list: colors, item: color, group: 'color' }"
+            :key="color.text">
+            {{color.text}}
+            </div>
+        </div>
+        <div class="color-show">
+            <div 
+            v-for="color in colors"
+            v-dragging="{ list: colors, item: color, group: 'color' }"
+            class="color-box" 
+            :style="{'background-color': color.text}"
+            :key="color.text">
+            {{color.text}}
+            </div>
+        </div>
+        <button @click="test">test-bug</button>
+        <div class="color-show" v-if="colorShow">
+            <div
+            v-for="color in colors2"
+            v-dragging="{ list: colors2, item: color, group: 'color2' }"
+            class="color-box"
+            :style="{'background-color': color.text}"
+            :key="color.text">
+            {{color.text}}
+            </div>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
-import history from "./components/history";
-import click from "./components/click";
-import dbclick from "./components/dbclick";
-import { bus } from "./assets/bus.js";
-import { myName } from "./assets/a.js";
-
 export default {
   name: "app",
   data() {
-    var checkAge = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error("年龄不能为空"));
-      }
-      setTimeout(() => {
-        if (!Number.isInteger(value)) {
-          callback(new Error("请输入数字值"));
-        } else {
-          if (value < 18) {
-            callback(new Error("必须年满18岁"));
-          } else {
-            callback();
-          }
-        }
-      }, 1000);
-    };
-    var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else {
-        if (this.ruleForm2.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
-        }
-        callback();
-      }
-    };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm2.pass) {
-        callback(new Error("两次输入密码不一致!"));
-      } else {
-        callback();
-      }
-    };
     return {
-      ruleForm2: {
-        pass: "",
-        checkPass: "",
-        age: ""
-      },
-      rules2: {
-        pass: [{ validator: validatePass, trigger: "blur" }],
-        checkPass: [{ validator: validatePass2, trigger: "blur" }],
-        age: [{ validator: checkAge, trigger: "blur" }]
-      }
+      colors: [
+        {
+          text: "Aquamarine"
+        },
+        {
+          text: "Hotpink"
+        },
+        {
+          text: "Gold"
+        },
+        {
+          text: "Crimson"
+        },
+        {
+          text: "Blueviolet"
+        },
+        {
+          text: "Lightblue"
+        },
+        {
+          text: "Cornflowerblue"
+        },
+        {
+          text: "Skyblue"
+        }
+      ],
+      colors2: [
+        {
+          text: "Aquamarine"
+        },
+        {
+          text: "Hotpink"
+        },
+        {
+          text: "Gold"
+        },
+        {
+          text: "Crimson"
+        },
+        {
+          text: "Blueviolet"
+        },
+        {
+          text: "Lightblue"
+        }
+      ],
+      colorShow: true
     };
+  },
+
+  created() {},
+  mounted() {
+    this.$dragging.$on("dragged", function(data) {
+      console.log("开始");
+      console.log("dragged", data);
+    });
+    this.$dragging.$on("dragend", function(data) {
+      console.log("结束");
+      console.log("dragend", data);
+    });
   },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
+    test: function() {
+      this.colors = [
+        {
+          text: "Aquamarine"
+        },
+        {
+          text: "Hotpink"
+        },
+        {
+          text: "Gold"
+        },
+        {
+          text: "Crimson"
+        },
+        {
+          text: "Blueviolet"
+        },
+        {
+          text: "Lightblue"
+        },
+        {
+          text: "Cornflowerblue"
+        },
+        {
+          text: "Skyblue"
+        },
+        {
+          text: "Burlywood"
         }
-      });
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+      ];
+      this.colorShow = !this.colorShow;
     }
-  },
-  created () {
-    myName.myName("mazao")
   }
 };
 </script>
 
 <style>
-html,
-body,
-#app {
-  height: 100%;
-  width: 100%;
-}
 body {
-  background-color: #f2f2f2;
-  background: url(./assets/bg.jpg);
-  background-size: cover;
-  margin: 0;
+  font-family: Helvetica, sans-serif;
+}
+.playground {
+  display: flex;
+  margin-top: 4rem;
+}
+.color-item {
+  background: #f5f5f5;
+  padding: 0.5rem;
+  color: #5f5f5f;
+  transition: transform 0.3s;
+}
+.color-item.dragging {
+  background-color: #fff;
+}
+.color-show {
+  display: flex;
+  flex-wrap: wrap;
+  width: 30rem;
+}
+.color-box {
+  width: 33%;
+  height: 6rem;
+  background: #efefef;
+  line-height: 6rem;
+  text-align: center;
+  color: #fff;
+  transition: transform 0.3s;
+}
+.color-box.dragging {
+  transform: scale(1.1);
+}
+.in-out-translate-fade-enter-active,
+.in-out-translate-fade-leave-active {
+  transition: all 0.5s;
+}
+.in-out-translate-fade-enter,
+.in-out-translate-fade-leave-active {
+  opacity: 0;
+}
+.in-out-translate-fade-enter {
+  transform: translate3d(100%, 0, 0);
+}
+.in-out-translate-fade-leave-active {
+  transform: translate3d(-100%, 0, 0);
 }
 </style>
