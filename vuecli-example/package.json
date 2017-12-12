@@ -10,10 +10,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "alloyfinger": "^0.1.10",
     "awe-dnd": "github:hilongjw/vue-dragging",
-    "element-ui": "^1.4.9",
-    "vue": "^2.4.2"
+    "element-ui": "^2.0.8",
+    "vue": "^2.5.9"
   },
   "devDependencies": {
     "ag-grid": "^13.3.1",

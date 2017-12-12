@@ -1,37 +1,23 @@
 <template>
   <div id="app">
-    <div class="playground">
-        <div class="color-list">
-            <div
-            class="color-item" 
-            v-for="color in colors" 
-            v-dragging="{ list: colors, item: color, group: 'color' }"
-            :key="color.text">
-            {{color.text}}
-            </div>
-        </div>
-        <div class="color-show">
-            <div 
-            v-for="color in colors"
-            v-dragging="{ list: colors, item: color, group: 'color' }"
-            class="color-box" 
-            :style="{'background-color': color.text}"
-            :key="color.text">
-            {{color.text}}
-            </div>
-        </div>
-        <button @click="test">test-bug</button>
-        <div class="color-show" v-if="colorShow">
-            <div
-            v-for="color in colors2"
-            v-dragging="{ list: colors2, item: color, group: 'color2' }"
-            class="color-box"
-            :style="{'background-color': color.text}"
-            :key="color.text">
-            {{color.text}}
-            </div>
-        </div>
-    </div>
+    <el-table
+      :data="tableData"
+      style="width: 100%">
+      <el-table-column
+        prop="date"
+        label="日期"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="姓名"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="address"
+        label="地址">
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -40,6 +26,29 @@ export default {
   name: "app",
   data() {
     return {
+      tableData: [
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          date: "2016-05-04",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1517 弄"
+        },
+        {
+          date: "2016-05-01",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1519 弄"
+        },
+        {
+          date: "2016-05-03",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1516 弄"
+        }
+      ],
+
       colors: [
         {
           text: "Aquamarine"
@@ -90,7 +99,18 @@ export default {
     };
   },
 
-  created() {},
+  created() {
+    let arr = new Array(2000)
+    let i = 0
+    if(i<2000,i++) {
+      arr[i] = {
+          date: `${i}`,
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        }
+    }
+    this.tableData = arr
+  },
   mounted() {
     this.$dragging.$on("dragged", function(data) {
       console.log("开始");
