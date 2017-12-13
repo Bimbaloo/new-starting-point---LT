@@ -12,7 +12,7 @@
 <body>
 
   <div id="app">
-    <el-table :data="tableData" border style="width: 500px">
+    <el-table :data="tableData" stripe border style="width: 500px" height="400">
       <el-table-column fixed prop="date" label="日期" width="150">
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="120">
@@ -69,6 +69,19 @@
           }]
 
         }
+      },
+      created: function () {
+        const num = 600
+        let arr = new Array(num)
+        
+        for(let i = 0;i<num;i++) {
+          arr[i] = {
+              date: `${i}`,
+              name: "王小虎",
+              address: "上海市普陀区金沙江路 1518 弄"
+            }
+        }
+        this.tableData = arr
       },
       methods: {
         submitForm(formName) {

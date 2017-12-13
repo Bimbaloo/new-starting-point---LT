@@ -2,7 +2,10 @@
   <div id="app">
     <el-table
       :data="tableData"
-      style="width: 100%">
+      border
+      stripe
+      style="width: 800px"
+      height="500">
       <el-table-column
         prop="date"
         label="日期"
@@ -100,9 +103,10 @@ export default {
   },
 
   created() {
-    let arr = new Array(2000)
-    let i = 0
-    if(i<2000,i++) {
+    const num = 3000
+    let arr = new Array(num)
+    
+    for(let i = 0;i<num;i++) {
       arr[i] = {
           date: `${i}`,
           name: "王小虎",
