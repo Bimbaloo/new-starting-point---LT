@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>radio</title>
+  <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/1.4.3/index.js"></script>
+  <link href="https://cdn.bootcss.com/element-ui/1.4.3/theme-default/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="app">
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane v-for="(option,index) in options"  :label=`${index}+1` :name=`${index}`>{{option}}</el-tab-pane>
+      </el-tabs>
+  </div>
+
+  <script>
+    var Main = {
+      data() {
+        return {
+            activeName: 0,
+            options: []
+        }
+      },
+      created: function () {
+        let arr = new Array(100)
+        for(let i = 0; i < 100; i++){
+          arr[i] = i
+        }
+        this.options = arr
+      },
+      methods: {    
+        handleClick(tab, event) {
+            console.log(tab, event);
+          }
+      }
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+  </script>
+</body>..
+
+</html>
