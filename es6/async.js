@@ -1,43 +1,39 @@
 
-
-
-var rp = require('request-promise');
-
+var rp = require('request-promise')
 
 /* 头条大佬demo */
 
-console.log("1")
+console.log('1')
 
-async function async1() {
-    console.log('async1 start');
-    await async2()  //相当于返回一个promise,promise里面的函数是同步的，只有返回的resolve和reject才是异步的
+async function async1 () {
+  console.log('async1 start')
+  await async2()  // 相当于返回一个promise,promise里面的函数是同步的，只有返回的resolve和reject才是异步的
     // const a =await async2();
     // console.log(a)
-    console.log('async1 end');
+  console.log('async1 end')
 }
 
-async function async2() {
-    console.log('async2');
+async function async2 () {
+  console.log('async2')
     // return Promise.resolve("20")
 }
 
- console.log('script start');
+console.log('script start')
 
 setTimeout(function () {
-    console.log('setTimeout');
-}, 0);
+  console.log('setTimeout')
+}, 0)
 
-async1();
+async1()
 
 new Promise(function (resolve) {
-    console.log('promise1');
-    resolve();
+  console.log('promise1')
+  resolve()
 }).then(function () {
-    console.log('promise2');
-});
+  console.log('promise2')
+})
 
- console.log('script end');
-
+console.log('script end')
 
 // 1
 // script start
@@ -49,13 +45,7 @@ new Promise(function (resolve) {
 // promise2
 // setTimeout
 
-
-
-
-
 /* 头条大佬demo */
-
-
 
 /* demo 1 */
 // const call1Promise = rp('http://example.com/');
@@ -74,10 +64,6 @@ new Promise(function (resolve) {
 //     console.log(arr[1]);
 // })
 
-
-
-
-
 /* demo 2 */
 
 // const call2Promise = () => {
@@ -94,9 +80,6 @@ new Promise(function (resolve) {
 //         }, 100)
 //     })
 // }
-
-
-
 
 // // Encapsulate the solution in an async function
 // async function solution() {
@@ -116,32 +99,27 @@ new Promise(function (resolve) {
 // // Call the async function
 // solution().then(() => console.log('Finished'));
 
-
 /* demo4 */
 // async function p() {
 //     const a  = await rp('http://example.com/')
-    
-//     return a 
+
+//     return a
 // }
 // p().then((e)=>{
 //     console.log(e)
 // })
 
-
 // async function p0() {
 //     console.log("0")
 //     const a  = await 200
-//     return a 
+//     return a
 // }
 // p0().then((e)=>{
 //     console.log(e)
 // })
 
-
-
-
 // async function f() {
 //     return await 123;
 //   }
-  
+
 //   f().then(v => console.log(v))

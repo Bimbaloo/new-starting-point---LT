@@ -9,20 +9,21 @@ class Point {
   }
 }
 
-
 class A {
-  constructor(name,age) {
+  constructor (name, age) {
     this.name = name
     this.age = age
   }
 }
-A.prototype.x = 2;
+A.prototype.x = 2
 
 class B extends A {
-  constructor() {
-    super();
+  constructor () {
+    super()
     console.log(super.x) // 2
   }
 }
 
-let b = new B();
+let b = new B()
+
+export { b, Point }
