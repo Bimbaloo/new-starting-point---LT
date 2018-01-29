@@ -12,91 +12,96 @@
 <body>
 
   <div id="app">
-    <el-table :data="tableData" stripe border style="width: 500px" height="400">
-      <el-table-column fixed prop="date" label="日期" width="150">
+    <el-table ref="multipleTable" :data="tableData3" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+      <el-table-column width="55">
+        <template scope="scope">
+          <el-checkbox v-model="scope.row.checked" v-if='scope.row.checked !== null '></el-checkbox>
+        </template>
+      </el-table-column>
+      <el-table-column label="日期" width="120">
+        <template scope="scope">{{ scope.row.date }}</template>
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="120">
       </el-table-column>
-      <el-table-column prop="province" label="省份" width="120">
-      </el-table-column>
-      <el-table-column prop="city" label="市区" width="120">
-      </el-table-column>
-      <el-table-column prop="address" label="地址" width="300">
-      </el-table-column>
-      <el-table-column prop="zip" label="邮编" width="120">
-      </el-table-column>
-      <el-table-column fixed="right" label="操作" >
-        <template scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-          <el-button type="text" size="small">编辑</el-button>
-        </template>
+      <el-table-column prop="address" label="地址" show-overflow-tooltip>
       </el-table-column>
     </el-table>
+    <div style="margin-top: 20px">
+      <el-button @click="toggleSelection([tableData3[1], tableData3[2]])">切换第二、第三行的选中状态</el-button>
+      <el-button @click="toggleSelection()">取消选择</el-button>
+    </div>
   </div>
 
   <script>
     var Main = {
       data() {
         return {
-          tableData: [{
+          tableData3: [{
+            checked: null,
             date: '2016-05-03',
             name: '王小虎',
-            province: '上海',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
+            address: '上海市普陀区金沙江路 1518 弄'
           }, {
+            checked: false,
             date: '2016-05-02',
-            name: '王小虎',
-            province: '上海',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
+            name: '产出',
+            address: '上海市普陀区金沙江路 1518 弄'
           }, {
+            checked: false,
             date: '2016-05-04',
-            name: '王小虎',
-            province: '上海',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
+            name: '产出',
+            address: '上海市普陀区金沙江路 1518 弄'
           }, {
+            checked: null,
             date: '2016-05-01',
             name: '王小虎',
-            province: '上海',
-            city: '普陀区',
-            address: '上海市普陀区金沙江路 1518 弄',
-            zip: 200333
-          }]
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            checked: null,
+            date: '2016-05-08',
+            name: '产出',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            checked: null,
+            date: '2016-05-06',
+            name: '王小虎',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }, {
+            checked: false,
+            date: '2016-05-07',
+            name: '产出',
+            address: '上海市普陀区金沙江路 1518 弄'
+          }],
+          multipleSelection: []
 
         }
       },
       created: function () {
         const num = 600
         let arr = new Array(num)
-        
-        for(let i = 0;i<num;i++) {
+
+        for (let i = 0; i < num; i++) {
           arr[i] = {
-              date: `${i}`,
-              name: "王小虎",
-              address: "上海市普陀区金沙江路 1518 弄"
-            }
+            date: `${i}`,
+            name: "王小虎",
+            address: "上海市普陀区金沙江路 1518 弄"
+          }
         }
         this.tableData = arr
       },
       methods: {
-        submitForm(formName) {
-          this.$refs[formName].validate((valid) => {
-            if (valid) {
-              alert('submit!');
-              console.log('error submit!!');
-            } else {
-              console.log('error submit!!');
-              return false;
-            }
-          });
+        toggleSelection(rows) {
+          
+          if (rows) {
+            rows.forEach(row => {
+              this.$refs.multipleTable.toggleRowSelection(row,true);
+            });
+          } else {
+            this.$refs.multipleTable.clearSelection();
+          }
         },
-        resetForm(formName) {
-          this.$refs[formName].resetFields();
+        handleSelectionChange(val) {
+          this.multipleSelection = val;
         }
       }
     }
