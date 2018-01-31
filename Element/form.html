@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/2.0.11/index.js"></script>
+  <link href="https://cdn.bootcss.com/element-ui/2.0.11/theme-chalk/index.css" rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm1" label-width="100px" class="demo-ruleForm" v-show="radio ==2">
+      <el-form-item label="密码" prop="pass">
+        <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="确认密码" prop="checkPass">
+        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="年龄" prop="age">
+        <el-input v-model.number="ruleForm2.age"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
+        <el-button @click="resetForm('ruleForm2')">重置</el-button>
+      </el-form-item>
+    </el-form>
+    <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm" v-show="radio ==1">
+      <el-form-item label="密码1" prop="pass">
+        <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="确认密码1" prop="checkPass">
+        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="年龄1" prop="age">
+        <el-input v-model.number="ruleForm2.age"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
+        <el-button @click="resetForm('ruleForm2')">重置</el-button>
+      </el-form-item>
+    </el-form>
+    <el-radio-group v-model="radio" @change="a">
+      <el-radio label="1">备选项</el-radio>
+      <el-radio label="2">备选项</el-radio>
+    </el-radio-group>
+  </div>
+
+  <script>
+    var Main = {
+      data() {
+
+        return {
+          radio: '1',
+          ruleForm2: {
+            pass: '',
+            checkPass: '',
+            age: ''
+          },
+
+        };
+      },
+      computed: {
+        rules2: function () {
+
+          const checkAge = (rule, value, callback) => {
+            if (!value) {
+              return callback(new Error('不能为空'))
+            }
+            setTimeout(() => {
+              if (!Number.isInteger(value)) {
+                callback(new Error('请输入数字值'));
+              } else {
+                if (value < 18) {
+                  callback(new Error('必须年满18岁'));
+                } else {
+                  callback();
+                }
+              }
+            }, 1000);
+          };
+          const validatePass = (rule, value, callback) => {
+            if (!value) {
+
+            } else {
+              if (this.ruleForm2.checkPass !== '') {
+                this.$refs.ruleForm2.validateField('checkPass');
+              }
+
+            }
+          };
+          const validatePass2 = (rule, value, callback) => {
+            if (!value) {
+              callback(new Error('请再次输入密码'));
+            } else if (value !== this.ruleForm2.pass) {
+              callback(new Error('两次输入密码不一致!'));
+            } else {
+
+            }
+          };
+
+          const oAllRules = {
+            a: {
+              pass: [{
+                validator: validatePass,
+                trigger: 'blur'
+              }],
+              checkPass: [{
+                validator: validatePass2,
+                trigger: 'blur'
+              }],
+              age: [{
+                validator: checkAge,
+                trigger: 'blur'
+              }]
+            },
+            b: {
+              pass: [{
+                validator: validatePass,
+                trigger: 'blur'
+              }],
+              checkPass: [{
+                validator: validatePass2,
+                trigger: 'blur'
+              }],
+            }
+          }
+          if (this.radio == 1) {
+            console.log(1)
+            return oAllRules.a
+          } else {
+            console.log(2)
+            return oAllRules.b
+          }
+        }
+
+      },
+      methods: {
+        submitForm(formName) {
+          this.$refs[formName].validate()
+            .then(valid => {
+              console.log(true)
+            })
+            .catch(valid => {
+              console.log(false)
+            });
+        },
+        resetForm(formName) {
+          this.$refs[formName].resetFields();
+        },
+        a(value) {
+
+           this.$refs['ruleForm2'].resetFields();
+          // this.$refs['ruleForm2'].clearValidate	();       
+           this.$refs['ruleForm1'].resetFields();
+          // this.$refs['ruleForm1'].clearValidate	();         
+          this.$nextTick(()=>{
+            // this.$refs['ruleForm2'].resetFields();
+            // this.$refs['ruleForm2'].clearValidate	();
+            // this.$refs['ruleForm1'].resetFields();
+            // this.$refs['ruleForm1'].clearValidate	();
+          })
+          // console.log(value)
+        }
+      }
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+  </script>
+</body>
+
+</html>
