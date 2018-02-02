@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/2.0.11/index.js"></script>
+  <link href="https://cdn.bootcss.com/element-ui/2.0.11/theme-chalk/index.css" rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <el-button :plain="true" @click="open2">成功</el-button>
+    <el-button :plain="true" @click="open3">警告</el-button>
+    <el-button :plain="true" @click="open">消息</el-button>
+    <el-button :plain="true" @click="open4">错误</el-button>
+  </div>
+
+  <script>
+    var Main = {
+      methods: {
+
+        open() {
+          this.$message({
+            message: '这是一条消息提示',
+            type: "info"
+          });
+        },
+        open2() {
+          this.$message({
+            message: '恭喜你，这是一条成功消息',
+            type: 'success'
+          });
+        },
+
+        open3() {
+          this.$message({
+            message: '警告哦，这是一条警告消息',
+            type: 'warning'
+          });
+        },
+
+        open4() {
+          this.$message({
+            message: '错了哦，这是一条错误消息',
+            type: 'error'
+          });
+        }
+      }
+
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+  </script>
+</body>
+
+</html>
