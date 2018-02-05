@@ -5,103 +5,104 @@
   <meta charset="UTF-8">
   <title>radio</title>
   <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
-  <script src="https://cdn.bootcss.com/element-ui/1.4.3/index.js"></script>
-  <link href="https://cdn.bootcss.com/element-ui/1.4.3/theme-default/index.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/element-ui/2.1.0/index.js"></script>
+  <link href="https://cdn.bootcss.com/element-ui/2.1.0/theme-chalk/index.css" rel="stylesheet">
 </head>
 
 <body>
 
   <div id="app">
-    <el-table ref="multipleTable" :data="tableData3" border tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-      <el-table-column width="55">
-        <template scope="scope">
-          <el-checkbox v-model="scope.row.checked" v-if='scope.row.checked !== null '></el-checkbox>
-        </template>
+    <el-table :data="tableData6" :span-method="arraySpanMethod" border style="width: 100%">
+      <el-table-column prop="id" label="ID" width="180">
       </el-table-column>
-      <el-table-column label="日期" width="120">
-        <template scope="scope">{{ scope.row.date }}</template>
+      <el-table-column prop="name" label="姓名">
       </el-table-column>
-      <el-table-column prop="name" label="姓名" width="120">
+      <el-table-column prop="amount1" sortable label="数值 1">
       </el-table-column>
-      <el-table-column prop="address" label="地址" show-overflow-tooltip>
+      <el-table-column prop="amount2" sortable label="数值 2">
+      </el-table-column>
+      <el-table-column prop="amount3" sortable label="数值 3">
       </el-table-column>
     </el-table>
-    <div style="margin-top: 20px">
-      <el-button @click="toggleSelection([tableData3[1], tableData3[2]])">切换第二、第三行的选中状态</el-button>
-      <el-button @click="toggleSelection()">取消选择</el-button>
-    </div>
+
+    <!-- <el-table :data="tableData6" :span-method="objectSpanMethod" border style="width: 100%; margin-top: 20px">
+      <el-table-column prop="id" label="ID" width="180">
+      </el-table-column>
+      <el-table-column prop="name" label="姓名">
+      </el-table-column>
+      <el-table-column prop="amount1" label="数值 1（元）">
+      </el-table-column>
+      <el-table-column prop="amount2" label="数值 2（元）">
+      </el-table-column>
+      <el-table-column prop="amount3" label="数值 3（元）">
+      </el-table-column>
+    </el-table> -->
   </div>
 
   <script>
     var Main = {
       data() {
         return {
-          tableData3: [{
-            checked: null,
-            date: '2016-05-03',
+          tableData6: [{
+            id: '12987122',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
+            amount1: '234',
+            amount2: '3.2',
+            amount3: 10
           }, {
-            checked: false,
-            date: '2016-05-02',
-            name: '产出',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            checked: false,
-            date: '2016-05-04',
-            name: '产出',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            checked: null,
-            date: '2016-05-01',
+            id: '12987123',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
+            amount1: '165',
+            amount2: '4.43',
+            amount3: 12
           }, {
-            checked: null,
-            date: '2016-05-08',
-            name: '产出',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            checked: null,
-            date: '2016-05-06',
+            id: '12987124',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
+            amount1: '324',
+            amount2: '1.9',
+            amount3: 9
           }, {
-            checked: false,
-            date: '2016-05-07',
-            name: '产出',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }],
-          multipleSelection: []
-
-        }
-      },
-      created: function () {
-        const num = 600
-        let arr = new Array(num)
-
-        for (let i = 0; i < num; i++) {
-          arr[i] = {
-            date: `${i}`,
-            name: "王小虎",
-            address: "上海市普陀区金沙江路 1518 弄"
-          }
-        }
-        this.tableData = arr
+            id: '12987125',
+            name: '王小虎',
+            amount1: '621',
+            amount2: '2.2',
+            amount3: 17
+          }, {
+            id: '12987126',
+            name: '王小虎',
+            amount1: '539',
+            amount2: '4.1',
+            amount3: 15
+          }]
+        };
       },
       methods: {
-        toggleSelection(rows) {
-          
-          if (rows) {
-            rows.forEach(row => {
-              this.$refs.multipleTable.toggleRowSelection(row,true);
-            });
-          } else {
-            this.$refs.multipleTable.clearSelection();
+        arraySpanMethod({ row, column, rowIndex, columnIndex}) {
+          console.log({ row, column, rowIndex, columnIndex })
+          if (rowIndex % 2 === 0) {
+            if (columnIndex === 0) {
+              return [1, 2];
+            } else if (columnIndex === 1) {
+              return [0, 0];
+            }
           }
         },
-        handleSelectionChange(val) {
-          this.multipleSelection = val;
+
+        objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+          console.log({ row, column, rowIndex, columnIndex })
+          if (columnIndex === 0) {
+            if (rowIndex % 2 === 0) {
+              return {
+                rowspan: 2,
+                colspan: 1
+              };
+            } else {
+              return {
+                rowspan: 0,
+                colspan: 0
+              };
+            }
+          }
         }
       }
     }
