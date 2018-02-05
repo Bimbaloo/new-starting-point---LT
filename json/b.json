@@ -1,0 +1,265 @@
+{
+  "errorCode": 0,
+  "errorMsg": "",
+  "data": {
+    "moldInfo": {
+      "moldCode": "2017C04202",
+      "moldName": "1006控制面板A-成型-2/2",
+      "moldLife": "300000",
+      "moldEventList": [{
+        "eventName": "上模",
+        "happenTime": "2017-12-19 14:50:43",
+        "operator": "测试人员",
+        "remainLife": null,
+        "equipmentName": "测试设备"
+      }, {
+        "eventName": "下模",
+        "happenTime": "2017-12-19 15:01:17",
+        "operator": "测试人员",
+        "remainLife": null,
+        "equipmentName": "测试设备"
+      }, {
+        "eventName": "保养开始",
+        "happenTime": "2017-12-19 17:00:00",
+        "operator": "保养人员名称",
+        "remainLife": null,
+        "equipmentName": null
+      }, {
+        "eventName": "保养结束",
+        "happenTime": "2017-12-19 17:10:00",
+        "operator": "保养人员名称",
+        "remainLife": null,
+        "equipmentName": null
+      }, {
+        "eventName": "上模",
+        "happenTime": "2017-12-19 17:13:48",
+        "operator": "测试人员",
+        "remainLife": null,
+        "equipmentName": "测试设备"
+      }, {
+        "eventName": "下模",
+        "happenTime": "2017-12-19 17:14:49",
+        "operator": "测试人员",
+        "remainLife": null,
+        "equipmentName": "测试设备"
+      }, {
+        "eventName": "维修开始",
+        "happenTime": "2017-12-19 21:00:00",
+        "operator": "repairPersonName",
+        "remainLife": null,
+        "equipmentName": null
+      }, {
+        "eventName": "维修结束",
+        "happenTime": "2017-12-19 21:30:00",
+        "operator": "repairPersonName",
+        "remainLife": null,
+        "equipmentName": null
+      }, {
+        "eventName": "上模",
+        "happenTime": "2017-12-20 16:13:20",
+        "operator": "测试人员",
+        "remainLife": null,
+        "equipmentName": "测试设备"
+      }, {
+        "eventName": "下模",
+        "happenTime": "2017-12-20 16:18:03",
+        "operator": "测试人员",
+        "remainLife": null,
+        "equipmentName": "测试设备"
+      }]
+    },
+    "moldDoOutList": [
+      {
+        "firstDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 14:14:51",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "noGoodDoOutList": [{
+        "qualityType": "报废",
+        "happenTime": "2017-12-19 14:14:51",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      }, {
+        "qualityType": "报废",
+        "happenTime": "2017-12-19 14:14:51",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      }],
+      "lastDoOut": {
+        "qualityType": "不合格",
+        "happenTime": "2017-12-19 14:14:51",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "quantityAll": 4.000000,
+      "quantityNoGood": 3.000000,
+      "equipmentName": "刻码",
+      "materialName": "MP/SGE LFV 活塞毛坯/074189",
+      "batchNo": "D4234"
+    }, {
+      "firstDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 14:14:51",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "noGoodDoOutList": [],
+      "lastDoOut": null,
+      "quantityAll": 1.000000,
+      "quantityNoGood": 0,
+      "equipmentName": "刻码",
+      "materialName": "MP/SGE LFV 活塞毛坯/074189",
+      "batchNo": "D4231"
+    }, {
+      "firstDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 14:34:25",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "noGoodDoOutList": [],
+      "lastDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 14:36:38",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "quantityAll": 4.000000,
+      "quantityNoGood": 0,
+      "equipmentName": "刻码",
+      "materialName": "MP/SGE LFV 活塞毛坯/074189",
+      "batchNo": "D231"
+    }, {
+      "firstDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 14:36:38",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "noGoodDoOutList": [],
+      "lastDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 14:42:05",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "quantityAll": 5.000000,
+      "quantityNoGood": 0,
+      "equipmentName": "刻码",
+      "materialName": "MP/SGE LFV 活塞毛坯/074189",
+      "batchNo": "D232"
+    }, {
+      "firstDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 14:49:34",
+        "operator": "xiaoyao",
+        "quantity": 1.000000
+      },
+      "noGoodDoOutList": [],
+      "lastDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 14:49:34",
+        "operator": "xiaoyao",
+        "quantity": 1.000000
+      },
+      "quantityAll": 4.000000,
+      "quantityNoGood": 0,
+      "equipmentName": "武汉虚拟刻码",
+      "materialName": "MP/SGE LFV 活塞毛坯/074189",
+      "batchNo": "D232"
+    }, {
+      "firstDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 15:05:48",
+        "operator": "tongqin",
+        "quantity": 1.000000
+      },
+      "noGoodDoOutList": [],
+      "lastDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 15:05:48",
+        "operator": "tongqin",
+        "quantity": 1.000000
+      },
+      "quantityAll": 4.000000,
+      "quantityNoGood": 0,
+      "equipmentName": "武汉虚拟刻码",
+      "materialName": "MP/SGE LFV 活塞毛坯/074189",
+      "batchNo": "D232"
+    }, {
+      "firstDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 15:21:41",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "noGoodDoOutList": [],
+      "lastDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 15:21:41",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "quantityAll": 2.000000,
+      "quantityNoGood": 0,
+      "equipmentName": "刻码",
+      "materialName": "MP/SGE LFV 活塞毛坯/074189",
+      "batchNo": "D232"
+    }, {
+      "firstDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 15:21:41",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "noGoodDoOutList": [{
+        "qualityType": "不合格",
+        "happenTime": "2017-12-19 15:28:07",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      }, {
+        "qualityType": "不合格",
+        "happenTime": "2017-12-19 15:28:07",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      }, {
+        "qualityType": "不合格",
+        "happenTime": "2017-12-19 15:28:07",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      }],
+      "lastDoOut": {
+        "qualityType": "不合格",
+        "happenTime": "2017-12-19 15:28:07",
+        "operator": "chenjun",
+        "quantity": 1.000000
+      },
+      "quantityAll": 5.000000,
+      "quantityNoGood": 4.000000,
+      "equipmentName": "刻码",
+      "materialName": "MP/SGE LFV 活塞毛坯/074189",
+      "batchNo": "D234"
+    }, {
+      "firstDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 15:55:32",
+        "operator": "tongqin",
+        "quantity": 1.000000
+      },
+      "noGoodDoOutList": [],
+      "lastDoOut": {
+        "qualityType": "合格",
+        "happenTime": "2017-12-19 15:55:32",
+        "operator": "tongqin",
+        "quantity": 1.000000
+      },
+      "quantityAll": 4.000000,
+      "quantityNoGood": 0,
+      "equipmentName": "武汉虚拟刻码",
+      "materialName": "MP/SGE LFV 活塞毛坯/074189",
+      "batchNo": "D234"
+    }]
+  }
+}
