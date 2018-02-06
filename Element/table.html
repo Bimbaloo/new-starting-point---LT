@@ -4,19 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <title>radio</title>
+  <link href="https://cdn.bootcss.com/element-ui/2.1.0/theme-chalk/index.css" rel="stylesheet">
   <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
   <script src="https://cdn.bootcss.com/element-ui/2.1.0/index.js"></script>
-  <link href="https://cdn.bootcss.com/element-ui/2.1.0/theme-chalk/index.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/axios/0.17.1/axios.js"></script>
 </head>
 
 <body>
 
   <div id="app">
-    <el-table :data="tableData.data" :span-method="objectSpanMethod" border style="width: 100%">
+    <el-table :data="tableData.data" :span-method="objectSpanMethod" border style="width: 100%" height="800">
       <el-table-column :prop="column.prop" :label="column.name" :width="column.width" v-for="column in tableData.columns" :key="column.prop" >
-        <template  slot-scope="scope" >
+        <template slot-scope="scope">
           <div v-if="column.prop === 'select' && scope.row[column.prop] !== null">
-              <el-checkbox v-model="scope.row.value"></el-checkbox>
+            <el-checkbox v-model="scope.row.value" @change="handleCheckChange(scope.row)"></el-checkbox>
           </div>
           <div v-else>{{scope.row[column.prop]}}</div>
         </template>
@@ -25,168 +26,135 @@
   </div>
 
   <script>
-    var Main = {
-      data() {
-        return {
-          tableData: {
-            columns: [{
-                prop: 'select',
-                name: '选择',
-                width: '50'
-              },
-              {
-                prop: 'happenTime',
-                name: '时间'
-              },
-              {
-                prop: 'eventName',
-                name: '动作'
-              },
-              {
-                prop: 'operator',
-                name: '操作人员'
-              },
-              {
-                prop: 'quantity',
-                name: '产出数量'
-              },
-              {
-                prop: 'quantityAll',
-                name: '区间产出数量'
-              },
-              {
-                prop: 'percent',
-                name: '区间产出合格率'
-              },
-              {
-                prop: 'equipmentName',
-                name: '设备'
-              },
-              {
-                prop: 'materialName',
-                name: '物料'
-              },
-              {
-                prop: 'batchNo',
-                name: '批次'
-              }
-            ],
-            data: [
-            {
-              select:1,
-              value: false,
-              happenTime: 2018/2/5,
-              eventName: "上模",
-              operator: '张三',
-              quantity: 20,
-              quantityAll: 50,
-              percent: 40,
-              equipmentName: 'A设备1',
-              materialName: 'A物料',
-              batchNo: '000批次',
-              rowspan: 3,
-              colspan: 1
-            }, {
-              select:null,
-              happenTime: 2018/2/5,
-              eventName: "第一次产出",
-              operator: '张三',
-              quantity: 20,
-              quantityAll: 50,
-              percent: 40,
-              equipmentName: 'A设备1',
-              materialName: 'A物料',
-              batchNo: '000批次',
-              rowspan: 0,
-              colspan: 0
-            }, {
-              select:3,
-              value: false,
-              happenTime: 2018/2/5,
-              eventName: "产出废品",
-              operator: '张三',
-              quantity: 20,
-              quantityAll: 50,
-              percent: 40,
-              equipmentName: 'A设备1',
-              materialName: 'A物料',
-              batchNo: '000批次',
-              rowspan: 0,
-              colspan: 0
-            }, {
-              select:null,
-              happenTime: 2018/2/5,
-              eventName: "上模",
-              operator: '张三',
-              quantity: 20,
-              quantityAll: 50,
-              percent: 40,
-              equipmentName: 'A设备2',
-              materialName: 'A物料',
-              batchNo: '000批次',
-              rowspan: 2,
-              colspan: 1
+    var Main = new Vue({
+      el: '#app',
+      data: {
+        needArr: [],
+        metadata: null,
+        tableData: {
+          columns: [{
+              prop: 'select',
+              name: '选择',
+              width: '50'
             },
             {
-              select:5,
-              value: false,
-              happenTime: 2018/2/5,
-              eventName: "上模",
-              operator: '张三',
-              quantity: 20,
-              quantityAll: 50,
-              percent: 40,
-              equipmentName: 'A设备2',
-              materialName: 'A物料',
-              batchNo: '000批次',
-              rowspan: 0,
-              colspan: 0
-            }, {
-              select:6,
-              value: false,
-              happenTime: 2018/2/5,
-              eventName: "上模",
-              operator: '张三',
-              quantity: 20,
-              quantityAll: 50,
-              percent: 40,
-              equipmentName: 'A设备3',
-              materialName: 'A物料',
-              batchNo: '000批次',
-              rowspan: 2,
-              colspan: 1
-            }, {
-              select:7,
-              value: false,
-              happenTime: 2018/2/5,
-              eventName: "上模",
-              operator: '张三',
-              quantity: 20,
-              quantityAll: 50,
-              percent: 40,
-              equipmentName: 'A设备3',
-              materialName: 'A物料',
-              batchNo: '000批次',
-              rowspan: 0,
-              colspan: 0
-            }, {
-              select:8,
-              value: false,
-              happenTime: 2018/2/5,
-              eventName: "上模",
-              operator: '张三',
-              quantity: 20,
-              quantityAll: 50,
-              percent: 40,
-              equipmentName: 'A设备4',
-              materialName: 'A物料',
-              batchNo: '000批次',
-              rowspan: 1,
-              colspan: 1
+              prop: 'happenTime',
+              name: '时间'
+            },
+            {
+              prop: 'eventName',
+              name: '动作'
+            },
+            {
+              prop: 'operator',
+              name: '操作人员'
+            },
+            {
+              prop: 'quantity',
+              name: '产出数量'
+            },
+            {
+              prop: 'quantityAll',
+              name: '区间产出数量'
+            },
+            {
+              prop: 'percent',
+              name: '区间产出合格率'
+            },
+            {
+              prop: 'equipmentName',
+              name: '设备'
+            },
+            {
+              prop: 'materialName',
+              name: '物料'
+            },
+            {
+              prop: 'batchNo',
+              name: '批次'
             }
-            ]
-          }
-        };
+          ],
+          data: []
+        }
+      },
+      created: function () {
+
+        axios.get('../json/b.json')
+          .then( (oData) =>{
+
+            // this.metadata = oData.data.data
+            let myData = {...oData.data.data}
+            let needArr = []
+
+            myData.moldDoOutList.forEach(element => {
+              element.firstDoOut.percent = (element.quantityAll - element.quantityNoGood)/element.quantityAll  // 合格率
+              element.firstDoOut.colspan = 1
+              element.firstDoOut.eventName = element.firstDoOut.qualityType            // 事件名称
+              element.firstDoOut.quantityAll = element.quantityAll          // 总数
+              element.firstDoOut.equipmentName = element.equipmentName      // 设备名称
+              element.firstDoOut.materialName = element.materialName        // 物料名称
+              element.firstDoOut.batchNo = element.batchNo                  // 批次
+              element.firstDoOut.select = 'first'                           // 有勾选框
+              element.firstDoOut.value = false                              // 勾选框默认 false
+
+              needArr.push(element.firstDoOut)
+              if(element.lastDoOut === null || Object.keys(element.lastDoOut).length === 0) { //最后一次生产不存在
+                if(element.noGoodDoOutList.length === 0 ) {       //最后一次生产不存在 && 不良品不存在
+                  element.firstDoOut.rowspan = 1
+                }else {                                           //最后一次生产不存在 && 不良品存在
+                  element.firstDoOut.rowspan = 1 + element.noGoodDoOutList.length
+                  element.noGoodDoOutList.forEach(el=> {
+                    el.rowspan = el.colspan = 0
+                    el.select = 'last'
+                    el.value = false
+                    el.eventName = el.qualityType
+                  })
+                  needArr.push(...element.noGoodDoOutList)
+                }
+              }else {                                           //最后一次生产存在
+                element.lastDoOut.eventName = element.lastDoOut.qualityType
+                if(element.lastDoOut !== null && element.noGoodDoOutList.length === 0 ) {       //最后一次生产存在 && 不良品不存在  
+                  element.firstDoOut.rowspan = 1 + 1
+                  needArr.push(element.lastDoOut)
+                }else {                                           //最后一次生产存在 && 不良品存在
+                  element.firstDoOut.rowspan = 1 + element.noGoodDoOutList.length + 1
+                  element.noGoodDoOutList.forEach(el=> {
+                    el.rowspan = el.colspan = 0
+                    el.select = 'last'
+                    el.value = false
+                    el.eventName = el.qualityType
+                  })
+                  
+                  needArr.push(...element.noGoodDoOutList)
+                  needArr.push(element.lastDoOut)
+                }
+              }
+            })
+            needArr.forEach(el=>{
+              if(el.select === undefined) {
+                el.select = null
+              }
+            })
+
+            myData.moldInfo.moldEventList.forEach(event=>{
+              event.rowspan = event.colspan = 1
+              needArr.forEach((el,index)=>{
+                if(event.happenTime < el.happenTime){
+                  needArr.splice(index,0,event)
+                } else if(event.happenTime > needArr[needArr.length-1].happenTime ){
+                  needArr.push(event)
+                }
+              })
+            })
+            needArr.forEach((el,index)=>{
+              el.index = index
+            })
+            // this.needArr = needArr
+            this.tableData.data = needArr
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       },
       methods: {
         arraySpanMethod({
@@ -196,7 +164,7 @@
           columnIndex
         }) {
           if (rowIndex % 2 === 0) {
-            if (columnIndex === 0) {   
+            if (columnIndex === 0) {
               return [1, 2];
             } else if (columnIndex === 1) {
               return [0, 0];
@@ -210,17 +178,30 @@
           rowIndex,
           columnIndex
         }) {
-          if (columnIndex === 7) {   // 第八列需要合并单元格          
+          if (columnIndex === 5 || columnIndex === 6 || columnIndex === 7 || columnIndex === 8 || columnIndex === 9) { // 第八列需要合并单元格          
             return {
               rowspan: row.rowspan,
               colspan: row.colspan
             }
           }
+        },
+        handleCheckChange (row) {
+          console.log(row.select)
+          const select = row.select
+          const value = row.value
+          const index = row.index
+          for(let i in this.tableData.data) {
+            let el = this.tableData.data[i]
+            if(el.value === value && el.index !== index && el.select === select) {
+              el.value = !value
+              return 0
+            }
+          }
         }
       }
-    }
-    var Ctor = Vue.extend(Main)
-    new Ctor().$mount('#app')
+    })
+    // var Ctor = Vue.extend(Main)
+    // new Ctor().$mount('#app')
   </script>
 </body>
 
