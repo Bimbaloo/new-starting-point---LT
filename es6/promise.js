@@ -95,7 +95,7 @@ const getBorrower = (str) => {
 
 const databasePromise = connectDatabase()
 
-const booksPromise = databasePromise
+const booksPromise = connectDatabase()
   .then(e => {
     return getBooks('高数')
   })
