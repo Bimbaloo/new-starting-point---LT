@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="forAppend" class="demo"></div>
+</body>
+
+<script>
+    var eleAppend = document.getElementById("forAppend");
+    window.URL = window.URL || window.webkitURL;
+    if (typeof history.pushState == "function") {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "http://www.zhangxinxu.com/image/study/s/s256/mm1.jpg", true);
+        xhr.responseType = "blob";
+        xhr.onload = function () {
+            if (this.status == 200) {
+                debugger
+                var blob = this.response;
+                var img = document.createElement("img");
+                img.onload = function (e) {
+                    window.URL.revokeObjectURL(img.src); // 清除释放
+                };
+                img.src = window.URL.createObjectURL(blob);
+                eleAppend.appendChild(img);
+            }
+        }
+        xhr.send();
+    } else {
+        eleAppend.innerHTML = '<p style="color:#cd0000;">浏览器不给力，还是早点回去给孩子喂奶吧~</p>';
+    }
+</script>
+
+</html>
