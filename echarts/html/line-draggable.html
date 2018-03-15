@@ -48,25 +48,14 @@ option = {
     },
     dataZoom: [
         {
+            // x轴滚轮缩放。
             type: 'slider',
             xAxisIndex: 0,
-            filterMode: 'empty'
-        },
-        {
-            type: 'slider',
-            yAxisIndex: 0,
-            filterMode: 'empty'
-        },
-        {
-            type: 'inside',
-            xAxisIndex: 0,
-            filterMode: 'empty'
-        },
-        {
-            type: 'inside',
-            yAxisIndex: 0,
+            start: 30,
+            end: 70,
             filterMode: 'empty'
         }
+
     ],
     series: [
         {
@@ -109,6 +98,12 @@ if (!app.inNode) {
 }
 
 myChart.on('dataZoom', updatePosition);
+myChart.on('dataZoom', (parse)=>{
+    console.log(parse)
+    a= myChart.getOption()
+    console.log(a)
+});
+
 
 function updatePosition() {
     myChart.setOption({

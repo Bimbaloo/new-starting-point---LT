@@ -12,7 +12,8 @@
   "dependencies": {
     "awe-dnd": "github:hilongjw/vue-dragging",
     "element-ui": "^2.0.8",
-    "vue": "^2.5.9"
+    "vue": "^2.5.9",
+    "vue-echarts": "^3.0.3"
   },
   "devDependencies": {
     "ag-grid": "^13.3.1",
