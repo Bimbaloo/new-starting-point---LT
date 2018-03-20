@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>radio</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/2.1.0/index.js"></script>
+  <link href="https://cdn.bootcss.com/element-ui/2.1.0/theme-chalk/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="app">
+    <template>
+      <div v-loading="loading" element-loading-text="拼命加载中">4115</div>
+    </template>
+  </div>
+
+  <script>
+    var Main = {
+      data() {
+        return {
+          loading: true
+        }
+      },
+      created: function () {
+      },
+      methods: {
+        handleClick(tab, event) {
+          console.log(tab, event);
+        }
+      }
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+  </script>
+</body>
+
+<style>
+  .red {
+    color: red
+  }
+</style>
+</html>
