@@ -1,7 +1,6 @@
-const myName = (name)=> {return console.log(name)}
+const myName = (name) => { return console.log(name) }
 
-const myAge = (age)=> {return console.log(age)}
-
+const myAge = (age) => { return console.log(age) }
 
 export { myName }
 

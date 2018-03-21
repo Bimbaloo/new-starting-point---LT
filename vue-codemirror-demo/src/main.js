@@ -5,7 +5,6 @@ import App from './App'
 import VueCodeMirror from 'vue-codemirror'
 Vue.use(VueCodeMirror)
 
-
 Vue.config.productionTip = false
 
 Vue.directive('focus', {

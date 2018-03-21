@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 /*
 *  Copyright (C) 1998-2017 by Northwoods Software Corporation. All Rights Reserved.
 */
@@ -14,16 +14,16 @@
 * and the user holds down the Shift key.
 * It works by modifying that port's GraphObject.alignment property.
 */
-function PortShiftingTool() {
-  go.Tool.call(this);
-  this.name = "NodeLabelDragging";
+function PortShiftingTool () {
+  go.Tool.call(this)
+  this.name = 'NodeLabelDragging'
 
   /** @type {GraphObject} */
-  this.port = null;
+  this.port = null
   /** @type {Point} */
-  this._originalAlignment = null;
+  this._originalAlignment = null
 }
-go.Diagram.inherit(PortShiftingTool, go.Tool);
+go.Diagram.inherit(PortShiftingTool, go.Tool)
 
 /**
 * This tool can only start if the mouse has moved enough so that it is not a click,
@@ -32,16 +32,16 @@ go.Diagram.inherit(PortShiftingTool, go.Tool);
 * @this {PortShiftingTool}
 * @return {boolean}
 */
-PortShiftingTool.prototype.canStart = function() {
-  if (!go.Tool.prototype.canStart.call(this)) return false;
-  var diagram = this.diagram;
-  if (diagram === null) return false;
+PortShiftingTool.prototype.canStart = function () {
+  if (!go.Tool.prototype.canStart.call(this)) return false
+  var diagram = this.diagram
+  if (diagram === null) return false
   // require left button & that it has moved far enough away from the mouse down point, so it isn't a click
-  var e = diagram.lastInput;
-  if (!e.left || !e.shift) return false;
-  if (!this.isBeyondDragSize()) return false;
+  var e = diagram.lastInput
+  if (!e.left || !e.shift) return false
+  if (!this.isBeyondDragSize()) return false
 
-  return this.findPort() !== null;
+  return this.findPort() !== null
 }
 
 /**
@@ -51,70 +51,70 @@ PortShiftingTool.prototype.canStart = function() {
 * @this {PortShiftingTool}
 * @return {GraphObject} This returns null if no such port is at the mouse down point.
 */
-PortShiftingTool.prototype.findPort = function() {
-  var diagram = this.diagram;
-  var e = diagram.firstInput;
-  var elt = diagram.findObjectAt(e.documentPoint, null, null);
+PortShiftingTool.prototype.findPort = function () {
+  var diagram = this.diagram
+  var e = diagram.firstInput
+  var elt = diagram.findObjectAt(e.documentPoint, null, null)
 
-  if (elt === null || !(elt.part instanceof go.Node)) return null;
+  if (elt === null || !(elt.part instanceof go.Node)) return null
   while (elt.panel !== null && elt.panel.type === go.Panel.Spot && elt.panel.findMainElement() !== elt) {
-    if (elt.portId !== null && elt.portId !== "") return elt;
-    elt = elt.panel;
+    if (elt.portId !== null && elt.portId !== '') return elt
+    elt = elt.panel
   }
-  return null;
-};
+  return null
+}
 
 /**
 * Start a transaction, call findPort and remember it as the "port" property,
 * and remember the original value for the port's alignment property.
 * @this {PortShiftingTool}
 */
-PortShiftingTool.prototype.doActivate = function() {
-  this.startTransaction("Shifted Label");
-  this.port = this.findPort();
+PortShiftingTool.prototype.doActivate = function () {
+  this.startTransaction('Shifted Label')
+  this.port = this.findPort()
   if (this.port !== null) {
-    this._originalAlignment = this.port.alignment.copy();
-    var main = this.port.panel.findMainElement();
+    this._originalAlignment = this.port.alignment.copy()
+    var main = this.port.panel.findMainElement()
   }
-  go.Tool.prototype.doActivate.call(this);
+  go.Tool.prototype.doActivate.call(this)
 }
 
 /**
 * Stop any ongoing transaction.
 * @this {PortShiftingTool}
 */
-PortShiftingTool.prototype.doDeactivate = function() {
-  go.Tool.prototype.doDeactivate.call(this);
-  this.stopTransaction();
+PortShiftingTool.prototype.doDeactivate = function () {
+  go.Tool.prototype.doDeactivate.call(this)
+  this.stopTransaction()
 }
 
 /**
 * Clear any reference to a port element.
 * @this {PortShiftingTool}
 */
-PortShiftingTool.prototype.doStop = function() {
-  this.port = null;
-  go.Tool.prototype.doStop.call(this);
+PortShiftingTool.prototype.doStop = function () {
+  this.port = null
+  go.Tool.prototype.doStop.call(this)
 }
 
 /**
 * Restore the port's original value for GraphObject.alignment.
 * @this {PortShiftingTool}
 */
-PortShiftingTool.prototype.doCancel = function() {
+PortShiftingTool.prototype.doCancel = function () {
   if (this.port !== null) {
-    this.port.alignment = this._originalAlignment;
+    this.port.alignment = this._originalAlignment
   }
-  go.Tool.prototype.doCancel.call(this);
+  go.Tool.prototype.doCancel.call(this)
 }
 
 /**
 * During the drag, call updateAlignment in order to set the GraphObject.alignment of the port.
 * @this {PortShiftingTool}
 */
-PortShiftingTool.prototype.doMouseMove = function() {
-  if (!this.isActive) return;
-  this.updateAlignment();
+PortShiftingTool.prototype.doMouseMove = function () {
+  if (!this.isActive) return
+  this.updateAlignment()
 }
 
 /**
@@ -122,11 +122,11 @@ PortShiftingTool.prototype.doMouseMove = function() {
 * completing a transaction.
 * @this {PortShiftingTool}
 */
-PortShiftingTool.prototype.doMouseUp = function() {
-  if (!this.isActive) return;
-  this.updateAlignment();
-  this.transactionResult = "Shifted Label";
-  this.stopTool();
+PortShiftingTool.prototype.doMouseUp = function () {
+  if (!this.isActive) return
+  this.updateAlignment()
+  this.transactionResult = 'Shifted Label'
+  this.stopTool()
 }
 
 /**
@@ -137,13 +137,13 @@ PortShiftingTool.prototype.doMouseUp = function() {
 * This does not modify the port's GraphObject.alignmentFocus property.
 * @this {PortShiftingTool}
 */
-PortShiftingTool.prototype.updateAlignment = function() {
-  if (this.port === null) return;
-  var last = this.diagram.lastInput.documentPoint;
-  var main = this.port.panel.findMainElement();
-  var tl = main.getDocumentPoint(go.Spot.TopLeft);
-  var br = main.getDocumentPoint(go.Spot.BottomRight);
-  var x = Math.max(0, Math.min((last.x - tl.x) / (br.x - tl.x), 1));
-  var y = Math.max(0, Math.min((last.y - tl.y) / (br.y - tl.y), 1));
-  this.port.alignment = new go.Spot(x, y);
+PortShiftingTool.prototype.updateAlignment = function () {
+  if (this.port === null) return
+  var last = this.diagram.lastInput.documentPoint
+  var main = this.port.panel.findMainElement()
+  var tl = main.getDocumentPoint(go.Spot.TopLeft)
+  var br = main.getDocumentPoint(go.Spot.BottomRight)
+  var x = Math.max(0, Math.min((last.x - tl.x) / (br.x - tl.x), 1))
+  var y = Math.max(0, Math.min((last.y - tl.y) / (br.y - tl.y), 1))
+  this.port.alignment = new go.Spot(x, y)
 }

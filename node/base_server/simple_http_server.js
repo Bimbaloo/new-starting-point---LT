@@ -23,64 +23,63 @@
 // HTTP第三部分： 请求体 http-request/response-body
 // 请求体的格式、编码通常由请求头里的content-type指定，可能会很大
 
-const http = require('http');
-const server = http.createServer();
-server.listen(8808);
-const qs = require('querystring');
-const fs = require('fs');
+const http = require('http')
+const server = http.createServer()
+server.listen(8808)
+const qs = require('querystring')
+const fs = require('fs')
 
-const users = [];
+const users = []
 
 server.on('request', function (request, response) {
+  const url = request.url
 
-  const url = request.url;
+  console.log(url)
 
-  console.log(url);
+  const path = url.substr(0, url.indexOf('?'))
 
-  const path = url.substr(0, url.indexOf('?'));
+  console.log(path)
 
-  console.log(path);
+  const queryString = url.substr(url.indexOf('?') + 1, url.length)
 
-  const queryString = url.substr(url.indexOf('?') + 1, url.length);
-
-  const query = qs.parse(queryString);
+  const query = qs.parse(queryString)
 
   switch (path) {
     case '/user':
       switch (request.method) {
         case 'GET':
-          response.statusCode = 200;
-          response.end(JSON.stringify(users));
-          break;
+          response.statusCode = 200
+          response.end(JSON.stringify(users))
+          break
         case 'POST':
-          const contentType = request.headers['content-type'];
+          const contentType = request.headers['content-type']
 
           if (contentType !== 'application/json') {
-            response.statusCode = 400;
-            response.end('error');
+            response.statusCode = 400
+            response.end('error')
           }
 
-          let requestBodyStr = '';
+          let requestBodyStr = ''
           request.on('data', function (data) {
-            requestBodyStr += data.toString();
-          });
+            requestBodyStr += data.toString()
+          })
           request.on('end', function () {
-            const user = qs.parse(requestBodyStr);
-            users.push(user);
-            response.statusCode = 200;
-            response.end(JSON.stringify(user));
-          });
-          break;
+            const user = qs.parse(requestBodyStr)
+            users.push(user)
+            response.statusCode = 200
+            response.end(JSON.stringify(user))
+          })
+          break
       }
 
-      break;
+      break
     case '/test.html':
       response.statusCode = 200
-      fs.createReadStream('./test.html').pipe(response);
-      break;
+      fs.createReadStream('./test.html').pipe(response)
+      break
     default:
-      response.statusCode = 404;
-      response.end('NOT_FOUND');
-      break;
+      response.statusCode = 404
+      response.end('NOT_FOUND')
+      break
   }
-});
+})

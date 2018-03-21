@@ -28,10 +28,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-function log(msg) {
+function log (msg) {
   if (window.console && window.console.log) {
-    console.log(msg);
+    console.log(msg)
   }
 }
-
-

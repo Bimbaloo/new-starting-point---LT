@@ -5,180 +5,178 @@ if (window.require) {
   // declare required libraries and ensure Bootstrap's dependency on jQuery
   require.config({
     paths: {
-      "highlight": "../assets/js/highlight",
-      "jquery": "../assets/js/jquery.min", // 1.11.3
-      "bootstrap": "../assets/js/bootstrap.min" },
+      'highlight': '../assets/js/highlight',
+      'jquery': '../assets/js/jquery.min', // 1.11.3
+      'bootstrap': '../assets/js/bootstrap.min' },
     shim: {
-      "bootstrap": ["jquery"]
+      'bootstrap': ['jquery']
     }
-  });
-  require(["highlight", "jquery", "bootstrap"], function() {});
+  })
+  require(['highlight', 'jquery', 'bootstrap'], function () {})
 } else {
-  function goLoadSrc(filenames) {
-    var scripts = document.getElementsByTagName("script");
-    var script = null;
+  function goLoadSrc (filenames) {
+    var scripts = document.getElementsByTagName('script')
+    var script = null
     for (var i = 0; i < scripts.length; i++) {
-      if (scripts[i].src.indexOf("goIntro") > 0) {
-        script = scripts[i];
-        break;
+      if (scripts[i].src.indexOf('goIntro') > 0) {
+        script = scripts[i]
+        break
       }
     }
     for (var i = 0; i < arguments.length; i++) {
-      var filename = arguments[i];
-      if (!filename) continue;
-      var selt = document.createElement("script");
-      selt.async = false;
-      selt.defer = false;
-      selt.src = "../assets/js/" + filename;
-      script.parentNode.insertBefore(selt, script.nextSibling);
-      script = selt;
+      var filename = arguments[i]
+      if (!filename) continue
+      var selt = document.createElement('script')
+      selt.async = false
+      selt.defer = false
+      selt.src = '../assets/js/' + filename
+      script.parentNode.insertBefore(selt, script.nextSibling)
+      script = selt
     }
   }
-  goLoadSrc("highlight.js", (window.jQuery ? "" : "jquery.min.js"), "bootstrap.min.js");
+  goLoadSrc('highlight.js', (window.jQuery ? '' : 'jquery.min.js'), 'bootstrap.min.js')
 }
 
-var head = document.getElementsByTagName("head")[0];
+var head = document.getElementsByTagName('head')[0]
 
-var link = document.createElement("link");
-link.type = "text/css";
-link.rel = "stylesheet";
-link.href = "../assets/css/bootstrap.min.css";
-head.appendChild(link);
+var link = document.createElement('link')
+link.type = 'text/css'
+link.rel = 'stylesheet'
+link.href = '../assets/css/bootstrap.min.css'
+head.appendChild(link)
 
-link = document.createElement("link");
-link.type = "text/css";
-link.rel = "stylesheet";
-link.href = "../assets/css/highlight.css";
-head.appendChild(link);
+link = document.createElement('link')
+link.type = 'text/css'
+link.rel = 'stylesheet'
+link.href = '../assets/css/highlight.css'
+head.appendChild(link)
 
-link = document.createElement("link");
-link.type = "text/css";
-link.rel = "stylesheet";
-link.href = "../assets/css/main.css";
-head.appendChild(link);
+link = document.createElement('link')
+link.type = 'text/css'
+link.rel = 'stylesheet'
+link.href = '../assets/css/main.css'
+head.appendChild(link)
 
 // Create a DIV and add it to the document just after the PRE element.
 // Evaluate the JavaScript text that is in the PRE element in order to initialize the Diagram.
-function goCode(pre, w, h, diagramclass, parentid) {
-  if (diagramclass === undefined) diagramclass = go.Diagram;
-  if (typeof pre === "string") pre = document.getElementById(pre);
-  var div = document.createElement("div");
-  div.style.width = w + "px";
-  div.style.height = h + "px";
-  div.className = "diagramStyling";
-  var parent;
+function goCode (pre, w, h, diagramclass, parentid) {
+  if (diagramclass === undefined) diagramclass = go.Diagram
+  if (typeof pre === 'string') pre = document.getElementById(pre)
+  var div = document.createElement('div')
+  div.style.width = w + 'px'
+  div.style.height = h + 'px'
+  div.className = 'diagramStyling'
+  var parent
   if (parentid === undefined) {
-    parent = pre.parentNode;
+    parent = pre.parentNode
   } else {
-    parent = document.getElementById(parentid);
+    parent = document.getElementById(parentid)
   }
-  parent.appendChild(div);
+  parent.appendChild(div)
   // temporarily bind "diagram" to the main Diagram for the DIV, and "$" to go.GraphObject.make
-  var f = eval("(function (diagram, $) {" + pre.textContent + "})");
-  f(new diagramclass(div), go.GraphObject.make);
+  var f = eval('(function (diagram, $) {' + pre.textContent + '})')
+  f(new diagramclass(div), go.GraphObject.make)
 }
 
 // Traverse the whole document and replace <a>TYPENAME</a> with:
 //    <a href="../api/symbols/TYPENAME.html">TYPENAME</a>
 // and <a>TYPENAME.MEMBERNAME</a> with:
 //    <a href="../api/symbols/TYPENAME.html#MEMBERNAME">TYPENAME.MEMBERNAME</a>
-function goIntro() {
-  _traverseDOM(document);
+function goIntro () {
+  _traverseDOM(document)
 
   // add class to main content
-  var content = document.getElementById('content');
-  content.className = "col-md-10";
+  var content = document.getElementById('content')
+  content.className = 'col-md-10'
 
   // side navigation
-  var navindex = document.createElement('div');
-  navindex.id = "navindex";
-  navindex.className = "col-md-2";
-  navindex.innerHTML = myMenu;
-  var container = document.getElementById('container');
-  container.insertBefore(navindex, content);
-
+  var navindex = document.createElement('div')
+  navindex.id = 'navindex'
+  navindex.className = 'col-md-2'
+  navindex.innerHTML = myMenu
+  var container = document.getElementById('container')
+  container.insertBefore(navindex, content)
 
   // top navbar
-  var navbar = document.createElement('div');
-  navbar.innerHTML = myNavbar;
-  document.body.insertBefore(navbar, container);
+  var navbar = document.createElement('div')
+  navbar.innerHTML = myNavbar
+  document.body.insertBefore(navbar, container)
 
   // When the page loads, change the class of li's to highlight the current page
-  var url = window.location.href;
-  var lindex = url.lastIndexOf('/');
-  url = url.slice(lindex+1).toLowerCase();
-  var lis = document.getElementById("sections").getElementsByTagName("li");
-  var l = lis.length;
+  var url = window.location.href
+  var lindex = url.lastIndexOf('/')
+  url = url.slice(lindex + 1).toLowerCase()
+  var lis = document.getElementById('sections').getElementsByTagName('li')
+  var l = lis.length
 
-  var currentindex = -1;
+  var currentindex = -1
   for (var i = 0; i < l; i++) {
-    var lowerhref = lis[i].childNodes[0].href.toLowerCase();
-    if (lowerhref.indexOf('intro') === -1) continue;
+    var lowerhref = lis[i].childNodes[0].href.toLowerCase()
+    if (lowerhref.indexOf('intro') === -1) continue
     if (lowerhref.indexOf('/' + url) !== -1) {
-      currentindex = i;
-      lis[i].childNodes[0].className = "selected";
-      break;
+      currentindex = i
+      lis[i].childNodes[0].className = 'selected'
+      break
     }
   }
 
   // prev & next page navigation
-  var pagenav = document.createElement("div");
-  var nav = "<div>";
+  var pagenav = document.createElement('div')
+  var nav = '<div>'
   if (currentindex > 0) {
-    var prevurl = lis[currentindex - 1].childNodes[0].href.toLowerCase();
-    nav += "<a href='" + prevurl + "'>&lt;Previous Intro Page</a>";
+    var prevurl = lis[currentindex - 1].childNodes[0].href.toLowerCase()
+    nav += "<a href='" + prevurl + "'>&lt;Previous Intro Page</a>"
   } else {
-    nav += "<a href='../learn/index.html'>&lt;Learn</a>";
+    nav += "<a href='../learn/index.html'>&lt;Learn</a>"
   }
   if (currentindex < lis.length - 1) {
-    var nexturl = lis[currentindex + 1].childNodes[0].href.toLowerCase();
-    nav += "<a style='float:right' href='" + nexturl + "'>Next Intro Page&gt;</a>";
+    var nexturl = lis[currentindex + 1].childNodes[0].href.toLowerCase()
+    nav += "<a style='float:right' href='" + nexturl + "'>Next Intro Page&gt;</a>"
   }
-  nav += "</div>";
-  pagenav.innerHTML = nav;
-  content.appendChild(pagenav);
+  nav += '</div>'
+  pagenav.innerHTML = nav
+  content.appendChild(pagenav)
 
   // footer
-  var footer = document.createElement("div");
-  footer.className = "footer";
-  var msg = "Copyright &copy; 1998-2017 by Northwoods Software Corporation.";
+  var footer = document.createElement('div')
+  footer.className = 'footer'
+  var msg = 'Copyright &copy; 1998-2017 by Northwoods Software Corporation.'
   if (go && go.version) {
-    msg += "GoJS&reg; version " + go.version + ". " + msg;
+    msg += 'GoJS&reg; version ' + go.version + '. ' + msg
   }
-  footer.innerHTML = msg;
-  content.appendChild(footer);
+  footer.innerHTML = msg
+  content.appendChild(footer)
 }
 
-function _traverseDOM(node) {
-  if (node.nodeType === 1 && node.nodeName === "A" && !node.getAttribute("href")) {
-    var text = node.innerHTML.split(".");
+function _traverseDOM (node) {
+  if (node.nodeType === 1 && node.nodeName === 'A' && !node.getAttribute('href')) {
+    var text = node.innerHTML.split('.')
     if (text.length === 1) {
-      node.setAttribute("href", "../api/symbols/" + text[0] + ".html");
-      node.setAttribute("target", "api");
+      node.setAttribute('href', '../api/symbols/' + text[0] + '.html')
+      node.setAttribute('target', 'api')
     } else if (text.length === 2) {
-      node.setAttribute("href", "../api/symbols/" + text[0] + ".html" + "#" + text[1]);
-      node.setAttribute("target", "api");
+      node.setAttribute('href', '../api/symbols/' + text[0] + '.html' + '#' + text[1])
+      node.setAttribute('target', 'api')
     } else {
-      alert("Unknown API reference: " + node.innerHTML);
+      alert('Unknown API reference: ' + node.innerHTML)
     }
   }
   for (var i = 0; i < node.childNodes.length; i++) {
-    _traverseDOM(node.childNodes[i]);
+    _traverseDOM(node.childNodes[i])
   }
 }
 
+(function (i, s, o, g, r, a, m) {
+  i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+    (i[r].q = i[r].q || []).push(arguments)
+  }, i[r].l = 1 * new Date(); a = s.createElement(o),
+m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga')
 
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-1506307-5', 'auto')
+ga('send', 'pageview')
 
-ga('create', 'UA-1506307-5', 'auto');
-ga('send', 'pageview');
-
-
-
-//<![CDATA[
+// <![CDATA[
 var myMenu = '\
   <div class="sidebar-nav">\
   <div class="navbar navbar-default" role="navigation">\
@@ -255,11 +253,10 @@ var myMenu = '\
     </ul>\
     </div>\
   </div>\
-  </div>';
-//]]>
+  </div>'
+// ]]>
 
-
-//<![CDATA[
+// <![CDATA[
 var myNavbar = '\
   <!-- non-fixed navbar -->\
   <nav id="non-fixed-nav" class="navbar navbar-inverse navbar-top">\
@@ -293,5 +290,5 @@ var myNavbar = '\
         </ul>\
       </div><!--/.nav-collapse -->\
     </div>\
-  </nav>';
-//]]>
+  </nav>'
+// ]]>

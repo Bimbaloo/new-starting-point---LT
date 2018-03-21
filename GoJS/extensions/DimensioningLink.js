@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 /*
 *  Copyright (C) 1998-2017 by Northwoods Software Corporation. All Rights Reserved.
 */
@@ -19,21 +19,21 @@
 * @extends Link
 * @class
 */
-function DimensioningLink() {
-  go.Link.call(this);
-  this.isLayoutPositioned = false;
-  this.isTreeLink = false;
-  this.routing = go.Link.Orthogonal;
+function DimensioningLink () {
+  go.Link.call(this)
+  this.isLayoutPositioned = false
+  this.isTreeLink = false
+  this.routing = go.Link.Orthogonal
   /** @type {number} */
-  this._direction = 0;
+  this._direction = 0
   /** @type {number} */
-  this._extension = 30;
+  this._extension = 30
   /** @type {number} */
-  this._inset = 10;
+  this._inset = 10
   /** @type {number} */
-  this._gap = 10;
+  this._gap = 10
 }
-go.Diagram.inherit(DimensioningLink, go.Link);
+go.Diagram.inherit(DimensioningLink, go.Link)
 
 /*
 * The general angle at which the measurement should be made.
@@ -45,16 +45,16 @@ go.Diagram.inherit(DimensioningLink, go.Link);
 * @function.
 * @return {number}
 */
-Object.defineProperty(DimensioningLink.prototype, "direction", {
-  get: function() { return this._direction; },
-  set: function(value) {
+Object.defineProperty(DimensioningLink.prototype, 'direction', {
+  get: function () { return this._direction },
+  set: function (value) {
     if (isNaN(value) || value === 0 || value === 90 || value === 180 || value === 270) {
-      this._direction = value;
+      this._direction = value
     } else {
-      throw new Error("DimensioningLink: invalid new direction: " + value);
+      throw new Error('DimensioningLink: invalid new direction: ' + value)
     }
   }
-});
+})
 
 /*
 * The distance at which the dimension line should be from the points being measured.
@@ -65,10 +65,10 @@ Object.defineProperty(DimensioningLink.prototype, "direction", {
 * @function.
 * @return {number}
 */
-Object.defineProperty(DimensioningLink.prototype, "extension", {
-  get: function() { return this._extension; },
-  set: function(value) { this._extension = value; }
-});
+Object.defineProperty(DimensioningLink.prototype, 'extension', {
+  get: function () { return this._extension },
+  set: function (value) { this._extension = value }
+})
 
 /*
 * The distance that the dimension line should be "indented" from the ends of the
@@ -78,16 +78,16 @@ Object.defineProperty(DimensioningLink.prototype, "extension", {
 * @function.
 * @return {number}
 */
-Object.defineProperty(DimensioningLink.prototype, "inset", {
-  get: function() { return this._inset; },
-  set: function(value) {
+Object.defineProperty(DimensioningLink.prototype, 'inset', {
+  get: function () { return this._inset },
+  set: function (value) {
     if (value >= 0) {
-      this._inset = value;
+      this._inset = value
     } else {
-      throw new Error("DimensioningLink: invalid new inset: " + value);
+      throw new Error('DimensioningLink: invalid new inset: ' + value)
     }
   }
-});
+})
 
 /*
 * The distance that the extension lines should come short of the measured points.
@@ -96,97 +96,97 @@ Object.defineProperty(DimensioningLink.prototype, "inset", {
 * @function.
 * @return {number}
 */
-Object.defineProperty(DimensioningLink.prototype, "gap", {
-  get: function() { return this._gap; },
-  set: function(value) {
+Object.defineProperty(DimensioningLink.prototype, 'gap', {
+  get: function () { return this._gap },
+  set: function (value) {
     if (value >= 0) {
-      this._gap = value;
+      this._gap = value
     } else {
-      throw new Error("DimensioningLink: invalid new gap: " + value);
+      throw new Error('DimensioningLink: invalid new gap: ' + value)
     }
   }
-});
+})
 
 /**
 * @override
 * @return {boolean} true if it computed a route of points
 */
-DimensioningLink.prototype.computePoints = function() {
-  var fromnode = this.fromNode;
-  if (!fromnode) return false;
-  var fromport = this.fromPort;
-  var fromspot = this.computeSpot(true);
-  var tonode = this.toNode;
-  if (!tonode) return false;
-  var toport = this.toPort;
-  var tospot = this.computeSpot(false);
-  var frompoint = this.getLinkPoint(fromnode, fromport, fromspot, true, true, tonode, toport);
-  if (!frompoint.isReal()) return false;
-  var topoint = this.getLinkPoint(tonode, toport, tospot, false, true, fromnode, fromport);
-  if (!topoint.isReal()) return false;
+DimensioningLink.prototype.computePoints = function () {
+  var fromnode = this.fromNode
+  if (!fromnode) return false
+  var fromport = this.fromPort
+  var fromspot = this.computeSpot(true)
+  var tonode = this.toNode
+  if (!tonode) return false
+  var toport = this.toPort
+  var tospot = this.computeSpot(false)
+  var frompoint = this.getLinkPoint(fromnode, fromport, fromspot, true, true, tonode, toport)
+  if (!frompoint.isReal()) return false
+  var topoint = this.getLinkPoint(tonode, toport, tospot, false, true, fromnode, fromport)
+  if (!topoint.isReal()) return false
 
-  this.clearPoints();
+  this.clearPoints()
 
-  var ang = this.direction;
+  var ang = this.direction
   if (isNaN(ang)) {
-    ang = frompoint.directionPoint(topoint);
-    var p = new go.Point(this.extension, 0);
-    p.rotate(ang + 90);
-    var q = new go.Point(this.extension - this.inset, 0);
-    q.rotate(ang + 90);
-    var g = new go.Point(this.gap, 0);
-    g.rotate(ang + 90);
-    this.addPointAt(frompoint.x + g.x, frompoint.y + g.y);
-    this.addPointAt(frompoint.x + p.x, frompoint.y + p.y);
-    this.addPointAt(frompoint.x + q.x, frompoint.y + q.y);
-    this.addPointAt(topoint.x + q.x, topoint.y + q.y);
-    this.addPointAt(topoint.x + p.x, topoint.y + p.y);
-    this.addPointAt(topoint.x + g.x, topoint.y + g.y);
+    ang = frompoint.directionPoint(topoint)
+    var p = new go.Point(this.extension, 0)
+    p.rotate(ang + 90)
+    var q = new go.Point(this.extension - this.inset, 0)
+    q.rotate(ang + 90)
+    var g = new go.Point(this.gap, 0)
+    g.rotate(ang + 90)
+    this.addPointAt(frompoint.x + g.x, frompoint.y + g.y)
+    this.addPointAt(frompoint.x + p.x, frompoint.y + p.y)
+    this.addPointAt(frompoint.x + q.x, frompoint.y + q.y)
+    this.addPointAt(topoint.x + q.x, topoint.y + q.y)
+    this.addPointAt(topoint.x + p.x, topoint.y + p.y)
+    this.addPointAt(topoint.x + g.x, topoint.y + g.y)
   } else {
-    var dist = this.extension;
-    var r = 0.0;
-    var s = 0.0;
-    var t0 = 0.0;
-    var t1 = 0.0;
+    var dist = this.extension
+    var r = 0.0
+    var s = 0.0
+    var t0 = 0.0
+    var t1 = 0.0
     if (ang === 0 || ang === 180) {
       if (ang === 0) {
-        r = Math.min(frompoint.y, topoint.y) - this.extension;
-        s = r + this.inset;
-        t0 = frompoint.y - this.gap;
-        t1 = topoint.y - this.gap;
+        r = Math.min(frompoint.y, topoint.y) - this.extension
+        s = r + this.inset
+        t0 = frompoint.y - this.gap
+        t1 = topoint.y - this.gap
       } else {
-        r = Math.max(frompoint.y, topoint.y) + this.extension;
-        s = r - this.inset;
-        t0 = frompoint.y + this.gap;
-        t1 = topoint.y + this.gap;
+        r = Math.max(frompoint.y, topoint.y) + this.extension
+        s = r - this.inset
+        t0 = frompoint.y + this.gap
+        t1 = topoint.y + this.gap
       }
-      this.addPointAt(frompoint.x, t0);
-      this.addPointAt(frompoint.x + 0.01, r);
-      this.addPointAt(frompoint.x, s);
-      this.addPointAt(topoint.x, s);
-      this.addPointAt(topoint.x - 0.01, r);
-      this.addPointAt(topoint.x, t1);
+      this.addPointAt(frompoint.x, t0)
+      this.addPointAt(frompoint.x + 0.01, r)
+      this.addPointAt(frompoint.x, s)
+      this.addPointAt(topoint.x, s)
+      this.addPointAt(topoint.x - 0.01, r)
+      this.addPointAt(topoint.x, t1)
     } else if (ang === 90 || ang === 270) {
       if (ang === 90) {
-        r = Math.max(frompoint.x, topoint.x) + this.extension;
-        s = r - this.inset;
-        t0 = frompoint.x + this.gap;
-        t1 = topoint.x + this.gap;
+        r = Math.max(frompoint.x, topoint.x) + this.extension
+        s = r - this.inset
+        t0 = frompoint.x + this.gap
+        t1 = topoint.x + this.gap
       } else {
-        r = Math.min(frompoint.x, topoint.x) - this.extension;
-        s = r + this.inset;
-        t0 = frompoint.x - this.gap;
-        t1 = topoint.x - this.gap;
+        r = Math.min(frompoint.x, topoint.x) - this.extension
+        s = r + this.inset
+        t0 = frompoint.x - this.gap
+        t1 = topoint.x - this.gap
       }
-      this.addPointAt(t0, frompoint.y);
-      this.addPointAt(r, frompoint.y + 0.01);
-      this.addPointAt(s, frompoint.y);
-      this.addPointAt(s, topoint.y);
-      this.addPointAt(r, topoint.y - 0.01);
-      this.addPointAt(t1, topoint.y);
+      this.addPointAt(t0, frompoint.y)
+      this.addPointAt(r, frompoint.y + 0.01)
+      this.addPointAt(s, frompoint.y)
+      this.addPointAt(s, topoint.y)
+      this.addPointAt(r, topoint.y - 0.01)
+      this.addPointAt(t1, topoint.y)
     }
   }
 
-  this.updateTargetBindings();
-  return true;
-};
+  this.updateTargetBindings()
+  return true
+}

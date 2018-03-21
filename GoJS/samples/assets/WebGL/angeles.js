@@ -28,63 +28,62 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var canvas = null;
-var gl = null;
-var glvao = null;
-var start_time = null;
+var canvas = null
+var gl = null
+var glvao = null
+var start_time = null
 
-function main() {
-    canvas = document.getElementById("webGL");
-    window.webGLCanvas = canvas;
+function main () {
+  canvas = document.getElementById('webGL')
+  window.webGLCanvas = canvas
 
-    //canvas = WebGLDebugUtils.makeLostContextSimulatingCanvas(canvas);
+    // canvas = WebGLDebugUtils.makeLostContextSimulatingCanvas(canvas);
 
-    canvas.addEventListener('webglcontextlost', handleContextLost, false);
-    canvas.addEventListener('webglcontextrestored', handleContextRestored, false);
+  canvas.addEventListener('webglcontextlost', handleContextLost, false)
+  canvas.addEventListener('webglcontextrestored', handleContextRestored, false)
 
-    //canvas.loseContextInNCalls(200000);// tell the simulator when to lose context.
+    // canvas.loseContextInNCalls(200000);// tell the simulator when to lose context.
 
-	var ratio = window.devicePixelRatio ? window.devicePixelRatio : 1;
-	canvas.width = 640 * ratio;
-	canvas.height = 480 * ratio;
-    gl = WebGLUtils.setupWebGL(canvas);
-    if (!gl)
-        return;
+  var ratio = window.devicePixelRatio ? window.devicePixelRatio : 1
+  canvas.width = 640 * ratio
+  canvas.height = 480 * ratio
+  gl = WebGLUtils.setupWebGL(canvas)
+  if (!gl) { return }
 
-    setupVertexArrayObject(gl);
-    glvao = gl.getExtension("OES_vertex_array_object");
+  setupVertexArrayObject(gl)
+  glvao = gl.getExtension('OES_vertex_array_object')
 
-    initGL();
+  initGL()
 }
 
-function log(msg) {
-    if (window.console && window.console.log) {
-        console.log(msg);
-    }
+function log (msg) {
+  if (window.console && window.console.log) {
+    console.log(msg)
+  }
 }
 
-function handleContextLost(e) {
-    log("handle context lost");
-    e.preventDefault();
+function handleContextLost (e) {
+  log('handle context lost')
+  e.preventDefault()
 }
 
-function handleContextRestored() {
-    log("handle context restored");
-    //canvas.loseContextInNCalls(200000);// tell the simulator when to lose context.
-    initGL();
+function handleContextRestored () {
+  log('handle context restored')
+    // canvas.loseContextInNCalls(200000);// tell the simulator when to lose context.
+  initGL()
 }
 
-function initGL() {
-    gl.clearColor(0., 0., 0., 1.);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    appInit();
-    start_time = (new Date()).getTime();
-    render();
+function initGL () {
+  gl.clearColor(0.0, 0.0, 0.0, 1.0)
+  gl.clear(gl.COLOR_BUFFER_BIT)
+  appInit()
+  start_time = (new Date()).getTime()
+  render()
 }
 
-function render() {
-    appRender((new Date()).getTime() - start_time,
-              canvas.width, canvas.height);
-    if (myDiagram) myDiagram.redraw();
-    window.requestAnimFrame(render, canvas);
+function render () {
+  appRender((new Date()).getTime() - start_time,
+              canvas.width, canvas.height)
+  if (myDiagram) myDiagram.redraw()
+  window.requestAnimFrame(render, canvas)
 }

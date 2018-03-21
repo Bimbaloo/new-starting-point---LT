@@ -1,4 +1,4 @@
-"use strict"
+'use strict'
 /*
 *  Copyright (C) 1998-2017 by Northwoods Software Corporation. All Rights Reserved.
 */
@@ -12,11 +12,11 @@
 * @extends LinkReshapingTool
 * @class
 */
-function OrthogonalLinkReshapingTool() {
-  go.LinkReshapingTool.call(this);
-  this.name = "OrthogonalLinkReshaping";
+function OrthogonalLinkReshapingTool () {
+  go.LinkReshapingTool.call(this)
+  this.name = 'OrthogonalLinkReshaping'
 }
-go.Diagram.inherit(OrthogonalLinkReshapingTool, go.LinkReshapingTool);
+go.Diagram.inherit(OrthogonalLinkReshapingTool, go.LinkReshapingTool)
 
 /**
 * For orthogonal, straight links, create the handles and set reshaping behavior.
@@ -25,41 +25,41 @@ go.Diagram.inherit(OrthogonalLinkReshapingTool, go.LinkReshapingTool);
 * @return {Adornment}
 * @this {OrthogonalLinkReshapingTool}
 */
-OrthogonalLinkReshapingTool.prototype.makeAdornment = function(pathshape) {
-  var link = pathshape.part;
+OrthogonalLinkReshapingTool.prototype.makeAdornment = function (pathshape) {
+  var link = pathshape.part
 
   // add all normal handles first
-  var adornment = go.LinkReshapingTool.prototype.makeAdornment.call(this, pathshape);
+  var adornment = go.LinkReshapingTool.prototype.makeAdornment.call(this, pathshape)
 
   // add long reshaping handles for orthogonal, straight links
   if (link !== null && link.isOrthogonal && link.curve !== go.Link.Bezier) {
-    var firstindex = link.firstPickIndex;
-    var lastindex = link.lastPickIndex;
+    var firstindex = link.firstPickIndex
+    var lastindex = link.lastPickIndex
     for (var i = firstindex + 1; i < lastindex - 1; i++) {
-      this.makeSegmentDragHandle(link, adornment, i);
+      this.makeSegmentDragHandle(link, adornment, i)
     }
   }
-  return adornment;
-};
+  return adornment
+}
 
 /**
 * Once we finish a reshape, make sure any handles are properly updated.
 * @override
 * @this {OrthogonalLinkReshapingTool}
 */
-OrthogonalLinkReshapingTool.prototype.doDeactivate = function() {
+OrthogonalLinkReshapingTool.prototype.doDeactivate = function () {
   // when we finish, recreate adornment to ensure proper reshaping behavior/cursor
-  var link = this.adornedLink;
+  var link = this.adornedLink
   if (link !== null && link.isOrthogonal && link.curve !== go.Link.Bezier) {
-    var pathshape = link.path;
-    var adornment = this.makeAdornment(pathshape);
+    var pathshape = link.path
+    var adornment = this.makeAdornment(pathshape)
     if (adornment !== null) {
-      link.addAdornment(this.name, adornment);
-      adornment.location = link.position;
+      link.addAdornment(this.name, adornment)
+      adornment.location = link.position
     }
   }
-  go.LinkReshapingTool.prototype.doDeactivate.call(this);
-};
+  go.LinkReshapingTool.prototype.doDeactivate.call(this)
+}
 
 /**
 * Set the reshaping behavior for segment dragging handles.
@@ -67,31 +67,31 @@ OrthogonalLinkReshapingTool.prototype.doDeactivate = function() {
 * @param {Point} newpt
 * @this {OrthogonalLinkReshapingTool}
 */
-OrthogonalLinkReshapingTool.prototype.reshape = function(newpt) {
-  var link = this.adornedLink;
+OrthogonalLinkReshapingTool.prototype.reshape = function (newpt) {
+  var link = this.adornedLink
 
   // identify if the handle being dragged is a segment dragging handle
   if (link !== null && link.isOrthogonal && link.curve !== go.Link.Bezier && this.handle.toMaxLinks === 999) {
-    link.startRoute();
-    var index = this.handle.segmentIndex; // for these handles, firstPickIndex + 1 <= index < lastPickIndex - 1
-    var behavior = this.getReshapingBehavior(this.handle);
+    link.startRoute()
+    var index = this.handle.segmentIndex // for these handles, firstPickIndex + 1 <= index < lastPickIndex - 1
+    var behavior = this.getReshapingBehavior(this.handle)
     if (behavior === go.LinkReshapingTool.Vertical) {
       // move segment vertically
-      link.setPointAt(index, link.getPoint(index - 1).x, newpt.y);
-      link.setPointAt(index + 1, link.getPoint(index + 2).x, newpt.y);
+      link.setPointAt(index, link.getPoint(index - 1).x, newpt.y)
+      link.setPointAt(index + 1, link.getPoint(index + 2).x, newpt.y)
     } else if (behavior === go.LinkReshapingTool.Horizontal) {
       // move segment horizontally
-      link.setPointAt(index, newpt.x, link.getPoint(index - 1).y);
-      link.setPointAt(index + 1, newpt.x, link.getPoint(index + 2).y);
+      link.setPointAt(index, newpt.x, link.getPoint(index - 1).y)
+      link.setPointAt(index + 1, newpt.x, link.getPoint(index + 2).y)
     }
-    link.commitRoute();
+    link.commitRoute()
   } else {
-    go.LinkReshapingTool.prototype.reshape.call(this, newpt);
+    go.LinkReshapingTool.prototype.reshape.call(this, newpt)
   }
-};
+}
 
 /**
-* Create the segment dragging handles. 
+* Create the segment dragging handles.
 * There are two parts: one invisible handle that spans the segment, and a visible handle at the middle of the segment.
 * These are inserted at the front of the adornment such that the normal handles have priority.
 * @param {Link} link
@@ -99,62 +99,62 @@ OrthogonalLinkReshapingTool.prototype.reshape = function(newpt) {
 * @param {number} index
 * @this {OrthogonalLinkReshapingTool}
 */
-OrthogonalLinkReshapingTool.prototype.makeSegmentDragHandle = function(link, adornment, index) {
-  var a = link.getPoint(index);
-  var b = link.getPoint(index + 1);
-  var seglength = Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y));
+OrthogonalLinkReshapingTool.prototype.makeSegmentDragHandle = function (link, adornment, index) {
+  var a = link.getPoint(index)
+  var b = link.getPoint(index + 1)
+  var seglength = Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y))
   // determine segment orientation
-  var orient = "";
+  var orient = ''
   if (OrthogonalLinkReshapingTool.isApprox(a.x, b.x) && OrthogonalLinkReshapingTool.isApprox(a.y, b.y)) {
-    b = link.getPoint(index - 1);
+    b = link.getPoint(index - 1)
     if (OrthogonalLinkReshapingTool.isApprox(a.x, b.x)) {
-      orient = "vertical";
+      orient = 'vertical'
     } else if (OrthogonalLinkReshapingTool.isApprox(a.y, b.y)) {
-      orient = "horizontal";
+      orient = 'horizontal'
     }
   } else {
     if (OrthogonalLinkReshapingTool.isApprox(a.x, b.x)) {
-      orient = "vertical";
+      orient = 'vertical'
     } else if (OrthogonalLinkReshapingTool.isApprox(a.y, b.y)) {
-      orient = "horizontal";
+      orient = 'horizontal'
     }
   }
 
   // first, make an invisible handle along the whole segment
-  var h = new go.Shape();
-  h.opacity = 0;
-  h.segmentOrientation = go.Link.OrientAlong;
-  h.segmentIndex = index;
-  h.segmentFraction = 0.5;
-  h.toMaxLinks = 999; // set this unsused property to easily identify that we have a segment dragging handle
-  if (orient === "horizontal") {
-    this.setReshapingBehavior(h, go.LinkReshapingTool.Vertical);
-    h.cursor = 'n-resize';
+  var h = new go.Shape()
+  h.opacity = 0
+  h.segmentOrientation = go.Link.OrientAlong
+  h.segmentIndex = index
+  h.segmentFraction = 0.5
+  h.toMaxLinks = 999 // set this unsused property to easily identify that we have a segment dragging handle
+  if (orient === 'horizontal') {
+    this.setReshapingBehavior(h, go.LinkReshapingTool.Vertical)
+    h.cursor = 'n-resize'
   } else {
-    this.setReshapingBehavior(h, go.LinkReshapingTool.Horizontal);
-    h.cursor = 'w-resize';
+    this.setReshapingBehavior(h, go.LinkReshapingTool.Horizontal)
+    h.cursor = 'w-resize'
   }
-  h.geometryString = "M 0 0 L " + seglength + " 0";
-  adornment.insertAt(0, h);
+  h.geometryString = 'M 0 0 L ' + seglength + ' 0'
+  adornment.insertAt(0, h)
 
   // second, make a visible handle near the middle
-  h = new go.Shape();
-  h.fill = "#1B3471"; // different from other handles to make sure it stands out
-  h.stroke = "dodgerblue";
-  h.segmentOrientation = go.Link.OrientAlong;
-  h.segmentIndex = index;
-  h.segmentFraction = 0.5;
-  h.toMaxLinks = 999; // set this unsused property to easily identify that we have a segment dragging handle
-  if (orient === "horizontal") {
-    this.setReshapingBehavior(h, go.LinkReshapingTool.Vertical);
-    h.cursor = 'n-resize';
+  h = new go.Shape()
+  h.fill = '#1B3471' // different from other handles to make sure it stands out
+  h.stroke = 'dodgerblue'
+  h.segmentOrientation = go.Link.OrientAlong
+  h.segmentIndex = index
+  h.segmentFraction = 0.5
+  h.toMaxLinks = 999 // set this unsused property to easily identify that we have a segment dragging handle
+  if (orient === 'horizontal') {
+    this.setReshapingBehavior(h, go.LinkReshapingTool.Vertical)
+    h.cursor = 'n-resize'
   } else {
-    this.setReshapingBehavior(h, go.LinkReshapingTool.Horizontal);
-    h.cursor = 'w-resize';
+    this.setReshapingBehavior(h, go.LinkReshapingTool.Horizontal)
+    h.cursor = 'w-resize'
   }
-  h.geometryString = "F M 0 0 L 12 0 L 12 4 L 0 4 Z X M 6 0 L 6 -3 X M 6 4 L 6 7";
-  adornment.insertAt(0, h);
-};
+  h.geometryString = 'F M 0 0 L 12 0 L 12 4 L 0 4 Z X M 6 0 L 6 -3 X M 6 4 L 6 7'
+  adornment.insertAt(0, h)
+}
 
 /**
 * Compare two numbers to ensure they are almost equal.
@@ -163,7 +163,7 @@ OrthogonalLinkReshapingTool.prototype.makeSegmentDragHandle = function(link, ado
 * @param {number} y
 * @return {boolean}
 */
-OrthogonalLinkReshapingTool.isApprox = function(x, y) {
-  var d = x - y;
-  return d < 0.5 && d > -0.5;
+OrthogonalLinkReshapingTool.isApprox = function (x, y) {
+  var d = x - y
+  return d < 0.5 && d > -0.5
 }

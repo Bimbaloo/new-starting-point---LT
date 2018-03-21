@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 /*
 *  Copyright (C) 1998-2017 by Northwoods Software Corporation. All Rights Reserved.
 */
@@ -37,31 +37,31 @@
 * but it does temporarily add the {@link #box} part to the diagram.
 * This tool does not modify the model or conduct any transaction.
 */
-function DragZoomingTool() {
-  go.Tool.call(this);
-  this.name = "DragZooming";
+function DragZoomingTool () {
+  go.Tool.call(this)
+  this.name = 'DragZooming'
 
-  var b = new go.Part();
-  b.layerName = "Tool";
-  b.selectable = false;
-  var r = new go.Shape();
-  r.name = "SHAPE";
-  r.figure = "Rectangle";
-  r.fill = null;
-  r.stroke = "magenta";
-  r.position = new go.Point(0, 0);
-  b.add(r);
+  var b = new go.Part()
+  b.layerName = 'Tool'
+  b.selectable = false
+  var r = new go.Shape()
+  r.name = 'SHAPE'
+  r.figure = 'Rectangle'
+  r.fill = null
+  r.stroke = 'magenta'
+  r.position = new go.Point(0, 0)
+  b.add(r)
   /** @type {Part} */
-  this._box = b;
+  this._box = b
 
   /** @type {number} */
-  this._delay = 175;
+  this._delay = 175
 
   /** @type {Diagram} */
-  this._zoomedDiagram = null;
+  this._zoomedDiagram = null
 }
 
-go.Diagram.inherit(DragZoomingTool, go.Tool);
+go.Diagram.inherit(DragZoomingTool, go.Tool)
 
 /**
 * This tool can run when there has been a mouse-drag, far enough away not to be a click,
@@ -72,83 +72,83 @@ go.Diagram.inherit(DragZoomingTool, go.Tool);
 * @this {DragZoomingTool}
 * @return {boolean}
 */
-DragZoomingTool.prototype.canStart = function() {
-  if (!this.isEnabled) return false;
-  var diagram = this.diagram;
-  if (diagram === null) return false;
-  var e = diagram.lastInput;
+DragZoomingTool.prototype.canStart = function () {
+  if (!this.isEnabled) return false
+  var diagram = this.diagram
+  if (diagram === null) return false
+  var e = diagram.lastInput
   // require left button & that it has moved far enough away from the mouse down point, so it isn't a click
-  if (!e.left) return false;
+  if (!e.left) return false
   // don't include the following checks when this tool is running modally
   if (diagram.currentTool !== this) {
-    if (!this.isBeyondDragSize()) return false;
+    if (!this.isBeyondDragSize()) return false
     // must wait for "delay" milliseconds before that tool can run
-    if (e.timestamp - diagram.firstInput.timestamp < this.delay) return false;
+    if (e.timestamp - diagram.firstInput.timestamp < this.delay) return false
   }
-  return true;
-};
+  return true
+}
 
 /**
 * Capture the mouse and show the {@link #box}.
 * @this {DragZoomingTool}
 */
-DragZoomingTool.prototype.doActivate = function() {
-  var diagram = this.diagram;
-  if (diagram === null) return;
-  this.isActive = true;
-  diagram.isMouseCaptured = true;
-  diagram.skipsUndoManager = true;
-  diagram.add(this.box);
-  this.doMouseMove();
-};
+DragZoomingTool.prototype.doActivate = function () {
+  var diagram = this.diagram
+  if (diagram === null) return
+  this.isActive = true
+  diagram.isMouseCaptured = true
+  diagram.skipsUndoManager = true
+  diagram.add(this.box)
+  this.doMouseMove()
+}
 
 /**
 * Release the mouse and remove any {@link #box}.
 * @this {DragZoomingTool}
 */
-DragZoomingTool.prototype.doDeactivate = function() {
-  var diagram = this.diagram;
-  if (diagram === null) return;
-  diagram.remove(this.box);
-  diagram.skipsUndoManager = false;
-  diagram.isMouseCaptured = false;
-  this.isActive = false;
-};
+DragZoomingTool.prototype.doDeactivate = function () {
+  var diagram = this.diagram
+  if (diagram === null) return
+  diagram.remove(this.box)
+  diagram.skipsUndoManager = false
+  diagram.isMouseCaptured = false
+  this.isActive = false
+}
 
 /**
 * Update the {@link #box}'s position and size according to the value
 * of {@link #computeBoxBounds}.
 * @this {DragZoomingTool}
 */
-DragZoomingTool.prototype.doMouseMove = function() {
-  var diagram = this.diagram;
-  if (diagram === null) return;
+DragZoomingTool.prototype.doMouseMove = function () {
+  var diagram = this.diagram
+  if (diagram === null) return
   if (this.isActive && this.box !== null) {
-    var r = this.computeBoxBounds();
-    var shape = this.box.findObject("SHAPE");
-    if (shape === null) shape = this.box.findMainElement();
-    shape.desiredSize = r.size;
-    this.box.position = r.position;
+    var r = this.computeBoxBounds()
+    var shape = this.box.findObject('SHAPE')
+    if (shape === null) shape = this.box.findMainElement()
+    shape.desiredSize = r.size
+    this.box.position = r.position
   }
-};
+}
 
 /**
 * Call {@link #zoomToRect} with the value of a call to {@link #computeBoxBounds}.
 * @this {DragZoomingTool}
 */
-DragZoomingTool.prototype.doMouseUp = function() {
+DragZoomingTool.prototype.doMouseUp = function () {
   if (this.isActive) {
-    var diagram = this.diagram;
-    diagram.remove(this.box);
+    var diagram = this.diagram
+    diagram.remove(this.box)
     try {
-      diagram.currentCursor = "wait";
-      this.zoomToRect(this.computeBoxBounds());
+      diagram.currentCursor = 'wait'
+      this.zoomToRect(this.computeBoxBounds())
     } finally {
-      diagram.currentCursor = "";
+      diagram.currentCursor = ''
     }
   }
-  this.stopTool();
-};
+  this.stopTool()
+}
 
 /**
 * This just returns a {@link Rect} stretching from the mouse-down point to the current mouse point
@@ -158,36 +158,36 @@ DragZoomingTool.prototype.doMouseUp = function() {
 * @this {DragZoomingTool}
 * @return {Rect} a {@link Rect} in document coordinates.
 */
-DragZoomingTool.prototype.computeBoxBounds = function() {
-  var diagram = this.diagram;
-  if (diagram === null) return new go.Rect(0, 0, 0, 0);
-  var start = diagram.firstInput.documentPoint;
-  var latest = diagram.lastInput.documentPoint;
-  var adx = latest.x - start.x;
-  var ady = latest.y - start.y;
+DragZoomingTool.prototype.computeBoxBounds = function () {
+  var diagram = this.diagram
+  if (diagram === null) return new go.Rect(0, 0, 0, 0)
+  var start = diagram.firstInput.documentPoint
+  var latest = diagram.lastInput.documentPoint
+  var adx = latest.x - start.x
+  var ady = latest.y - start.y
 
-  var observed = this.zoomedDiagram;
-  if (observed === null) observed = this.diagram;
+  var observed = this.zoomedDiagram
+  if (observed === null) observed = this.diagram
   if (observed === null) {
-    return new go.Rect(start, latest);
+    return new go.Rect(start, latest)
   }
-  var vrect = observed.viewportBounds;
+  var vrect = observed.viewportBounds
   if (vrect.height === 0 || ady === 0) {
-    return new go.Rect(start, latest);
+    return new go.Rect(start, latest)
   }
 
-  var vratio = vrect.width / vrect.height;
-  var lx;
-  var ly;
+  var vratio = vrect.width / vrect.height
+  var lx
+  var ly
   if (Math.abs(adx / ady) < vratio) {
-    lx = start.x + adx;
-    ly = start.y + Math.ceil(Math.abs(adx) / vratio) * (ady < 0 ? -1 : 1);
+    lx = start.x + adx
+    ly = start.y + Math.ceil(Math.abs(adx) / vratio) * (ady < 0 ? -1 : 1)
   } else {
-    lx = start.x + Math.ceil(Math.abs(ady) * vratio) * (adx < 0 ? -1 : 1);
-    ly = start.y + ady;
+    lx = start.x + Math.ceil(Math.abs(ady) * vratio) * (adx < 0 ? -1 : 1)
+    ly = start.y + ady
   }
-  return new go.Rect(start, new go.Point(lx, ly));
-};
+  return new go.Rect(start, new go.Point(lx, ly))
+}
 
 /**
 * This method is called to change the {@link #zoomedDiagram}'s viewport to match the given rectangle.
@@ -196,23 +196,22 @@ DragZoomingTool.prototype.computeBoxBounds = function() {
 * @this {DragZoomingTool}
 * @param {Rect} r a rectangular bounds in document coordinates.
 */
-DragZoomingTool.prototype.zoomToRect = function(r) {
-  if (r.width < 0.1) return;
-  var observed = this.zoomedDiagram;
-  if (observed === null) observed = this.diagram;
-  if (observed === null) return;
+DragZoomingTool.prototype.zoomToRect = function (r) {
+  if (r.width < 0.1) return
+  var observed = this.zoomedDiagram
+  if (observed === null) observed = this.diagram
+  if (observed === null) return
 
   // zoom out when using the Shift modifier
   if (this.diagram.lastInput.shift) {
-    observed.scale = Math.max(observed.scale * r.width / observed.viewportBounds.width, observed.minScale);
-    observed.centerRect(r);
+    observed.scale = Math.max(observed.scale * r.width / observed.viewportBounds.width, observed.minScale)
+    observed.centerRect(r)
   } else {
     // do scale first, so the Diagram's position normalization isn't constrained unduly when increasing scale
-    observed.scale = Math.min(observed.viewportBounds.width * observed.scale / r.width, observed.maxScale);
-    observed.position = new go.Point(r.x, r.y);
+    observed.scale = Math.min(observed.viewportBounds.width * observed.scale / r.width, observed.maxScale)
+    observed.position = new go.Point(r.x, r.y)
   }
-};
-
+}
 
 // Public properties
 
@@ -230,10 +229,10 @@ DragZoomingTool.prototype.zoomToRect = function(r) {
 * @function.
 * @return {Part}
 */
-Object.defineProperty(DragZoomingTool.prototype, "box", {
-  get: function() { return this._box; },
-  set: function(val) { this._box = val; }
-});
+Object.defineProperty(DragZoomingTool.prototype, 'box', {
+  get: function () { return this._box },
+  set: function (val) { this._box = val }
+})
 
 /**
 * Gets or sets the time in milliseconds for which the mouse must be stationary
@@ -244,10 +243,10 @@ Object.defineProperty(DragZoomingTool.prototype, "box", {
 * @function.
 * @return {number}
 */
-Object.defineProperty(DragZoomingTool.prototype, "delay", {
-  get: function() { return this._delay; },
-  set: function(val) { this._delay = val; }
-});
+Object.defineProperty(DragZoomingTool.prototype, 'delay', {
+  get: function () { return this._delay },
+  set: function (val) { this._delay = val }
+})
 
 /**
 * Gets or sets the {@link Diagram} whose {@link Diagram#position} and {@link Diagram#scale}
@@ -259,7 +258,7 @@ Object.defineProperty(DragZoomingTool.prototype, "delay", {
 * @function.
 * @return {Diagram}
 */
-Object.defineProperty(DragZoomingTool.prototype, "zoomedDiagram", {
-  get: function() { return this._zoomedDiagram; },
-  set: function(val) { this._zoomedDiagram = val; }
-});
+Object.defineProperty(DragZoomingTool.prototype, 'zoomedDiagram', {
+  get: function () { return this._zoomedDiagram },
+  set: function (val) { this._zoomedDiagram = val }
+})

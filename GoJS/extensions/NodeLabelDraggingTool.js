@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 /*
 *  Copyright (C) 1998-2017 by Northwoods Software Corporation. All Rights Reserved.
 */
@@ -14,20 +14,20 @@
 * It works by modifying that label's GraphObject.alignment property to have an
 * offset from the center of the panel.
 */
-function NodeLabelDraggingTool() {
-  go.Tool.call(this);
-  this.name = "NodeLabelDragging";
+function NodeLabelDraggingTool () {
+  go.Tool.call(this)
+  this.name = 'NodeLabelDragging'
 
   /** @type {GraphObject} */
-  this.label = null;
+  this.label = null
   /** @type {Point} */
-  this._offset = new go.Point();  // of the mouse relative to the center of the label object
+  this._offset = new go.Point()  // of the mouse relative to the center of the label object
   /** @type {Point} */
-  this._originalAlignment = null;
+  this._originalAlignment = null
   /** @type {Point} */
-  this._originalCenter = null;
+  this._originalCenter = null
 }
-go.Diagram.inherit(NodeLabelDraggingTool, go.Tool);
+go.Diagram.inherit(NodeLabelDraggingTool, go.Tool)
 
 /**
 * This tool can only start if the mouse has moved enough so that it is not a click,
@@ -36,16 +36,16 @@ go.Diagram.inherit(NodeLabelDraggingTool, go.Tool);
 * @this {NodeLabelDraggingTool}
 * @return {boolean}
 */
-NodeLabelDraggingTool.prototype.canStart = function() {
-  if (!go.Tool.prototype.canStart.call(this)) return false;
-  var diagram = this.diagram;
-  if (diagram === null) return false;
+NodeLabelDraggingTool.prototype.canStart = function () {
+  if (!go.Tool.prototype.canStart.call(this)) return false
+  var diagram = this.diagram
+  if (diagram === null) return false
   // require left button & that it has moved far enough away from the mouse down point, so it isn't a click
-  var e = diagram.lastInput;
-  if (!e.left) return false;
-  if (!this.isBeyondDragSize()) return false;
+  var e = diagram.lastInput
+  if (!e.left) return false
+  if (!this.isBeyondDragSize()) return false
 
-  return this.findLabel() !== null;
+  return this.findLabel() !== null
 }
 
 /**
@@ -55,73 +55,73 @@ NodeLabelDraggingTool.prototype.canStart = function() {
 * @this {NodeLabelDraggingTool}
 * @return {GraphObject} This returns null if no such label is at the mouse down point.
 */
-NodeLabelDraggingTool.prototype.findLabel = function() {
-  var diagram = this.diagram;
-  var e = diagram.firstInput;
-  var elt = diagram.findObjectAt(e.documentPoint, null, null);
+NodeLabelDraggingTool.prototype.findLabel = function () {
+  var diagram = this.diagram
+  var e = diagram.firstInput
+  var elt = diagram.findObjectAt(e.documentPoint, null, null)
 
-  if (elt === null || !(elt.part instanceof go.Node)) return null;
+  if (elt === null || !(elt.part instanceof go.Node)) return null
   while (elt.panel !== null) {
-    if (elt._isNodeLabel && elt.panel.type === go.Panel.Spot && elt.panel.findMainElement() !== elt) return elt;
-    elt = elt.panel;
+    if (elt._isNodeLabel && elt.panel.type === go.Panel.Spot && elt.panel.findMainElement() !== elt) return elt
+    elt = elt.panel
   }
-  return null;
-};
+  return null
+}
 
 /**
 * Start a transaction, call findLabel and remember it as the "label" property,
 * and remember the original value for the label's alignment property.
 * @this {NodeLabelDraggingTool}
 */
-NodeLabelDraggingTool.prototype.doActivate = function() {
-  this.startTransaction("Shifted Label");
-  this.label = this.findLabel();
+NodeLabelDraggingTool.prototype.doActivate = function () {
+  this.startTransaction('Shifted Label')
+  this.label = this.findLabel()
   if (this.label !== null) {
     // compute the offset of the mouse-down point relative to the center of the label
-    this._offset = this.diagram.firstInput.documentPoint.copy().subtract(this.label.getDocumentPoint(go.Spot.Center));
-    this._originalAlignment = this.label.alignment.copy();
-    var main = this.label.panel.findMainElement();
-    this._originalCenter = main.getDocumentPoint(go.Spot.Center);
+    this._offset = this.diagram.firstInput.documentPoint.copy().subtract(this.label.getDocumentPoint(go.Spot.Center))
+    this._originalAlignment = this.label.alignment.copy()
+    var main = this.label.panel.findMainElement()
+    this._originalCenter = main.getDocumentPoint(go.Spot.Center)
   }
-  go.Tool.prototype.doActivate.call(this);
+  go.Tool.prototype.doActivate.call(this)
 }
 
 /**
 * Stop any ongoing transaction.
 * @this {NodeLabelDraggingTool}
 */
-NodeLabelDraggingTool.prototype.doDeactivate = function() {
-  go.Tool.prototype.doDeactivate.call(this);
-  this.stopTransaction();
+NodeLabelDraggingTool.prototype.doDeactivate = function () {
+  go.Tool.prototype.doDeactivate.call(this)
+  this.stopTransaction()
 }
 
 /**
 * Clear any reference to a label element.
 * @this {NodeLabelDraggingTool}
 */
-NodeLabelDraggingTool.prototype.doStop = function() {
-  this.label = null;
-  go.Tool.prototype.doStop.call(this);
+NodeLabelDraggingTool.prototype.doStop = function () {
+  this.label = null
+  go.Tool.prototype.doStop.call(this)
 }
 
 /**
 * Restore the label's original value for GraphObject.alignment.
 * @this {NodeLabelDraggingTool}
 */
-NodeLabelDraggingTool.prototype.doCancel = function() {
+NodeLabelDraggingTool.prototype.doCancel = function () {
   if (this.label !== null) {
-    this.label.alignment = this._originalAlignment;
+    this.label.alignment = this._originalAlignment
   }
-  go.Tool.prototype.doCancel.call(this);
+  go.Tool.prototype.doCancel.call(this)
 }
 
 /**
 * During the drag, call updateAlignment in order to set the GraphObject.alignment of the label.
 * @this {NodeLabelDraggingTool}
 */
-NodeLabelDraggingTool.prototype.doMouseMove = function() {
-  if (!this.isActive) return;
-  this.updateAlignment();
+NodeLabelDraggingTool.prototype.doMouseMove = function () {
+  if (!this.isActive) return
+  this.updateAlignment()
 }
 
 /**
@@ -129,11 +129,11 @@ NodeLabelDraggingTool.prototype.doMouseMove = function() {
 * completing a transaction.
 * @this {NodeLabelDraggingTool}
 */
-NodeLabelDraggingTool.prototype.doMouseUp = function() {
-  if (!this.isActive) return;
-  this.updateAlignment();
-  this.transactionResult = "Shifted Label";
-  this.stopTool();
+NodeLabelDraggingTool.prototype.doMouseUp = function () {
+  if (!this.isActive) return
+  this.updateAlignment()
+  this.transactionResult = 'Shifted Label'
+  this.stopTool()
 }
 
 /**
@@ -141,9 +141,9 @@ NodeLabelDraggingTool.prototype.doMouseUp = function() {
 * that the label is in.
 * @this {NodeLabelDraggingTool}
 */
-NodeLabelDraggingTool.prototype.updateAlignment = function() {
-  if (this.label === null) return;
-  var last = this.diagram.lastInput.documentPoint;
-  var cntr = this._originalCenter;
-  this.label.alignment = new go.Spot(0.5, 0.5, last.x - this._offset.x - cntr.x, last.y - this._offset.y - cntr.y);
+NodeLabelDraggingTool.prototype.updateAlignment = function () {
+  if (this.label === null) return
+  var last = this.diagram.lastInput.documentPoint
+  var cntr = this._originalCenter
+  this.label.alignment = new go.Spot(0.5, 0.5, last.x - this._offset.x - cntr.x, last.y - this._offset.y - cntr.y)
 }

@@ -25,12 +25,11 @@ Vue.use(VueDND)
 
 Vue.config.productionTip = false
 
-Vue.prototype.$ajax = axios;
-Vue.prototype.$get = (sUrl, oParams) => axios.get(sUrl, {"params": oParams})
+Vue.prototype.$ajax = axios
+Vue.prototype.$get = (sUrl, oParams) => axios.get(sUrl, {'params': oParams})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   template: '<App/>',
   components: { App }
 })
-

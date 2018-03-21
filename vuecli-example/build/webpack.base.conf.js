@@ -22,7 +22,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
+      '@': resolve('src')
     }
   },
   module: {
@@ -37,11 +37,11 @@ module.exports = {
         loader: 'babel-loader',
         // include: [resolve('src'), resolve('test')]
         include: [
-        resolve('src'),
-        resolve('test'),
-        resolve('node_modules/vue-echarts'),
-        resolve('node_modules/resize-detector')
-      ]
+          resolve('src'),
+          resolve('test'),
+          resolve('node_modules/vue-echarts'),
+          resolve('node_modules/resize-detector')
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

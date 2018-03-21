@@ -3,14 +3,12 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-
-
 export default new Vuex.Store({
-  state:{
-    count :[0,1,5,9,20],
-    num:1
+  state: {
+    count: [0, 1, 5, 9, 20],
+    num: 1
   },
-  getters:{
+  getters: {
     maxCount: state => {
       return Math.max(...state.count)
     }
@@ -18,7 +16,7 @@ export default new Vuex.Store({
   mutations: {
     increment (state) {
       // 变更状态
-      state.count.push(Math.floor(Math.random()*100))
+      state.count.push(Math.floor(Math.random() * 100))
     }
   },
   actions: {
