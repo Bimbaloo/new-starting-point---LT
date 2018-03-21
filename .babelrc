@@ -1,0 +1,19 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["Chrome > 49", "last 2 versions", "not ie <= 8"]
+      }
+    }],
+    "stage-2"
+  ],
+  "plugins": ["transform-runtime", "lodash"],
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": ["env", "stage-2", ["@babel/env", { "targets": { "node": 6 } }]],
+      "plugins": [ "istanbul" ]
+    }
+  }
+}
