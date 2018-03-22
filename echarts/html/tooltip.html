@@ -11,6 +11,7 @@
 <body>
   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
   <div id="main" style="width: 100%;height:600px;"></div>
+  <div >2626</div>
   <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(document.getElementById('main'))
@@ -29,14 +30,13 @@
           },
           alwaysShowContent: true,
           enterable: true,
-          triggerOn: 'click',
           formatter: function (params) {
             return `
                 <div>
                     <button id='aaaa' onclick='fn(${JSON.stringify(params)})'>14181</button>
                 </div>
                 <div>
-                    ${params[0].marker}
+                    ${params[0].value}
                 </div>
             `
           }
@@ -52,9 +52,14 @@
           data: [820, 932, 901, 934, 1290, 1330, 1320],
           type: 'line'
         }]
+       // position: {right: '10px', bottom: '50%'}
 
   }
   myChart.setOption(option)
+  myChart.on('click', chartClickHandle)
+  function chartClickHandle (params) {
+        console.log(params)
+  }
   </script>
 </body>
 
