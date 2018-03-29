@@ -3,30 +3,50 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>radio</title>
+  <title>table</title>
   <link href="https://cdn.bootcss.com/element-ui/2.1.0/theme-chalk/index.css" rel="stylesheet">
   <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
   <script src="https://cdn.bootcss.com/element-ui/2.1.0/index.js"></script>
   <script src="https://cdn.bootcss.com/axios/0.17.1/axios.js"></script>
+
+  <style>
+    .el-form-item {
+      margin-right: 20px !important; 
+      margin-bottom: 10px;
+    }
+    td.red .cell{
+      color: coral;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
 
   <div id="app">
-    <el-table :data="tableData.data" style="width: 100%">
+    <el-table :data="tableData.data" style="width: 100%" @cell-click="cellClick">
       <el-table-column type="expand">
         <template slot-scope="props">
-          <div v-for="rowNum in props.row.rowNums">
+          <div v-for="(rowNum, index) in props.row.rowNums" :key="index">
             <el-form label-position="left" inline class="demo-table-expand">
-                <el-form-item :label="el.label" v-for="el in items">
+                <el-form-item :label="el.label" v-for="el in items" :key="el.prop">
                   <span>{{ rowNum[el.prop] }}</span>
                 </el-form-item>
               </el-form>
           </div>
         </template>
-    </el-table-column>
-    <el-table-column v-for="col in columns" :key="col.prop" :label="col.label" :prop="col.prop">
-    </el-table-column>
+      </el-table-column>
+      <el-table-column v-for="col in columns" :key="col.prop" :label="col.label" :prop="col.prop" :class-name="col.class" align='center'>
+        <template slot-scope="props" >
+          <div v-if="col.prop !== 'handle'">
+              <span>{{ props.row[col.prop] }}</span>
+          </div>
+          <div v-else>
+            <el-button @click="handleClick" type="text" size="small">启动</el-button>
+            <el-button @click="clearClick" type="text" size="small">清除任务</el-button>
+          </div>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 
@@ -66,6 +86,7 @@
               label: '关联设备',
               prop: 'equipment',
               align: 'center',
+              class: 'red',
               showHead: true
             },
             {
@@ -73,6 +94,30 @@
               prop: 'handle',
               align: 'center',
               showHead: true
+            },
+            {
+              label: '任务名称:',
+              prop: 'name',
+              align: 'center',
+              showHead: false
+            },
+            {
+              label: '发起人:',
+              prop: 'people',
+              align: 'center',
+              showHead: false
+            },
+            {
+              label: '发起时间:',
+              prop: 'happenTime',
+              align: 'center',
+              showHead: false
+            },
+            {
+              label: '页数:',
+              prop: 'size',
+              align: 'center',
+              showHead: false
             }
           ],
           data: [
@@ -83,7 +128,14 @@
               lastTime: '2018/3/29 11:20',
               equipment: 4,
               handle: '暂停',
-              rowNums: []
+              rowNums: [
+                {
+                  name: '招聘信息',
+                  people: '张三',
+                  happenTime: '2018/1/2',
+                  size: 10
+                }
+              ]
             },
             {
               tasksNum: '2',
@@ -92,7 +144,20 @@
               lastTime: '2018/3/28 10:55',
               equipment: 5,
               handle: '启动',
-              rowNums: []
+              rowNums: [
+                {
+                  name: '打印信息',
+                  people: '李四',
+                  happenTime: '2018/1/2',
+                  size: 10
+                },
+                {
+                  name: '打印信息',
+                  people: '李四',
+                  happenTime: '2018/1/2',
+                  size: 10
+                }
+              ]
             },
             {
               tasksNum: '3',
@@ -101,7 +166,26 @@
               lastTime: '2018/3/29 01:10',
               equipment: 1,
               handle: '启动',
-              rowNums: []
+              rowNums: [
+                {
+                  name: '打印信息1',
+                  people: '赵钱',
+                  happenTime: '2018/1/2',
+                  size: 10
+                },
+                {
+                  name: '打印信息',
+                  people: '赵钱',
+                  happenTime: '2018/1/2',
+                  size: 10
+                },
+                {
+                  name: '打印信息',
+                  people: '赵钱',
+                  happenTime: '2018/1/2',
+                  size: 10
+                }
+              ]
             },
             {
               tasksNum: '4',
@@ -110,7 +194,26 @@
               lastTime: '2018/3/29 06:58',
               equipment: 4,
               handle: '启动',
-              rowNums: []
+              rowNums: [
+                {
+                  name: '打印信息1',
+                  people: '赵钱',
+                  happenTime: '2018/1/2',
+                  size: 10
+                },
+                {
+                  name: '打印信息',
+                  people: '赵钱',
+                  happenTime: '2018/1/2',
+                  size: 10
+                },
+                {
+                  name: '打印信息',
+                  people: '赵钱',
+                  happenTime: '2018/1/2',
+                  size: 10
+                }
+              ]
             }
           ],
           height: 100
@@ -129,20 +232,43 @@
         }
       },
       methods: {
-        objectSpanMethod ({ row, column, rowIndex, columnIndex }) {
-          console.log({ row, column, rowIndex, columnIndex })
-          if (columnIndex === 0) {
-            if (rowIndex % 2 === 0) {
-              return {
-                rowspan: 2,
-                colspan: 1
-              }
-            } else {
-              return {
-                rowspan: 0,
-                colspan: 0
-              }
-            }
+        handleClick () {
+          this.$confirm('是否启动打印机?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            this.$message({
+              type: 'success',
+              message: '启动成功!'
+            })
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消启动'
+            })
+          })
+        },
+        clearClick () {
+          this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            this.$message({
+              type: 'success',
+              message: '启动成功!'
+            })
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消启动'
+            })
+          })
+        },
+        cellClick (row, column, cell, event) {
+          if (column.property === 'equipment') {
+            window.open('table2.html')
           }
         }
       }
