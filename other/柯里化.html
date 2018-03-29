@@ -2,60 +2,59 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>柯里化</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>柯里化</title>
 </head>
 
 <body>
-    <button onclick="console.log(mul(1)(2)(3))"></button>
-    <script>
-        function curryIt(fn) {
-            //debugger
-            var len = fn.length,
-                args = [];
-            return function () {
-                args.push([].shift.call(arguments));
-                if (args.length < len) {
-                    return arguments.callee;
-                } else {
-                    return fn.apply(null, args);
-                }
-            }
+  <button onclick="console.log(mul(1)(2)(3))"></button>
+  <script>
+    function curryIt (fn) {
+      // debugger
+      var len = fn.length,
+        args = []
+      return function () {
+        args.push([].shift.call(arguments))
+        if (args.length < len) {
+          return arguments.callee
+        } else {
+          return fn.apply(null, args)
         }
-        //预定义函数，随便你换，但是要有形参。
-        var fn = (x, y, z) => x * y * z;
-        var mul = curryIt(fn);
-        // console.log(mul(1)(2)(3)); //6
+      }
+    }
+    // 预定义函数，随便你换，但是要有形参。
+    var fn = (x, y, z) => x * y * z
+    var mul = curryIt(fn)
+    // console.log(mul(1)(2)(3)); //6
 
-
-
-        function mul2() {
-            debugger
-            var allArgs = [].slice.call(arguments);
-            var runner = function () {
-                var _argsCollector = function () {
-                    allArgs = [].concat.call(allArgs, [].slice.call(arguments));
-                    return _argsCollector; //隐式转化求值的关键
-                };
-                _argsCollector.valueOf = function () {
-                    return allArgs.reduce(function (a, b) {
-                        return a * b;
-                    }, 1)
-                };
-                return _argsCollector;
-            }
-            return runner.apply(null, allArgs);
+    function mul2 () {
+      debugger
+      var allArgs = [].slice.call(arguments)
+      var runner = function () {
+        var _argsCollector = function () {
+          allArgs = [].concat.call(allArgs, [].slice.call(arguments))
+          return _argsCollector // 隐式转化求值的关键
         }
+        _argsCollector.valueOf = function () {
+          return allArgs.reduce(function (a, b) {
+            return a * b
+          }, 1)
+        }
+        return _argsCollector
+      }
+      return runner.apply(null, allArgs)
+    }
 
-        // console.log(mul2(1));
-        // console.log(mul2(1)(2));
-        // console.log(mul2(1)(2)(3)(4));
-        // console.log(mul2(1, 2, 3, 4));
-        // console.log(mul2(1, 2, 3)(4));
-        // console.log(mul2(1)(2)(3, 4));
-    </script>
+    // console.log(mul2(1));
+    // console.log(mul2(1)(2));
+    // console.log(mul2(1)(2)(3)(4));
+    // console.log(mul2(1, 2, 3, 4));
+    // console.log(mul2(1, 2, 3)(4));
+    // console.log(mul2(1)(2)(3, 4));
+
+  </script>
 </body>
 
 </html>
