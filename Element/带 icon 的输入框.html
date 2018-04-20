@@ -19,16 +19,16 @@
 </div>
 <script>
     var Main = {
-        data() {
-            return {
-                input2: ''
-            }
-        },
-        methods: {
-            handleIconClick(ev) {
-                console.log(ev);
-            }
+      data () {
+        return {
+          input2: ''
         }
+      },
+      methods: {
+        handleIconClick (ev) {
+          console.log(ev)
+        }
+      }
     }
     var Ctor = Vue.extend(Main)
     new Ctor().$mount('#app')

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/2.3.4/index.js"></script>
+  <link href="https://cdn.bootcss.com/element-ui/2.3.4/theme-chalk/index.css" rel="stylesheet">
+  <title>select 联动</title>
+</head>
+
+<body>
+  <div id="app">
+    <el-select v-model="value" placeholder="请选择">
+      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+    </el-select>
+    <el-select v-model="value" placeholder="请选择">
+      <el-option v-for="item in options" :key="item.value" :label="item.value" :value="item.label"></el-option>
+    </el-select>
+    <div>
+      <span>value:</span>
+      {{value}}
+    </div>
+    <div>
+      <span>needValue:</span>
+      {{needValue}}
+    </div>
+    <div>index: {{index}}
+    </div>
+  </div>
+</body>
+
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+      options: [{
+        value: '选项1',
+        label: '黄金糕'
+      }, {
+        value: '选项2',
+        label: '双皮奶'
+      }, {
+        value: '选项3',
+        label: '蚵仔煎'
+      }, {
+        value: '选项4',
+        label: '龙须面'
+      }, {
+        value: '选项5',
+        label: '北京烤鸭'
+      }],
+      value: ''
+    },
+    computed: {
+      // 计算属性的 getter
+      index () {
+        return this.options.findIndex(el => el.value === this.value || el.label === this.value)
+      },
+      needValue () {
+        return this.index > 0 ? this.options[this.index].label : '无'
+      }
+    }
+  })
+
+</script>
+
+</html>
