@@ -1,0 +1,384 @@
+{
+  "errorCode": 0,
+  "errorMsg": "",
+  "data": [
+    {
+      "itemCode": "barcode",
+      "itemName": "条码",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "doCode",
+      "itemName": "工单",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "batchNo",
+      "itemName": "批次",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "materialCode",
+      "itemName": "物料",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "processCode",
+      "itemName": "工序",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "shiftName",
+      "itemName": "班次",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "equipmentCode",
+      "itemName": "设备",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "startTime",
+      "itemName": "开始时间",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "endTime",
+      "itemName": "结束时间",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "moldCode",
+      "itemName": "模号",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "personCode",
+      "itemName": "人员",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "traceCode",
+      "itemName": "物流码",
+      "searchCode": null,
+      "opType": null,
+      "opTypeName": null,
+      "tipName": null,
+      "isUserDefined": null
+    },
+    {
+      "itemCode": "doInUserDefine01",
+      "itemName": null,
+      "searchCode": "userDefine01",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段01",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doInUserDefine02",
+      "itemName": "",
+      "searchCode": "userDefine02",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段02",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine04",
+      "itemName": null,
+      "searchCode": "userDefine04",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段04",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine05",
+      "itemName": null,
+      "searchCode": "userDefine05",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段05",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine06",
+      "itemName": null,
+      "searchCode": "userDefine06",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段06",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine07",
+      "itemName": null,
+      "searchCode": "userDefine07",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段07",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine08",
+      "itemName": null,
+      "searchCode": "userDefine08",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段08",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine09",
+      "itemName": null,
+      "searchCode": "userDefine09",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段09",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine10",
+      "itemName": null,
+      "searchCode": "userDefine10",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段10",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine01",
+      "itemName": null,
+      "searchCode": "userDefine01",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段01",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine02",
+      "itemName": null,
+      "searchCode": "userDefine02",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段02",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine03",
+      "itemName": null,
+      "searchCode": "userDefine03",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段03",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine04",
+      "itemName": null,
+      "searchCode": "userDefine04",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段04",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine05",
+      "itemName": null,
+      "searchCode": "userDefine05",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段05",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine06",
+      "itemName": null,
+      "searchCode": "userDefine06",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段06",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine07",
+      "itemName": null,
+      "searchCode": "userDefine07",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段07",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine08",
+      "itemName": null,
+      "searchCode": "userDefine08",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段08",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine09",
+      "itemName": null,
+      "searchCode": "userDefine09",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段09",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doInUserDefine06",
+      "itemName": null,
+      "searchCode": "userDefine06",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段06",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doInUserDefine07",
+      "itemName": null,
+      "searchCode": "userDefine07",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段07",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doInUserDefine08",
+      "itemName": null,
+      "searchCode": "userDefine08",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段08",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doInUserDefine09",
+      "itemName": null,
+      "searchCode": "userDefine09",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段09",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doInUserDefine10",
+      "itemName": null,
+      "searchCode": "userDefine10",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段10",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine01",
+      "itemName": null,
+      "searchCode": "userDefine01",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段01",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine02",
+      "itemName": null,
+      "searchCode": "userDefine02",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段02",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doOutUserDefine03",
+      "itemName": null,
+      "searchCode": "userDefine03",
+      "opType": 6,
+      "opTypeName": "产出",
+      "tipName": "自定义字段03",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doInUserDefine03",
+      "itemName": "",
+      "searchCode": "userDefine03",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段03",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doInUserDefine04",
+      "itemName": "",
+      "searchCode": "userDefine04",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段04",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "doInUserDefine05",
+      "itemName": "",
+      "searchCode": "userDefine05",
+      "opType": 1,
+      "opTypeName": "投料",
+      "tipName": "自定义字段05",
+      "isUserDefined": 1
+    },
+    {
+      "itemCode": "regUserDefine10",
+      "itemName": null,
+      "searchCode": "userDefine10",
+      "opType": 23,
+      "opTypeName": "到货登记",
+      "tipName": "自定义字段10",
+      "isUserDefined": 1
+    }
+  ]
+}

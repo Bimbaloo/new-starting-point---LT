@@ -1,116 +1,18 @@
-{
-  "appId": 2,
-  "appCfgName": "2普通离散工序 （手工工序）",
-  "appDes": "",
-  "processIdList": [4],
-  "equipmentIdList": [10],
-  "appInputCfgList": [{
-    "appInputCfgName": "2普通离散工序 （手工工序）",
-    "appInputDes": "2普通离散工序 （手工工序）",
-    "inputDetailCfg": {
-      "inputType": 1,
-      "isInputPallet": false,
-      "isInputBindBarcode": false,
-      "inputCycleLimit": 1,
-      "mixInputLimit": 1,
-      "inputMaterialQuality": [1],
-      "equipDoCodeLimit": 3,
-      "inputNumGatherType": 1,
-      "isCleanRemain": false,
-      "isValidTimeCheck": false,
-      "isJumpProcessCheck": true,
-      "iswholeContainerInput": false,
-      "isinputDoCodeVolLimit": false,
-      "inputVolLimit": 1,
-      "isStockCheck": false,
-      "isQcCheck": false,
-      "isCanReworkInput": false,
-      "isRemoveBinding": false
-    },
-    "deductionCfg": {
-      "deductionType": 2,
-      "deductionRangeLimit": 1
-    }
-  }],
-  "appOutputCfgList": [{
-    "appOutputCfgName": "2普通离散工序 （手工工序）",
-    "appOutputDes": "",
-    "outputDetailCfg": {
-      "outputType": 1,
-      "outputCode": 1,
-      "mixOutputLimit": 1,
-      "outputMaterialQuality": [1, 3],
-      "outputNumGatherType": 1,
-      "isneedBadReason": false,
-      "iswholeOutputLimit": false,
-      "isOutputEmpty": false,
-      "outputVolLimit": 1,
-      "isAutoOutputCode": false
-    }
-  }],
-  "appProcessCfg": {
-    "processDetailCfg": {
-      "isBomProportionLimitEnum": false,
-      "processInputMode": 1,
-      "processOutputMode": 1,
-      "isPoolInContainCheck": false,
-      "isPoolOutContainCheck": false,
-      "isProcessEquipContainer": false
-    },
-    "processScriptCfg": {
-      "afterInputScript": "/** \n * 投料后钩子\n  传入参数为DispatchOrderModel dom\n     Integer doInId;         //标记种子\n     String doCode;          //工单号\n     String materialCode;    //物料编号\n     String materialName;    //物料名称\n     String materialSpec;   //物料规格\n     String materialUnit;    //物料单位\n     String barcode;        //投料扫入的条码值，对应数据库的 barcode1 字段\n     Timestamp happenTime;   //扫码刷卡的确认时间\n     Timestamp createTime;   //创建时间\n     String icNo;            //IC卡号\n     Double quantity;        //数量\n     Integer equipmentId;    //设备ID\n     String processUid;      //处理标记\n     Timestamp effectiveTime; //生效时间\n     Timestamp expiryTime;    //失效时间\n     String batchNo;         //产出批次号\n     String personCode;      //刷卡人编号\n     String personName;      //刷卡人名称\n     String  shift;          //班次\n     String  operator;       //操作人卡号\n     String locationCode;    //地点编号\n     Double remainingNum;   //剩余数量\n     String equipContainer; //设备容器码\n     String palletBarcode;   //托条码   --废弃\n     Integer failReasonId;       //不良原因ID\n     String failReasonName;  //不良原因名称\n     String moldCode;        //模具号\n     String ctCode;          //刀具号\n     OpTypeEnum opType; //1.投入 2.转结入\n     QualityTypeEnum qualityType;  //1.合格2.废品，3.不良\n     String bindBarcode;    //绑定条码\n     String operationId;  //操作id UUID\n     String parentBarcode;  //父条码 比如：单件 -> 箱 -> 托, 字段值保存如下：“箱条码/托条码\"\n\n * 返回 布尔类型, true - hook成功, false - hook失败\n */\n\n    // load(\"http://加载第三方脚本\");\n    var MyJavaClass = Java.type('com.zjrealtech.trace.server.service.config.CustomCodeThirdpartyServiceImpl');\n    // 判断是否该脚本可以执行\n  \n    var docode = dom.doCode;\n    // 查询数据库获取需要信息\n    var result = MyJavaClass.sqlQuery('SELECT TOP 1 process_code FROM dbo.OITDispatchOrder WHERE do_code=\\'' + docode + '\\';');\n    print(\">> SQL 查询结果 >>> \" + result[0]['process_code']);\n    var process_code = result[0]['process_code'];\n\n    print(docode);\n\n    //  需要填写内容\n  /** 返回 message 失败时会将消息返回给前端, isSuccess 脚本是否成功 */\n  return {\n    message : \"操作完成\",\n    isSuccess : true\n  };\n",
-      "afterOutputScript": "/**\n * 产出后钩子\n  传入参数为 DispatchOrderModel dom,\n     String doCode; //派工单号\n     String orderCode; //主生产计划号\n     String moCode; //自制件计划号\n     Integer poolTaskId; //车间计划id\n     String taskCode; //车间计划号\n     Integer equipmentId; //设备id\n     String manuProcessCode; //工艺路线编码\n     ProcessTypeEnum processType; //工序类型\n     Integer processId; //工序Id\n     String processCode; //工序编码\n     String processSeq; //工序顺序号\n     Integer materialId; //物料id\n     String materialCode;//物料编码\n     String materialName;//物料名称\n     String materialSpec; //物料规格\n     String materialUnit;//物料单位\n     String locationId; //地点id\n     String locationCode;//地点编码\n     String locationName;//地点名称\n     DispatchOrderStatusEnum state; //派工单状态 （0：等待；1：加工；2：调试；3：返工；4：暂停；7：取消；107：取消中；8：回收；108：回收中；9：完工；109：完工中；10：暂缓；110：暂缓中）\n     Double taskNum; //计划数\n     Integer shiftId; //班次id\n     String shiftName; //班次名称\n     Integer parentDoId; //父派工单Id\n     DispatchOrderTypeEnum type; //派工单类型\n     String batchNo; //订单批次\n     String processName; //工序名称\n     Double processNum;//监控数\n\n * 返回 布尔类型, true - hook成功, false - hook失败\n */\n\n    // load(\"http://加载第三方脚本\");\n    var MyJavaClass = Java.type('com.zjrealtech.trace.server.service.config.CustomCodeThirdpartyServiceImpl');\n    // 判断是否该脚本可以执行\n  \n    var docode = dom.doCode;\n    // 查询数据库获取需要信息\n    var result = MyJavaClass.sqlQuery('SELECT TOP 1 process_code FROM dbo.OITDispatchOrder WHERE do_code=\\'' + docode + '\\';');\n    print(\">> SQL 查询结果 >>> \" + result[0]['process_code']);\n    var process_code = result[0]['process_code'];\n    print(docode);\n\n    //  需要填写内容\n  /** 返回 message 失败时会将消息返回给前端, isSuccess 脚本是否成功 */\n  return {\n    message : \"操作完成\",\n    isSuccess : true\n  };\n",
-      "beforeInputScript": "/**\n * 投料前钩子\n  传入参数为 DispatchOrderModel dom, List[] poolDoInModels  \n     String doCode; //派工单号\n     String orderCode; //主生产计划号\n     String moCode; //自制件计划号\n     Integer poolTaskId; //车间计划id\n     String taskCode; //车间计划号\n     Integer equipmentId; //设备id\n     String manuProcessCode; //工艺路线编码\n     ProcessTypeEnum processType; //工序类型\n     Integer processId; //工序Id\n     String processCode; //工序编码\n     String processSeq; //工序顺序号\n     Integer materialId; //物料id\n     String materialCode;//物料编码\n     String materialName;//物料名称\n     String materialSpec; //物料规格\n     String materialUnit;//物料单位\n     String locationId; //地点id\n     String locationCode;//地点编码\n     String locationName;//地点名称\n     DispatchOrderStatusEnum state; //派工单状态 （0：等待；1：加工；2：调试；3：返工；4：暂停；7：取消；107：取消中；8：回收；108：回收中；9：完工；109：完工中；10：暂缓；110：暂缓中）\n     Double taskNum; //计划数\n     Integer shiftId; //班次id\n     String shiftName; //班次名称\n     Integer parentDoId; //父派工单Id\n     DispatchOrderTypeEnum type; //派工单类型\n     String batchNo; //订单批次\n     String processName; //工序名称\n     Double processNum;//监控数\n  数组结构, List[] PoolDoInModel 数组每一项为 PoolDoInModel 字典类型\n     Integer doInId;         //标记种子\n     String doCode;          //工单号\n     String materialCode;    //物料编号\n     String materialName;    //物料名称\n     String materialSpec;   //物料规格\n     String materialUnit;    //物料单位\n     String barcode;        //投料扫入的条码值，对应数据库的 barcode1 字段\n     Timestamp happenTime;   //扫码刷卡的确认时间\n     Timestamp createTime;   //创建时间\n     String icNo;            //IC卡号\n     Double quantity;        //数量\n     Integer equipmentId;    //设备ID\n     String processUid;      //处理标记\n     Timestamp effectiveTime; //生效时间\n     Timestamp expiryTime;    //失效时间\n     String batchNo;         //产出批次号\n     String personCode;      //刷卡人编号\n     String personName;      //刷卡人名称\n     String  shift;          //班次\n     String  operator;       //操作人卡号\n     String locationCode;    //地点编号\n     Double remainingNum;   //剩余数量\n     String equipContainer; //设备容器码\n     String palletBarcode;   //托条码   --废弃\n     Integer failReasonId;       //不良原因ID\n     String failReasonName;  //不良原因名称\n     String moldCode;        //模具号\n     String ctCode;          //刀具号\n     OpTypeEnum opType; //1.投入 2.转结入\n     QualityTypeEnum qualityType;  //1.合格2.废品，3.不良\n     String bindBarcode;    //绑定条码\n     String operationId;  //操作id UUID\n     String parentBarcode;  //父条码 比如：单件 -> 箱 -> 托, 字段值保存如下：“箱条码/托条码\"\n\n * 返回 布尔类型, true - hook成功, false - hook失败\n */\n\n    // load(\"http://加载第三方脚本\");\n    var MyJavaClass = Java.type('com.zjrealtech.trace.server.service.config.CustomCodeThirdpartyServiceImpl');\n    // 判断是否该脚本可以执行\n    print(poolDoInModels[0].state);\n    var docode = poolDoInModels[0].doCode;\n    // 查询数据库获取需要信息\n    var result = MyJavaClass.sqlQuery('SELECT TOP 1 process_code FROM dbo.OITDispatchOrder WHERE do_code=\\'' + docode + '\\';');\n    if (result[0]['process_code']) {\n      print(\">> SQL 查询结果 >>> \" + result[0]['process_code']);\n      var process_code = result[0]['process_code'];\n    }\n    print(docode);\n\n    //  需要填写内容\n  /** 返回 message 失败时会将消息返回给前端, isSuccess 脚本是否成功 */\n  return {\n    message : \"操作完成\",\n    isSuccess : true\n  };\n",
-      "beforeOutputScript": "/**\n * 投料前钩子\n  传入参数为 DispatchOrderModel dom, List[] donePoolDoOutSumList\n     String doCode; //派工单号\n     String orderCode; //主生产计划号\n     String moCode; //自制件计划号\n     Integer poolTaskId; //车间计划id\n     String taskCode; //车间计划号\n     Integer equipmentId; //设备id\n     String manuProcessCode; //工艺路线编码\n     ProcessTypeEnum processType; //工序类型\n     Integer processId; //工序Id\n     String processCode; //工序编码\n     String processSeq; //工序顺序号\n     Integer materialId; //物料id\n     String materialCode;//物料编码\n     String materialName;//物料名称\n     String materialSpec; //物料规格\n     String materialUnit;//物料单位\n     String locationId; //地点id\n     String locationCode;//地点编码\n     String locationName;//地点名称\n     DispatchOrderStatusEnum state; //派工单状态 （0：等待；1：加工；2：调试；3：返工；4：暂停；7：取消；107：取消中；8：回收；108：回收中；9：完工；109：完工中；10：暂缓；110：暂缓中）\n     Double taskNum; //计划数\n     Integer shiftId; //班次id\n     String shiftName; //班次名称\n     Integer parentDoId; //父派工单Id\n     DispatchOrderTypeEnum type; //派工单类型\n     String batchNo; //订单批次\n     String processName; //工序名称\n     Double processNum;//监控数\n  数组结构, List[] PoolDoOutModel 数组每一项为 PoolDoOutModel 字典类型\n     Integer doOutId;//主键do_out_id\n     String doCode;//投料（转入）工单号 do_code\n     String materialCode;//物料编码\n     String materialName;//物料名称\n     String materialSpec;//物料规格\n     String materialUnit;//计量单位\n\n     String barcode;//条码，对应数据库barcode1字段\n\n     String weight;//重量值\n     Double quantity;//数量\n     Double autoRegularNum; //监控合格数\n     Double handRegularNum; //报工合格数\n     Double badNum; //不合格数\n     Double reworkNum; //待返工数\n\n     Integer equipmentId;//设备id\n     String personCode;//员工号\n     String personName;//员工姓名\n     String icNo; //IC卡号\n     String operator;//操作人卡号\n\t\t\t\t\n     Timestamp happenTime;//产出时间\n     Timestamp createTime;//创建时间\n     Timestamp effectiveTime;//生效时间\n     Timestamp expiryTime;//失效时间\n     Timestamp interfaceTime;//上报时间\n     String batchNo;//批次号\n\n     String shift;//投料（转入）班次\n     String processUid;//处理标记\t\t\t\t\n\n     String locationCode;// 地点/库位\n\n     Integer failReasonId;//不良原因ID\n     String failReasonName;//不良原因名称\n     String moldCode;//模号\n     String ctCode;//刀具号\n     String palletBarcode;//托条码\n     String packBarcode;//箱条码\n     String equipmentContainerBarcode;//设备容器码\n\t\t\t\t\t\t\t\t\n     OpTypeEnum opType; //1.产出 2.转结出，3退料\n     QualityTypeEnum qualityType;  //1.合格2.废品，3.不良\n     String operationId; //操作ID uuid\n     String parentBarcode;  //父条码 比如：单件 -> 箱 -> 托, 字段值赋值如下：“箱条码/托条码\"\n\n * 返回 布尔类型, true - hook成功, false - hook失败\n */\n\n    // load(\"http://加载第三方脚本\");\n    var MyJavaClass = Java.type('com.zjrealtech.trace.server.service.config.CustomCodeThirdpartyServiceImpl');\n    // 判断是否该脚本可以执行\n  \n    var docode = donePoolDoOutSumList[0].doCode;\n    // 查询数据库获取需要信息\n    var result = MyJavaClass.sqlQuery('SELECT TOP 1 process_code FROM dbo.OITDispatchOrder WHERE do_code=\\'' + docode + '\\';');\n    if (result[0]['process_code']) {\n      print(\">> SQL 查询结果 >>> \" + result[0]['process_code']);\n      var process_code = result[0]['process_code'];\n    }\n    print(docode);\n\n    //  需要填写内容\n  /** 返回 message 失败时会将消息返回给前端, isSuccess 脚本是否成功 */\n  return {\n    message : \"操作完成\",\n    isSuccess : true\n  };\n"
-    },
-    "appTerminalCfg": {
-      "processType": 1,
-      "isScanContainerLoadOutputSingle": false,
-      "enableOutputOverCapacity": false,
-      "isOutputGenerateBarcode": true,
-      "isEquipContainer": false,
-      "inputMode": 1,
-      "outputMode": 1,
-      "isQualifiedOutputToContainer": false,
-      "isQualifiedOutputToComplex": false,
-      "isQualifiedOutputChangeContainer": false,
-      "isOutputBad": false,
-      "isOutputBadChooseReason": false,
-      "isOutputRework": true,
-      "isOutputReworkChooseReason": false,
-      "isOutputScanContainerLoadBindSingle": false,
-      "isOutputScanPalletDisplaySingle": true
-    },
-    "externalBarcodeRuleList": [{
-      "ruleName": "测试外部条码解析规则",
-      "pkId": 1,
-      "sequence": 0
-    }]
-  },
-  "appOutputMaterialCfgList": [{
-    "outputMaterialCfgName": "2普通离散工序 （手工工序）",
-    "outputMaterialCfgDes": "",
-    "outputMaterialCfgMatch": {
-      "outputMaterialQualityMatch": [1, 3],
-      "outputMaterialMatch": [],
-      "isMatchMaterial": false,
-      "customerMatch": [],
-      "isMatchCustomer": false
-    },
-    "outputMaterialBehaviorCfg": {
-      "outputToContainer": 1,
-      "outputToContainerTypeList": [],
-      "lessThanContainerVolLimit": 1,
-      "batchGenerateMode": 1,
-      "batchRuleId": -1,
-      "barcodeRuleId": 1,
-      "palletAndBoxRuleId": -1,
-      "containerTemplateId": -1,
-      "defaultOutputEffectiveHours": 0,
-      "defaultOutputExpiryHours": 0,
-      "outputMaterialLabelRuleId": -1,
-      "packLabelRuleId": -1,
-      "outputExternalBarcodeRuleId": -1
-    }
-  }]
-}
+[
+  {
+    "id": 0,
+    "name": "张三"
+  },{
+    "id": 0,
+    "name": "李四"
+  },{
+    "id": 1,
+    "name": "aa"
+  },{
+    "id": 1,
+    "name": "bb"
+  },{
+    "id": 2,
+    "name": "小三"
+  }
+]
