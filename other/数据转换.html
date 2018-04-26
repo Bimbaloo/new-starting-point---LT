@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let a = [
+      {
+        'itemCode': 'barcode',
+        'itemName': '条码',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'doCode',
+        'itemName': '工单',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'batchNo',
+        'itemName': '批次',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'materialCode',
+        'itemName': '物料',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'processCode',
+        'itemName': '工序',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'shiftName',
+        'itemName': '班次',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'equipmentCode',
+        'itemName': '设备',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'startTime',
+        'itemName': '开始时间',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'endTime',
+        'itemName': '结束时间',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'moldCode',
+        'itemName': '模号',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'personCode',
+        'itemName': '人员',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'traceCode',
+        'itemName': '物流码',
+        'searchCode': null,
+        'opType': null,
+        'opTypeName': null,
+        'tipName': null,
+        'isUserDefined': null
+      }, {
+        'itemCode': 'doInUserDefine01',
+        'itemName': '投入01',
+        'searchCode': 'userDefine01',
+        'opType': 1,
+        'opTypeName': '投料',
+        'tipName': '自定义字段01',
+        'isUserDefined': 1
+      }, {
+        'itemCode': 'doInUserDefine02',
+        'itemName': '投料02',
+        'searchCode': 'userDefine02',
+        'opType': 1,
+        'opTypeName': '投料',
+        'tipName': '自定义字段02',
+        'isUserDefined': 1
+      }, {
+        'itemCode': 'regUserDefine01',
+        'itemName': '登记01',
+        'searchCode': 'userDefine01',
+        'opType': 23,
+        'opTypeName': '到货登记',
+        'tipName': '自定义字段01',
+        'isUserDefined': 1
+      }, {
+        'itemCode': 'doOutUserDefine01',
+        'itemName': '产出01',
+        'searchCode': 'userDefine01',
+        'opType': 6,
+        'opTypeName': '产出',
+        'tipName': '自定义字段01',
+        'isUserDefined': 1
+      }, {
+        'itemCode': 'doInUserDefine03',
+        'itemName': '投料03',
+        'searchCode': 'userDefine03',
+        'opType': 1,
+        'opTypeName': '投料',
+        'tipName': '自定义字段03',
+        'isUserDefined': 1
+      }, {
+        'itemCode': 'doInUserDefine04',
+        'itemName': '投料04',
+        'searchCode': 'userDefine04',
+        'opType': 1,
+        'opTypeName': '投料',
+        'tipName': '自定义字段04',
+        'isUserDefined': 1
+      }, {
+        'itemCode': 'regUserDefine10',
+        'itemName': '到货10',
+        'searchCode': 'userDefine10',
+        'opType': 23,
+        'opTypeName': '到货登记',
+        'tipName': '自定义字段10',
+        'isUserDefined': 1
+      }]
+    let b = {
+      'keys': {
+        'barcode': '0000017',
+        'doInUserDefine04': '2222'
+      },
+      'radio': '1',
+      'title': '条码'
+    }
+    let keys = b.keys
+    let keysArr = []
+    for (let i in keys) {
+      keysArr.push(i)
+    }
+    // 自定义的searchCode
+    let isUser = []
+    // opType 种类
+    let opType = []
+    // 输出的错误
+    let message = '不能存在多个操作类型的选项：'
+    keysArr.forEach(key => {
+      a.forEach(el => {
+        if (key === el.itemCode && !!el.opType) {
+          isUser.push({
+            'opType': el.opType,
+            'opTypeName': el.opTypeName,
+            'searchCode': el.searchCode,
+            'itemName': el.itemName,
+            'itemCode': el.itemCode
+          })
+        }
+      })
+    })
+    isUser.forEach(el => {
+      if (!opType.includes(el.opType)) {
+        opType.push(el.opType)
+      }
+      message += `${el.itemName}为${el.opTypeName}类型；`
+    })
+    message = message.substr(0, message.length - 1) + '。'
+    if (opType.length > 1) {
+      console.log(message)
+      confirm(message)
+    } else {
+      console.log(isUser)
+      console.log(opType)
+      keysArr.forEach(key => {
+        isUser.forEach(el => {
+          if (el.itemCode === key) {
+            keys[`${el.searchCode}`] = keys[key]
+            delete keys[key]
+          }
+        })
+      })
+      keys['opType'] = opType[0]
+      console.log(keys)
+      b.keys = keys
+      console.log(b)
+    }
+
+  </script>
+</body>
+
+</html>
