@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+
+</head>
+
+<body>
+
+  <script>
+    const CHART_DATA = 'http://192.168.227.172:8020/das/api/v1/processparameter/by-equipment-time'
+
+    function get(url, data = undefined) {
+      const instance = axios.create({
+        headers: {
+          Authorization: JSON.stringify({
+            'token': 'tb5w5TJhqQkLG3aK',
+            'userId': 1,
+            'username': 'sysadmin',
+            'nickname': 'sysadmin',
+            'progressId': null
+          })
+        }
+      })
+      return new Promise((resolve, reject) => {
+        instance.get(url, {
+          params: data
+        }).then((res) => {
+          let oResult = res.data
+          let resultCode = res.data.errorCode
+          if (!resultCode) { // resultCode = 0 的时候代表成功
+            resolve(oResult.data)
+          } else if (resultCode === 10) { // 代表未登录或登录过期
+            // 清cookie，跳转到登录页面。
+            reject(oResult.errorMsg.subMsg)
+          } else {
+            reject(oResult.errorMsg.message)
+          }
+        }, (res) => {
+          reject(res)
+        })
+      })
+    }
+
+    let qUery = {
+      equipmentId: 222,
+      startTime: '2017-08-29 07:00:00',
+      endTime: '2017-08-31 19:00:00'
+    }
+
+    get(CHART_DATA, qUery)
+      .then(e => {
+        console.log(e)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+
+
+    /**
+     * post接口请求方式。
+     * @param {Object} oStore 数据存储对象(vuex)。
+     * @param {String} url 接口请求地址。
+     * @param {Object} data 传递的参数
+     * @return {Object} Promise
+     */
+    let $post = function (oStore, url, data = undefined) {
+        const instance = beforeRequest(oStore, axios)
+        return new Promise((resolve, reject) => {
+          instance.post(url, data).then((res) => {
+            let oResult = res.data
+            let resultCode = res.data.errorCode
+            if (!resultCode) { // resultCode = 0 的时候代表成功
+              resolve(oResult.data)
+            } else if (resultCode === 10) { // 代表未登录或登录过期
+              // 清cookie，跳转到登录页面。
+              loginFail(oResult.errorMsg.subMsg)
+            } else {
+              reject(oResult.errorMsg.message)
+            }
+          }, (res) => {
+            reject(res)
+          })
+        })
+
+  </script>
+</body>
+
+</html>
