@@ -59,7 +59,12 @@ export default {
 
       this.myarr = a
       if (a.length > 2) {
-        a[0].setSelected(false)
+        if (a[0].rowIndex === e.rowIndex) {
+          a[a.length - 1].setSelected(false)
+        } else {
+          a[0].setSelected(false)
+        }
+
         // this.gridApi.forEachNode((node) => {
         //   console.log(node)
         //   console.log(a)
@@ -73,12 +78,11 @@ export default {
 
       this.myarr = a
       if (a.length > 2) {
-        a[0].setSelected(false)
-        // this.gridApi.forEachNode((node) => {
-        //   console.log(node)
-        //   console.log(a)
-        //   node.setSelected(false)
-        // })
+        if (a[0].rowIndex === e.rowIndex) {
+          a[a.length - 1].setSelected(false)
+        } else {
+          a[0].setSelected(false)
+        }
       }
     }
   },

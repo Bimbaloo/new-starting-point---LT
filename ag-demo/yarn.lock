@@ -113,6 +113,14 @@ acorn@^5.0.0, acorn@^5.3.0, acorn@^5.5.0:
   version "5.5.3"
   resolved "http://registry.npm.taobao.org/acorn/download/acorn-5.5.3.tgz#f473dd47e0277a08e28e9bec5aeeb04751f0b8c9"
 
+ag-grid-vue@^17.1.0:
+  version "17.1.0"
+  resolved "http://registry.npm.taobao.org/ag-grid-vue/download/ag-grid-vue-17.1.0.tgz#1d6ce20345b5e51018a246adcf4a9772202d9df2"
+
+ag-grid@^17.1.1:
+  version "17.1.1"
+  resolved "http://registry.npm.taobao.org/ag-grid/download/ag-grid-17.1.1.tgz#6c7010a65d6e8b6373e2fe97643c9eecf5417026"
+
 ajv-keywords@^2.1.0:
   version "2.1.1"
   resolved "http://registry.npm.taobao.org/ajv-keywords/download/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
