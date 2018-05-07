@@ -10,23 +10,20 @@
 
 <body>
   <script>
-    function removeSmallest(numbers) {
+    function removeSmallest (numbers) {
       let arr = numbers
-      let mySet2 = new Set(arr);
-      let newArr = [...mySet2];
-      const b = arr.indexOf(Math.min(...newArr))
+      let mySet2 = new Set(arr)
+  let newArr = [...mySet2]
+  const b = arr.indexOf(Math.min(...newArr))
       arr.splice(b, 1)
       return arr
     }
 
     removeSmallest([1, 2, 3])
 
-
-    function sumArray(array) {
+    function sumArray (array) {
       let arr = array || []
       if (arr.length > 2) {
-
-
         const max = Math.max(...arr)
         const min = Math.min(...arr)
 
@@ -34,7 +31,7 @@
 
         arr.forEach(element => {
           total += element
-        });
+        })
 
         return total = total - max - min
       } else {
