@@ -13,8 +13,8 @@
     function removeSmallest (numbers) {
       let arr = numbers
       let mySet2 = new Set(arr)
-  let newArr = [...mySet2]
-  const b = arr.indexOf(Math.min(...newArr))
+      let newArr = [...mySet2]
+      const b = arr.indexOf(Math.min(...newArr))
       arr.splice(b, 1)
       return arr
     }
@@ -34,10 +34,7 @@
         })
 
         return total = total - max - min
-
-
-        
-      } else {
+  } else {
         return 0
       }
     }
