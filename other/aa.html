@@ -2,46 +2,47 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 
 <body>
-    <script>
-        function removeSmallest(numbers) {
-            let arr = numbers
-            let mySet2 = new Set(arr);
-            let newArr =  [...mySet2]; 
-            const b = arr.indexOf( Math.min(...newArr) )
-            arr.splice(b,1)
-            return arr
-          }
+  <script>
+    function removeSmallest(numbers) {
+      let arr = numbers
+      let mySet2 = new Set(arr);
+      let newArr = [...mySet2];
+      const b = arr.indexOf(Math.min(...newArr))
+      arr.splice(b, 1)
+      return arr
+    }
 
-          removeSmallest([1,2,3])
+    removeSmallest([1, 2, 3])
 
 
-          function sumArray(array) {
-              let arr = array || []
-              if(arr.length>2){
+    function sumArray(array) {
+      let arr = array || []
+      if (arr.length > 2) {
 
-              
-                    const max = Math.max(...arr)
-                    const min = Math.min(...arr)
 
-                    let total = 0
+        const max = Math.max(...arr)
+        const min = Math.min(...arr)
 
-                    arr.forEach(element => {
-                        total += element     
-                    });
-                    
-                    return total = total - max -min
-                }else{
-                    return 0
-                }
-            }
-    </script>
+        let total = 0
+
+        arr.forEach(element => {
+          total += element
+        });
+
+        return total = total - max - min
+      } else {
+        return 0
+      }
+    }
+
+  </script>
 
 </body>
 
