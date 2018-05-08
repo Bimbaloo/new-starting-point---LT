@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 <html style="height: 100%">
-   <head>
-       <meta charset="utf-8">
-   </head>
-   <body style="height: 100%; margin: 0">
-       <div id="container" style="height: 100%"></div>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
-        <script src="https://cdn.bootcss.com/jquery/2.2.1/jquery.js"></script>
-       <script type="text/javascript">
-var dom = document.getElementById("container");
-var myChart = echarts.init(dom);
-var app = {};
-option = null;
-myChart.showLoading();
-$.get('../data/energy.json', function (data) {
-    myChart.hideLoading();
-    debugger
-    myChart.setOption(option = {
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+  <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+  <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+  <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+  <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+  <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/2.2.1/jquery.js"></script>
+  <script type="text/javascript">
+    var dom = document.getElementById('container')
+    var myChart = window.echarts.init(dom)
+    var app = {}
+    option = null
+    myChart.showLoading()
+    $.get('../data/energy.json', function (data) {
+      myChart.hideLoading()
+      debugger
+      myChart.setOption(option = {
         title: {
-            text: 'Sankey Diagram'
+          text: 'Sankey Diagram'
         },
         tooltip: {
-            trigger: 'item',
-            triggerOn: 'mousemove'
+          trigger: 'item',
+          triggerOn: 'mousemove'
         },
-        series: [
-            {
-                type: 'sankey',
-                layout: 'none',
-                //layoutIterations: 0 ,
-                data: data.nodes,
-                links: data.links,
-                itemStyle: {
-                    normal: {
-                        borderWidth: 1,
-                        borderColor: '#aaa'
-                    }
-                },
-                lineStyle: {
-                    normal: {
-                        color: 'source',
-                        curveness: 0.5
-                    }
-                }
+        series: [{
+          type: 'sankey',
+          layout: 'none',
+          // layoutIterations: 0 ,
+          data: data.nodes,
+          links: data.links,
+          itemStyle: {
+            normal: {
+              borderWidth: 1,
+              borderColor: '#aaa'
             }
-        ]
-    });
-});;
-if (option && typeof option === "object") {
-    myChart.setOption(option, true);
-}
-       </script>
-   </body>
+          },
+          lineStyle: {
+            normal: {
+              color: 'source',
+              curveness: 0.5
+            }
+          }
+        }]
+      })
+    })
+    if (option && typeof option === 'object') {
+      myChart.setOption(option, true)
+    }
+
+  </script>
+</body>
+
 </html>
