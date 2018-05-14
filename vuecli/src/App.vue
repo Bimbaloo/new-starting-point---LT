@@ -1,17 +1,26 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld/>
+    <!-- <HelloWorld/> -->
+    <xlsx/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
-
+import xlsx from './components/xlsx'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    xlsx
+  },
+  data () {
+    return {
+      workbook: null
+    }
+  },
+  created () {
   }
 }
 </script>

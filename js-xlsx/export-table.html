@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>js导出ExcelDemo</title>
+</head>
+
+<body>
+  <div id="demo">
+    <table border="1px" cellspacing="0" cellpadding="0">
+      <thead>
+        <th>第一列</th>
+        <th>第二列</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>第一行第一列</td>
+          <td>第一行第二列</td>
+        </tr>
+        <tr>
+          <td>第二行第一列</td>
+          <td>第二行第二列</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button id="exportBtn">导出Excel</button>
+  <script type="text/javascript">
+    document.getElementById('exportBtn').onclick = function () {
+      var table = document.getElementById('demo').innerHTML // 获取table模板
+      exporExcel('导出Excel', table)
+    }
+    /**
+     * @params: FileName:导出Excel的文件名称，excel:需要导出的table
+     * 如果没有table列表，只有json数据的话，将json数据拼接成table字符串模板即可
+     * **/
+    function exporExcel (FileName, excel) {
+      var excelFile =
+        "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>"
+      excelFile += '<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">'
+      excelFile += '<meta http-equiv="content-type" content="application/vnd.ms-excel'
+      excelFile += '; charset=UTF-8">'
+      excelFile += '<head>'
+      excelFile += '<!--[if gte mso 9]>'
+      excelFile += '<xml>'
+      excelFile += '<x:ExcelWorkbook>'
+      excelFile += '<x:ExcelWorksheets>'
+      excelFile += '<x:ExcelWorksheet>'
+      excelFile += '<x:Name>'
+      excelFile += '{worksheet}'
+      excelFile += '</x:Name>'
+      excelFile += '<x:WorksheetOptions>'
+      excelFile += '<x:DisplayGridlines/>'
+      excelFile += '</x:WorksheetOptions>'
+      excelFile += '</x:ExcelWorksheet>'
+      excelFile += '</x:ExcelWorksheets>'
+      excelFile += '</x:ExcelWorkbook>'
+      excelFile += '</xml>'
+      excelFile += '<![endif]-->'
+      excelFile += '</head>'
+      excelFile += '<body>'
+      excelFile += excel
+      excelFile += '</body>'
+      excelFile += '</html>'
+
+      var uri = 'data:application/vnd.ms-excel;charset=utf-8,' + encodeURIComponent(excelFile)
+
+      var link = document.createElement('a')
+      link.href = uri
+
+      link.style = 'visibility:hidden'
+      link.download = FileName // 格式默认为.xls
+
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
+
+  </script>
+</body>
+
+</html>
