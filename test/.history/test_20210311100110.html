@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="//unpkg.com/element-ui@2.15.1/lib/index.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <el-row type="flex" justify="center">
+      <el-col :span="20">
+        <el-form class="demo-ruleForm">
+          <el-col :span="10">
+            <el-form-item :label="formInline.user" :label-width=`${formInlineNameLength}px` class="user">
+              <el-input v-model="formInline.user"></el-input>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="10">
+            <el-form-item :label="formInline.name" :label-width=`${labelWidth.name}px` class="name">
+              <el-input v-model="formInline.name"></el-input>
+            </el-form-item>
+          </el-col>
+
+        </el-form>
+      </el-col>
+    </el-row>
+
+
+  </div>
+</body>
+
+
+<script>
+  var Ctor = new Vue({
+    el: "#app",
+    data() {
+      return {
+        labelWidth: {
+          user: 130,
+          name: 130
+        },
+        formInline: {
+          user: 'a啊啊啊啊啊啊啊啊啊',
+          name: '啵啵啵啵啵啵啵啵啵'
+        }
+      }
+    },
+    created: function () {
+      this.$nextTick(() => {
+
+        Object.keys(this.formInline).forEach(el => {
+          const strLength = document.querySelector(`.${el} .el-form-item__label`).textContent.length * 20
+          if (strLength > this.labelWidth[`${el}`]) {
+            this.labelWidth[`${el}`] = strLength
+          }
+        })
+
+
+        // const strLength = document.querySelector('.aaa').textContent.length * 20
+        // if (strLength > this.labelWidth) {
+        //   this.labelWidth = strLength
+        // }
+      })
+    },
+    mounted: function () {
+
+    },
+    computed: {
+      // 计算属性的 getter
+      formInlineNameLength: function () {
+        // `this` 指向 vm 实例
+        return this.formInline.user.length * 20
+      }
+    }
+  })
+  // var Ctor = Vue.extend(Main)
+  // new Ctor().$mount('#app')
+</script>
+
+</html>
