@@ -1,46 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-
-<body>
-  <script>
-    function removeSmallest (numbers) {
-      let arr = numbers
-      let mySet2 = new Set(arr)
-      let newArr = [...mySet2]
-      const b = arr.indexOf(Math.min(...newArr))
-      arr.splice(b, 1)
-      return arr
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <script type="text/javascript">
+    var jsSrc = (navigator.language || navigator.browserLanguage).toLowerCase();
+    if (jsSrc.indexOf('zh') >= 0) {} else {
+      ELEMENT.locale(ELEMENT.lang.en);
     }
 
-    removeSmallest([1, 2, 3])
-
-    function sumArray (array) {
-      let arr = array || []
-      if (arr.length > 2) {
-        const max = Math.max(...arr)
-        const min = Math.min(...arr)
-
-        let total = 0
-
-        arr.forEach(element => {
-          total += element
-        })
-
-        return total = total - max - min
-  } else {
-        return 0
-      }
+    var mobileDataPath = "/mobile-data";
+    var loadingFullScreen = true;
+    var loadingIndex;
+    var getLoadingIndex = function () {
+      return loadingIndex;
     }
+
+    var setLoadingIndex = function (_loadingIndex) {
+      loadingIndex = _loadingIndex;
+    }
+
+    var clearLoadingIndex = function () {
+      loadingIndex = null;
+    }
+
+    var getLayer = function () {
+      return layer;
+    }
+    //设置AJAX的全局默认选项
+    $.ajaxSetup({
+      error: function (jqXHR, textStatus, errorMsg) {
+        if ("error" === textStatus || jqXHR.status != 200) {}
+      },
+      beforeSend: function (xhr) {
+        var ind = getLoadingIndex();
+        if (ind == null) { //加载层已经打开时，不需要任何处理，未打开时才开启新的层
+          setLoadingIndex(getLayer().load(2, {
+            shade: [0.5, '#CCCCCC'] //0.1透明度的白色背景
+          }));
+        }
+      },
+      complete: function (xhr, status) {
+        var ind = getLoadingIndex();
+        if (ind != null) { //加载层已经关闭时，不需要任何处理，未关闭则关闭当前层
+          getLayer().close(ind);
+          clearLoadingIndex();
+        }
+      },
+      success: function (result, status, xhr) {}
+    });
 
   </script>
+</head>
 
+<body style="margin: 0 10px 0 0">
+  <div id="dialogApp" v-cloak>
+    <el-table :data="browseData" :highlight-current-row="true" border top="10%" ref="singleTable" tooltip-effect="light"
+      style="width: 100%" height="390" @row-dblclick="dbclickRow" @current-change="clickRow" @sort-change="sort">
+      <el-table-column v-for="col in cols" :key="col.name" :prop="col.name" :width="col.width" :label="col.des"
+        sortable="custom" :show-overflow-tooltip='true'>
+      </el-table-column>
+    </el-table>
+    <el-row type="flex" justify="end">
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
+        :current-page.sync="pageNumber" :page-sizes="[100, 200, 300, 400]" :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper" :total="totalRow">
+      </el-pagination>
+    </el-row>
+    <el-row type="flex" justify="center" style="margin-top:1px">
+      <el-button @click="closeDialog()">
+        <core:text name="browse.jsp.cancel" />
+      </el-button>
+      <el-button type="primary" @click="okClick()">
+        <core:text name="browse.jsp.confirm" />
+      </el-button>
+    </el-row>
+  </div>
 </body>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resource/layer/layer.js"></script>
 
 </html>
+<script type="text/javascript">
+  var dialogApp = new Vue({
+    el: "#dialogApp",
+    data: {
+      cols: [],
+      browseData: [],
+      currentRow: null,
+      pageNumber: 1,
+      pageSize: 100,
+      totalRow: 0,
+      prop: "",
+      order: ""
+    },
+    methods: {
+      handleSizeChange: function (pageSize) {
+        this.pageSize = pageSize;
+        this.getData();
+      },
+      handleCurrentChange: function (pageNumber) {
+        this.pageNumber = pageNumber;
+        this.getData();
+      },
+      getData: function () {
+        var browseInfo = parent.browseInfo;
+        var fData = browseInfo._formData;
+        fData.logicId = browseInfo._logicId;
+        fData.ele = browseInfo._ele;
+        var url = mobileDataPath + "/browse/browse";
+        fData.pageNumber = this.pageNumber;
+        fData.pageSize = this.pageSize;
+        fData.prop = this.prop;
+        fData.order = this.order;
+        $.post(url, fData, function (data) {
+          if (data.isSuccess) {
+            dialogApp.cols = data.cols;
+            dialogApp.browseData = data.browseData;
+            dialogApp.totalRow = data.totalRow;
+          } else {
+            //   FullScreen.showError(dialogApp, data.error);
+          }
+        }, 'json');
+      },
+      browse: function () {
+        this.getData();
+      },
+      clickRow: function (row) {
+        this.currentRow = row;
+      },
+      dbclickRow: function (row, event) {
+        parent.browseInfo.browseComplete(row);
+        parent.layer.close(parent.browseInfo._index);
+      },
+      closeDialog: function () {
+        parent.layer.close(parent.browseInfo._index);
+      },
+      okClick: function (row) {
+        if (this.currentRow != null) {
+          parent.browseInfo.browseComplete(this.currentRow);
+          parent.layer.close(parent.browseInfo._index);
+        } else {
+          parent.layer.close(parent.browseInfo._index);
+        }
+      },
+      sort: function (column, prop, order) {
+        if (column.order == "ascending") {
+          this.prop = column.prop;
+          this.order = "ASC";
+          this.getData();
+        } else {
+          this.prop = column.prop;
+          this.order = "DES";
+          this.getData();
+        }
+
+      }
+    }
+  });
+  $(document).ready(function () {
+    dialogApp.browse();
+  });
+
+</script>

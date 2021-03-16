@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.bootcss.com/element-ui/2.1.0/theme-chalk/index.css" rel="stylesheet">
+  <link href="../css/reset.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/2.1.0/index.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.17.1/axios.js"></script>
+  <title>抛料条码生成</title>
+</head>
+
+<body>
+  <div id="app" class="content-box">
+    <div class="search-box">
+      <el-row :gutter="24">
+        <el-form :model="formInline" class="demo-ruleForm">
+          <el-col :span="8">
+            <el-form-item label="生产订单" label-width='70px'>
+              <el-input v-model="formInline.user">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="7">
+            <el-form-item label="物料编号" label-width='70px'>
+              <el-input v-model="formInline.user">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="物料描述" label-width='70px'>
+              <el-input v-model="formInline.user">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+        </el-form>
+      </el-row>
+      <el-row :gutter="24">
+        <el-form :model="formInline" class="demo-ruleForm">
+          <el-col :span="8">
+            <el-form-item label="工序" label-width='70px'>
+              <el-input v-model="formInline.user">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8" :offset='7' class="aa">
+            <el-button type="primary" v-on:click="onCance">
+              取消
+            </el-button>
+            <el-button type="primary" v-on:click="onSave">
+              保存
+            </el-button>
+          </el-col>
+        </el-form>
+      </el-row>
+    </div>
+
+
+    <div class="table-box">
+      <el-table :data="tableData.data" :height="tableData.height" border style="width: 100%" stripe>
+        <el-table-column v-for="col in columns" :key="col.prop" :label="col.label" :prop="col.prop"
+          :class-name="col.class" align='center'>
+        </el-table-column>
+        <el-table-column align='center' label="操作" width="100">
+          <template slot-scope="scope">
+            <el-button type="text" size="small">查看</el-button>
+            <el-button type="text" size="small">编辑</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+
+  </div>
+</body>
+
+<script>
+  var Main = new Vue({
+    el: '#app',
+    data: {
+      options: [{
+        value: '选项1',
+        label: '50'
+      }, {
+        value: '选项2',
+        label: '100'
+      }, {
+        value: '选项3',
+        label: '150'
+      }, {
+        value: '选项4',
+        label: '200'
+      }],
+      value: '50',
+      formInline: {
+        user: '',
+        region: '',
+        date1: '',
+        date2: ''
+      },
+      needArr: [],
+      metadata: null,
+      tableData: {
+        columns: [{
+            label: '单据编号',
+            prop: 'do_code',
+            align: 'center',
+            showHead: true
+          },
+          {
+            label: '生产订单',
+            prop: 'equipment_id',
+            align: 'center',
+            showHead: true
+          },
+          {
+            label: '数值',
+            prop: 'barcode',
+            align: 'center',
+            showHead: true
+          },
+          {
+            label: '单据日期',
+            prop: 'labelrule_id',
+            align: 'center',
+            showHead: true
+          },
+          {
+            label: '建单人',
+            prop: 'params',
+            align: 'center',
+            class: 'red',
+            showHead: true
+          },
+          {
+            label: '车间控制',
+            prop: 'ret_code',
+            align: 'center',
+            showHead: true
+          },
+          {
+            label: '车间作业控制',
+            prop: 'reprint_source_id',
+            align: 'center',
+            showHead: true
+          },
+          {
+            label: '工序',
+            prop: 'source_type',
+            align: 'center',
+            showHead: true
+          }
+        ],
+        data: [{
+          do_code: 'PL20190911100038',
+          equipment_id: 1758312 - 01,
+          barcode: 1,
+          labelrule_id: 9,
+          params: `2019-09-11 09:36:42`,
+          ret_code: 1093579,
+          reprint_source_id: 'PL1758312',
+          source_type: 'A0-JJZJBP'
+        }],
+        height: 350
+      }
+    },
+    created: function () {
+      let option = {
+        do_code: 'PL20190911100038',
+        equipment_id: 1758312 - 01,
+        barcode: 1,
+        labelrule_id: 9,
+        params: `2019-09-11 09:36:42`,
+        ret_code: 1093579,
+        reprint_source_id: 'PL1758312',
+        source_type: 'A0 - JJZJBP'
+      }
+      for (let i = 0; i < 10; i++) {
+        this.tableData.data.push(option)
+      }
+      this.$nextTick(() => {
+
+      })
+    },
+    computed: {
+      columns() {
+        return this.tableData.columns.filter((item) => {
+          return item.showHead
+        })
+      },
+      items() {
+        return this.tableData.columns.filter((item) => {
+          return !item.showHead
+        })
+      }
+    },
+    methods: {
+      handleClick() {
+        this.$confirm('是否启动打印机?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '启动成功!'
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消启动'
+          })
+        })
+      },
+      clearClick() {
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '启动成功!'
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消启动'
+          })
+        })
+      },
+      cellClick(row, column, cell, event) {
+        if (column.property === 'equipment') {
+          window.open('table2.html')
+        }
+      },
+      onSave() {
+        console.log('保存成功')
+      },
+      onCance() {
+        console.log('取消成功')
+      }
+    }
+  })
+
+</script>
+
+<style>
+  .content-box {
+    padding-bottom: 30px;
+    -webkit-transition: left .3s ease-in-out;
+    transition: left .3s ease-in-out;
+    background: #f0f0f0;
+    padding: 20px
+  }
+
+  .content-box .title-box {
+    margin-bottom: 10px;
+    color: #409EFF;
+    font-weight: 400;
+  }
+
+  .title-box span {
+    cursor: text;
+    font-weight: bold;
+  }
+
+  .search-box,
+  .table-box {
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .search-box {
+    padding-top: 15px;
+    padding-bottom: 0px;
+  }
+
+  .search-box .date-picker {
+    width: 100%;
+  }
+
+  .search-box .el-form-item {
+    margin-bottom: 15px;
+  }
+
+  .search-box .aa .el-button {
+    float: right;
+  }
+
+  .table-box {
+    margin-top: 20px;
+  }
+
+  .el-table th {
+    background-color: #7abef5;
+  }
+
+  .el-table th .cell {
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .el-table td {
+    background-color: #e4e7ed;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .layer-title-box .layui-layer-title {
+    font-weight: bold;
+    color: #409EFF;
+    font-size: 16px;
+  }
+
+  .layer-title-box .layui-layer-title::before {
+    font-family: element-icons !important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline-block;
+    content: "\e620";
+    -webkit-font-smoothing: antialiased;
+    margin-right: 4px;
+  }
+
+</style>
+
+</html>
