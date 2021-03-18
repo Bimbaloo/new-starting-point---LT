@@ -1,3 +1,11 @@
+/*
+ * @Author: 马燥
+ * @Email: 1030102244@qq.com
+ * @Date: 2021-03-16 16:17:23
+ * @Description:
+ * @LastEditors: 马燥
+ * @LastEditTime: 2021-03-16 16:17:23
+ */
 var app = new Vue({
   el: "#app",
   data: {
@@ -22,10 +30,6 @@ var app = new Vue({
       printer: null,
       period: null
     },
-    tableHeight: 500
-  },
-  created: function () {
-
   },
   mounted: function () {
     window.addEventListener('resize', this.setTableHeight) // 监听resize的变化
@@ -37,13 +41,15 @@ var app = new Vue({
       this.setTableHeight()
     })
   },
+  destroyed: function () {
+    window.removeEventListener('resize', this.setTableHeight) // 组件销毁时取消监听resize的变化
+  },
   methods: {
     //抛料添加
     onAdd: function () {
       app.dialog = layer.open({
         type: 2,
         title: $.i18n.prop('paoliao.js.add_title'),
-        skin: 'layer-title-box',
         maxmin: true,
         area: ['1000px', '500px'],
         shade: 0,
@@ -85,7 +91,6 @@ var app = new Vue({
       app.dialog1 = layer.open({
         type: 2,
         title: $.i18n.prop('paoliao.js.detail_title'),
-        skin: 'layer-title-box',
         maxmin: true,
         area: ['1000px', '500px'],
         shade: 0,

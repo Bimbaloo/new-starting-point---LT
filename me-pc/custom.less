@@ -1,0 +1,134 @@
+/*  page UI optimize  */
+@color: #333;
+@backgroundColor:#f0f0f0;
+@themeColor: #89abc5;
+@font-size: 14px;
+@line-height: 1.5;
+@font-family: "Microsoft Yahei";
+
+@px12: 12px;
+@px14: 14px;
+@px16: 16px;
+@px20: 20px;
+@px24: 24px;
+@px30: 30px;
+@px32: 32px;
+@px60: 60px;
+
+@quality: #d89cdd; //#d89add;
+@event: #f98141; //#f9823e;
+@repair: #b3b200; //#5aa7c5;
+@tool: #6979b7; //#86cccc;
+@work: #5ca637; //#72b633;
+@pool: #15a5a7; //#00a5a7;
+@parameter: #f9c331; //#FAC41B;
+@green: #42AF8F;
+@tooltip: #a8b8cc;
+
+
+.content-box,
+.layer-content-box {
+  -webkit-transition: left .3s ease-in-out;
+  transition: left .3s ease-in-out;
+  background: @backgroundColor;
+  padding: 20px 20px 20px 20px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+
+
+.content-box {
+  .title-box {
+    margin-bottom: 10px;
+    color: @themeColor;
+    font-weight: 400;
+  }
+  span {
+    cursor: text;
+    font-weight: bold;
+  }
+}
+
+
+
+.search-box,
+.table-box {
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.search-box {
+  padding-top: 15px;
+  padding-bottom: 0px;
+  .date-picker {
+    width: 100%;
+    min-width: 200px
+  }
+  el-form-item {
+    margin-bottom: 15px;
+  }
+}
+
+.table-box .el-table {
+  th {
+    background-color: @backgroundColor;
+
+    .cell {
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+  td {
+    background-color: #e4e7ed;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+d
+.el-table th .cell {
+  font-weight: bold;
+}
+
+
+
+.layer-title-box .layui-layer-title {
+  font-weight: bold;
+  color: #409EFF;
+  font-size: 16px;
+  background-color: #f0f0f0;
+
+  &::before {
+    font-family: element-icons !important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline-block;
+    content: "\e620";
+    -webkit-font-smoothing: antialiased;
+    margin-right: 4px;
+  }
+}
+
+
+.layer-content-box {
+  padding-top: 0px
+}
+
+.browse-table {
+  th {
+    padding: 7px 0
+  }
+  td .cell {
+    padding: 8.5px 0
+  }
+}
+
+

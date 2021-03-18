@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>radio</title>
+  <link href="https://cdn.bootcss.com/element-ui/2.1.0/theme-chalk/index.css" rel="stylesheet">
+  <link href="../css/reset.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/2.1.0/index.js"></script>
+</head>
+
+<body>
+  <div id="app" class="content-box">
+    <div class="pod-title-box">
+      <el-row>
+        <el-col :span="8">
+          <div class="title-box title-content">
+            <i class="el-icon-menu"></i>
+            <span>标准面板</span>
+          </div>
+        </el-col>
+        <el-col :span="16">
+          <div class="login-content-box">
+            <div class="login-content" title="工单">
+              <i class="el-icon-tickets"></i>
+              <span>1000887</span>
+            </div>
+            <div class="login-content" title="站点">
+              <i class="el-icon-location"></i>
+              <span>1530</span>
+            </div>
+            <div class="login-content" title="用户">
+              <i class="el-icon-service"></i>
+              <span>SITE_ADMIN</span>
+            </div>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+
+    <div class="search-box">
+      <el-row :gutter="24">
+        <el-form :model="formInline" class="demo-ruleForm">
+          <el-col :span="12">
+            <el-form-item label="Operation" :label-width="lableWidth['Operation']+'px'" id='Operation'
+              hide-required-asterisk='true'>
+              <el-input v-model="formInline.user">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="Resource" :label-width="lableWidth['Resource']+'px'" id='Resource'
+              hide-required-asterisk=true>
+              <el-input v-model="formInline.user">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+        </el-form>
+      </el-row>
+      <el-row :gutter="24">
+        <el-form :model="formInline" class="demo-ruleForm">
+          <el-col :span="6">
+            <el-form-item label="SFC" :label-width="lableWidth['SFC']+'px'" id='SFC'>
+              <el-input v-model="formInline.SFC">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="Quantity" :label-width="lableWidth['Quantity']+'px'" id='Quantity'>
+              <el-input v-model="formInline.user">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="Quantity Of Queues" :label-width="lableWidth['Queues']+'px'" id='Queues'>
+              <el-input v-model="formInline.user">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="Quantity In Production" :label-width="lableWidth['Production']+'px'" id='Production'>
+              <el-input v-model="formInline.user">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+        </el-form>
+      </el-row>
+    </div>
+  </div>
+  <script>
+    var Main = {
+      data() {
+        return {
+          printRemark: false,
+          formInline: {
+            user: '',
+            region: '',
+            date: '',
+            SFC: 'qwertyuiopasdfghjklzxcvbnm'
+          },
+          lableWidth: {
+            Operation: null,
+            Resource: null,
+            SFC: null,
+            Quantity: null,
+            Queues: null,
+            Production: null
+          }
+        };
+      },
+      mounted: function () {
+        this.$nextTick(() => {
+          Object.keys(this.lableWidth).forEach(el => {
+            const strLength = document.querySelector(`#${el} .el-form-item__label`).offsetWidth
+            this.lableWidth[`${el}`] = strLength
+          })
+        })
+      },
+      methods: {},
+    };
+    var Ctor = Vue.extend(Main);
+    new Ctor().$mount("#app");
+  </script>
+  <style>
+    .content-box {
+      -webkit-transition: left .3s ease-in-out;
+      transition: left .3s ease-in-out;
+      background: #f0f0f0;
+      padding: 10px 20px 20px 20px
+    }
+
+    .content-box .title-box {
+      margin-bottom: 10px;
+      /* color: #409EFF; */
+      color: #337ab5;
+      font-weight: 400;
+    }
+
+    .pod-title-box {
+      margin-bottom: 10px;
+      /* color: #409EFF; */
+      color: #337ab5;
+      font-weight: 400;
+      line-height: 32px;
+      font-size: 18px;
+    }
+
+
+
+    .login-content-box {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .login-content {
+      margin-left: 30px;
+    }
+
+    .login-content i {
+      margin-right: -3px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .login-content span {
+      color: #000;
+    }
+
+
+    .search-box,
+    .table-box {
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .search-box {
+      padding-top: 15px;
+      padding-bottom: 0px;
+    }
+  </style>
+</body>
+
+</html>
