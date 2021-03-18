@@ -11,28 +11,28 @@
 </head>
 
 <body>
-  <div id="app" class="content-box">
+  <div id="app" class="content-box .podFrame-box">
     <div class="pod-title-box">
       <el-row>
         <el-col :span="8">
           <div class="title-box title-content">
             <i class="el-icon-menu"></i>
-            <span>标准面板</span>
+            <span>{{title}}</span>
           </div>
         </el-col>
         <el-col :span="16">
           <div class="login-content-box">
-            <div class="login-content" title="工单">
+            <div class="login-content" title='<core:text name = "podFrame.jsp.order" />'>
               <i class="el-icon-tickets"></i>
-              <span>1000887</span>
+              <span id="SHOPORDER">{{SHOPORDER}}</span>
             </div>
-            <div class="login-content" title="站点">
+            <div class="login-content" title='<core:text name = "podFrame.jsp.site" />'>
               <i class="el-icon-location"></i>
-              <span>1530</span>
+              <span id="SITE">{{site}}</span>
             </div>
-            <div class="login-content" title="用户">
+            <div class="login-content" title='<core:text name = "podFrame.jsp.user" />'>
               <i class="el-icon-service"></i>
-              <span>SITE_ADMIN</span>
+              <span id="USER_ID">{{userId}}</span>
             </div>
           </div>
         </el-col>
@@ -129,13 +129,15 @@
     new Ctor().$mount("#app");
   </script>
   <style>
-    .content-box {
+    .content-box,
+    .podFrame-box {
       -webkit-transition: left .3s ease-in-out;
       transition: left .3s ease-in-out;
       background: #f0f0f0;
       padding: 10px 20px 20px 20px
     }
 
+    .podFrame-box,
     .content-box .title-box {
       margin-bottom: 10px;
       /* color: #409EFF; */
