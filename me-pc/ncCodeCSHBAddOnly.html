@@ -1,0 +1,164 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <%@ taglib uri="/WEB-INF/tlds/core.tld" prefix="core" %>
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+      <meta charset="UTF-8">
+      <jsp:include page="/com/sunny/jsp/common/pod-header.jsp" />
+      <style type="text/css">
+        body {
+          font-family: "Microsoft YaHei";
+          min-height: 430px;
+        }
+
+        .el-col {
+          border: 0px;
+        }
+
+        .el-row {
+          padding-bottom: 5px;
+        }
+
+        .el-table td,
+        .el-table th {
+          height: 30px;
+        }
+      </style>
+    </head>
+
+    <body onload="init()">
+      <div id="app" v-cloak>
+
+        <el-row type="flex">
+          <el-tag type="primary" style="width: 100%; text-align: center; font-family: arial;">
+            <core:text name="ncCodeCSHBAddOnly.jsp.title" />
+          </el-tag>
+        </el-row>
+
+        <el-row type="flex" justify="center">
+          <el-col :span="11">
+            <el-table ref="group" highlight-current-row :data="nc_group" @current-change="ncGroupClick" height="180"
+              border style="width: 100%">
+              <el-table-column prop="NC_GROUP" label="<core:text name=" ncCodeCSHBAddOnly.jsp.nc_group" />">
+              </el-table-column>
+              <el-table-column prop="DESCRIPTION" label="<core:text name=" ncCodeCSHBAddOnly.jsp.desc" />">
+              </el-table-column>
+            </el-table>
+          </el-col>
+          <el-col :span="11">
+            <el-table ref="member" highlight-current-row :data="nc_code" @current-change="ncCodeClick" height="180"
+              border style="width: 100%">
+              <el-table-column prop="NC_CODE" label="<core:text name=" ncCodeCSHBAddOnly.jsp.nc_code" />">
+              </el-table-column>
+              <el-table-column prop="DESCRIPTION" label="<core:text name=" ncCodeCSHBAddOnly.jsp.desc" />">
+              </el-table-column>
+            </el-table>
+          </el-col>
+        </el-row>
+
+        <el-row type="flex" justify="center">
+          <el-col :span="1">
+            &nbsp;
+          </el-col>
+          <el-col :span="11">
+            <el-table ref="table_prd_codes" :data="table_prd_codes" highlight-current-row height="180" border
+              style="width: 100%">
+              <el-table-column prop="SFC" label="<core:text name=" ncCodeCSHBAddOnly.jsp.sfc" />">
+              </el-table-column>
+              <el-table-column prop="PRD_QRCODE" label="<core:text name=" ncCodeCSHBAddOnly.jsp.barcode" />">
+              </el-table-column>
+              <el-table-column prop="OPERATION" label="<core:text name=" ncCodeCSHBAddOnly.jsp.operation" />">
+              <template slot-scope="scope">
+                <el-button @click.native.prevent="deleteRow(scope.$index, table_prd_codes)" type="text" size="small">
+                  <core:text name="ncCodeCSHBAddOnly.jsp.delete" />
+                </el-button>
+              </template>
+              </el-table-column>
+            </el-table>
+          </el-col>
+          <el-col :span="11">
+            <template v-if="data_tag.length > 0">
+              <el-row v-for="(data,index) in data_tag">
+                <el-col :span="10" style="text-align: right; line-height: 36px;">
+                  {{ data.DATA_TAG }}：
+                </el-col>
+                <el-col :span="14"
+                  v-if="data.DATA_TYPE != 'C' && data.DATA_FIELD != 'PRD_QRCODE' && data.DATA_FIELD != 'NCGROUP_QRCODE'">
+                  <el-input v-model="data.DATA_VALUE" :disabled="nc_data_disable" :id="data.DATA_FIELD"
+                    onkeyup="toUpperCase();">
+                  </el-input>
+                </el-col>
+                <el-col :span="14" v-if="data.DATA_TYPE != 'C' && data.DATA_FIELD == 'PRD_QRCODE'">
+                  <el-input v-model="data.DATA_VALUE" :id="data.DATA_FIELD" @keyup.enter.native="confirmSubmit($event)"
+                    onkeyup="toUpperCase();" onpaste="return false;" ondrop="return false;" oninput="cutManualInput()">
+                  </el-input>
+                </el-col>
+                <el-col :span="14" v-if="data.DATA_TYPE != 'C' && data.DATA_FIELD == 'NCGROUP_QRCODE'">
+                  <el-input v-model="data.DATA_VALUE" :id="data.DATA_FIELD" @keyup.enter.native="confirmSubmit2($event)"
+                    onkeyup="toUpperCase();">
+                  </el-input>
+                </el-col>
+                <el-col :span="8" style="text-align: left; line-height: 36px;"
+                  v-if="data.DATA_TYPE == 'C' && data.DATA_FIELD == 'NC_ENTIRESFC'">
+                  <el-checkbox v-model="checked"></el-checkbox>
+                </el-col>
+                <el-col :span="8" style="text-align: left; line-height: 36px;"
+                  v-if="data.DATA_TYPE == 'C' && data.DATA_FIELD == 'NC_SFCLEFT'">
+                  <el-checkbox v-model="checkedAno"></el-checkbox>
+                </el-col>
+              </el-row>
+            </template>
+            <el-row v-if="NC_ITEM_FLAG">
+              <el-col :span="10" style="text-align: right; line-height: 36px;">
+                <core:text name="ncCodeCSHBAddOnly.jsp.nc_item" />：
+              </el-col>
+              <el-col :span="14">
+                <el-input v-model="NC_ITEM" readonly>
+                  <el-button slot="append" icon="el-icon-search" @click="browse2('<core:text name="
+                    ncCodeCSHBAddOnly.jsp.nc_item" />','BROWSE_NC_ITEM_BY_SFC','NC_ITEM','NC_ITEM',app)"></el-button>
+                </el-input>
+              </el-col>
+            </el-row>
+          </el-col>
+          <el-col :span="1">
+            &nbsp;
+          </el-col>
+        </el-row>
+
+        <el-row type="flex" justify="center">
+          <el-col :span="3">
+            &nbsp;
+          </el-col>
+          <el-col :span="6">
+            <core:text name="ncCodeCSHBAddOnly.jsp.barcode_sum" />：{{ table_prd_codes.length }}
+          </el-col>
+          <el-col :span="15">
+            &nbsp;
+          </el-col>
+        </el-row>
+
+        <el-row type="flex" justify="center">
+          <el-col :span="2">
+            <el-button type="primary" v-on:click="add">
+              <core:text name="ncCodeCSHBAddOnly.jsp.add" />
+            </el-button>
+          </el-col>
+          <el-col :span="2">
+            <el-button type="primary" v-on:click="clearInput">
+              <core:text name="ncCodeCSHBAddOnly.jsp.clear" />
+            </el-button>
+          </el-col>
+        </el-row>
+
+      </div>
+
+    </body>
+    <script type="text/javascript"
+      src="<%=request.getContextPath() %>/resource/js/pod/ncCode/ncCodeCSHBAddOnly.js?ver=${applicationScope.RE_VER}"></script>
+    <script type="text/javascript"
+      src="<%=request.getContextPath() %>/resource/layer/layer.js?ver=${applicationScope.RE_VER}"></script>
+    <script type="text/javascript"
+      src="<%=request.getContextPath() %>/resource/js/browse.js?ver=${applicationScope.RE_VER}"></script>
+
+    </html>
