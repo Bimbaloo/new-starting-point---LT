@@ -6,32 +6,20 @@
     <head>
       <meta charset="UTF-8">
       <jsp:include page="/com/sunny/jsp/common/pod-header.jsp" />
-      <style type="text/css">
-        body {
-          font-family: "Microsoft YaHei"
-        }
-
-        .el-col {
-          border: 0px;
-        }
-
-        .el-row {
-          padding-bottom: 5px;
-        }
-
-        .el-form-item__label {}
-      </style>
+      <link rel="stylesheet"
+        href="<%=request.getContextPath() %>/resource/css/reset.css?ver=${applicationScope.RE_VER}" />
     </head>
 
     <body>
-      <div id="app" v-cloak>
-        <el-row type="flex">
-          <el-tag type="primary" style="width: 100%; text-align: center; font-family: arial;">
+      <div id="app" class="content-box">
+        <div class="title-box">
+          <i class="el-icon-menu"></i>
+          <span>
             <core:text name="paoliao.jsp.title" />
-          </el-tag>
-        </el-row>
-        <el-row type="flex" justify="center">
-          <el-col :span="23">
+          </span>
+        </div>
+        <div class="search-box">
+          <el-row :gutter="24">
             <el-form class="demo-ruleForm">
               <el-col :span="8">
                 <el-form-item label='<core:text name = "paoliao.jsp.order" />：' :label-width="lableWidth['order']+'px'"
@@ -61,12 +49,9 @@
                   </el-input>
                 </el-form-item>
               </el-col>
-
             </el-form>
-          </el-col>
-        </el-row>
-        <el-row type="flex" justify="center">
-          <el-col :span="23">
+          </el-row>
+          <el-row :gutter="24">
             <el-form class="demo-ruleForm">
               <el-col :span="8">
                 <el-form-item label='<core:text name = "paoliao.jsp.id" />：' :label-width="lableWidth['id']+'px'"
@@ -89,7 +74,7 @@
               <el-col :span="8">
                 <el-form-item label='<core:text name = "paoliao.jsp.period" />：'
                   :label-width="lableWidth['period']+'px'" id='period'>
-                  <el-date-picker v-model="PERIOD" type="daterange" align="right" unlink-panels
+                  <el-date-picker class="date-picker" v-model="PERIOD" type="daterange" align="right" unlink-panels
                     range-separator="<core:text name = " paoliao.jsp.zhi" />" start-placeholder="
                   <core:text name="paoliao.jsp.start_period" />" end-placeholder="
                   <core:text name="paoliao.jsp.end_period" />">
@@ -97,55 +82,52 @@
                 </el-form-item>
               </el-col>
             </el-form>
-          </el-col>
-        </el-row>
-        <el-row type="flex" justify="center">
-          <el-col :span="2">
-            <el-button type="primary" v-on:click="onAdd">
-              <core:text name="paoliao.jsp.add" />
-            </el-button>
-          </el-col>
-          <el-col :span="2">
-            <el-button type="primary" v-on:click="onSearch">
-              <core:text name="paoliao.jsp.search" />
-            </el-button>
-          </el-col>
-        </el-row>
-        <el-row type="flex" justify="center">
-          <el-col :span="24">
-            <el-table ref="table" :data="TABLE" height="400" border style="width: 100%">
-              <el-table-column min-width="200" align="center" prop="ID" label="<core:text name=" paoliao.jsp.id" />">
-              </el-table-column>
-              <el-table-column min-width="150" align="center" prop="SHOP_ORDER" label="<core:text name="
-                paoliao.jsp.order" />">
-              </el-table-column>
-              <el-table-column min-width="100" align="center" prop="QTY" label="<core:text name=" paoliao.jsp.qty" />">
-              </el-table-column>
-              <el-table-column min-width="250" align="center" prop="DATE_TIME" label="<core:text name="
-                paoliao.jsp.period" />">
-              </el-table-column>
-              <el-table-column min-width="130" align="center" prop="USER_ID" label="<core:text name="
-                paoliao.jsp.creater" />">
-              </el-table-column>
-              <el-table-column min-width="250" align="center" prop="SFC" label="<core:text name=" SFC" />">
-              </el-table-column>
-              <el-table-column min-width="150" align="center" prop="OPERATION" label="<core:text name="
-                paoliao.jsp.operation" />">
-              </el-table-column>
-              <el-table-column min-width="130" align="center" prop="BUTTON" label="<core:text name=" paoliao.jsp.op" />
-              ">
-              <template scope="scope">
-                <el-button type="text" @click="detail(scope.$index)">
-                  <core:text name="paoliao.jsp.detail" />
+          </el-row>
+          <el-row type="flex" class="row-bg" justify="center">
+            <el-form :inline="true" class="demo-ruleForm">
+              <el-form-item>
+                <el-button type="primary" size="small" v-on:click="onAdd">
+                  <core:text name="paoliao.jsp.add" /><i class="el-icon-circle-plus-outline el-icon--right"></i>
                 </el-button>
-                <el-button type="text" @click="printSFC(scope.$index)">
-                  <core:text name="paoliao.jsp.print_sfc" />
+                <el-button type="primary" size="small" v-on:click="onSearch">
+                  <core:text name="paoliao.jsp.search" /><i class="el-icon-search el-icon--right"></i>
                 </el-button>
-              </template>
-              </el-table-column>
-            </el-table>
-          </el-col>
-        </el-row>
+              </el-form-item>
+            </el-form>
+          </el-row>
+        </div>
+        <div class="table-box">
+          <el-table ref="table" :data="TABLE" :height="tableHeight" border style="width: 100%" stripe>
+            <el-table-column min-width="200" align="center" prop="ID" label="<core:text name=" paoliao.jsp.id" />">
+            </el-table-column>
+            <el-table-column min-width="150" align="center" prop="SHOP_ORDER" label="<core:text name="
+              paoliao.jsp.order" />">
+            </el-table-column>
+            <el-table-column min-width="100" align="center" prop="QTY" label="<core:text name=" paoliao.jsp.qty" />">
+            </el-table-column>
+            <el-table-column min-width="250" align="center" prop="DATE_TIME" label="<core:text name="
+              paoliao.jsp.period" />">
+            </el-table-column>
+            <el-table-column min-width="130" align="center" prop="USER_ID" label="<core:text name="
+              paoliao.jsp.creater" />">
+            </el-table-column>
+            <el-table-column min-width="250" align="center" prop="SFC" label="<core:text name=" SFC" />">
+            </el-table-column>
+            <el-table-column min-width="150" align="center" prop="OPERATION" label="<core:text name="
+              paoliao.jsp.operation" />">
+            </el-table-column>
+            <el-table-column min-width="130" align="center" prop="BUTTON" label="<core:text name=" paoliao.jsp.op" />">
+            <template slot-scope="scope">
+              <el-button type="text" @click="detail(scope.$index)">
+                <core:text name="paoliao.jsp.detail" />
+              </el-button>
+              <el-button type="text" @click="printSFC(scope.$index)">
+                <core:text name="paoliao.jsp.print_sfc" />
+              </el-button>
+            </template>
+            </el-table-column>
+          </el-table>
+        </div>
       </div>
     </body>
     <script type="text/javascript"
