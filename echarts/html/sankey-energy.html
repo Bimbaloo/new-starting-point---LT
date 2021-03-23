@@ -18,12 +18,11 @@
   <script type="text/javascript">
     var dom = document.getElementById('container')
     var myChart = window.echarts.init(dom)
-    var app = {}
-    option = null
+    let option = null
+    let $ = window.$
     myChart.showLoading()
     $.get('../data/energy.json', function (data) {
       myChart.hideLoading()
-      debugger
       myChart.setOption(option = {
         title: {
           text: 'Sankey Diagram'
