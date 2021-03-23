@@ -14,7 +14,7 @@
 <body>
 
   <div id="app">
-    <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm1" label-width="100px" class="demo-ruleForm" v-show="radio ==2">
+    <el-form status-icon label-width="100px" class="demo-ruleForm" v-show="radio ==2">
       <el-form-item label="密码" prop="pass">
         <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
       </el-form-item>
@@ -29,7 +29,7 @@
         <el-button @click="resetForm('ruleForm2')">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm" v-show="radio ==1">
+    <el-form status-icon label-width="100px" class="demo-ruleForm" v-show="radio ==1">
       <el-form-item label="密码1" prop="pass">
         <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
       </el-form-item>
@@ -40,7 +40,7 @@
         <el-input v-model.number="ruleForm2.age"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
+        <el-button type="primary" @click="submitForm(ruleForm2)">提交</el-button>
         <el-button @click="resetForm('ruleForm2')">重置</el-button>
       </el-form-item>
     </el-form>
@@ -141,24 +141,19 @@
       },
       methods: {
         submitForm(formName) {
-          this.$refs[formName].validate()
-            .then(valid => {
-              console.log(true)
-            })
-            .catch(valid => {
-              console.log(false)
-            });
+          console.log(formName)
         },
         resetForm(formName) {
-          this.$refs[formName].resetFields();
+          console.log(formName)
+
         },
         a(value) {
 
-           this.$refs['ruleForm2'].resetFields();
+          // this.$refs['ruleForm2'].resetFields();
           // this.$refs['ruleForm2'].clearValidate	();       
-           this.$refs['ruleForm1'].resetFields();
+          // this.$refs['ruleForm1'].resetFields();
           // this.$refs['ruleForm1'].clearValidate	();         
-          this.$nextTick(()=>{
+          this.$nextTick(() => {
             // this.$refs['ruleForm2'].resetFields();
             // this.$refs['ruleForm2'].clearValidate	();
             // this.$refs['ruleForm1'].resetFields();

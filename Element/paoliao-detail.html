@@ -19,19 +19,19 @@
       <el-row :gutter="24">
         <el-form :model="formInline" class="demo-ruleForm">
           <el-col :span="8">
-            <el-form-item label="生产订单" label-width='70px'>
+            <el-form-item label="生产订单" :label-width="lableWidth['order']+'px'" id='order'>
               <el-input v-model="formInline.user">
               </el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
-            <el-form-item label="物料编号" label-width='70px'>
+            <el-form-item label="物料编号" :label-width="lableWidth['item']+'px'" id='item'>
               <el-input v-model="formInline.user">
               </el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="物料描述" label-width='70px'>
+            <el-form-item label="物料描述" :label-width="lableWidth['item_desc']+'px'" id='item_desc'>
               <el-input v-model="formInline.user">
               </el-input>
             </el-form-item>
@@ -41,19 +41,19 @@
       <el-row :gutter="24">
         <el-form :model="formInline" class="demo-ruleForm">
           <el-col :span="8">
-            <el-form-item label="单据日期" label-width='70px'>
+            <el-form-item label="单据日期" :label-width="lableWidth['id']+'px'" id='id'>
               <el-input v-model="formInline.user">
               </el-input>
             </el-form-item>
           </el-col>
           <el-col :span="7">
-            <el-form-item label="抛料SFC" label-width='70px'>
+            <el-form-item label="抛料SFC" :label-width="lableWidth['printer']+'px'" id='printer'>
               <el-input v-model="formInline.user">
               </el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="SFC数量" label-width='70px'>
+            <el-form-item label="SFC数量" :label-width="lableWidth['period']+'px'" id='period'>
               <el-input v-model="formInline.user">
               </el-input>
             </el-form-item>
@@ -108,54 +108,54 @@
       metadata: null,
       tableData: {
         columns: [{
-            label: '单据编号',
-            prop: 'do_code',
-            align: 'center',
-            showHead: true
-          },
-          {
-            label: '生产订单',
-            prop: 'equipment_id',
-            align: 'center',
-            showHead: true
-          },
-          {
-            label: '数值',
-            prop: 'barcode',
-            align: 'center',
-            showHead: true
-          },
-          {
-            label: '单据日期',
-            prop: 'labelrule_id',
-            align: 'center',
-            showHead: true
-          },
-          {
-            label: '建单人',
-            prop: 'params',
-            align: 'center',
-            class: 'red',
-            showHead: true
-          },
-          {
-            label: '车间控制',
-            prop: 'ret_code',
-            align: 'center',
-            showHead: true
-          },
-          {
-            label: '车间作业控制',
-            prop: 'reprint_source_id',
-            align: 'center',
-            showHead: true
-          },
-          {
-            label: '工序',
-            prop: 'source_type',
-            align: 'center',
-            showHead: true
-          }
+          label: '单据编号',
+          prop: 'do_code',
+          align: 'center',
+          showHead: true
+        },
+        {
+          label: '生产订单',
+          prop: 'equipment_id',
+          align: 'center',
+          showHead: true
+        },
+        {
+          label: '数值',
+          prop: 'barcode',
+          align: 'center',
+          showHead: true
+        },
+        {
+          label: '单据日期',
+          prop: 'labelrule_id',
+          align: 'center',
+          showHead: true
+        },
+        {
+          label: '建单人',
+          prop: 'params',
+          align: 'center',
+          class: 'red',
+          showHead: true
+        },
+        {
+          label: '车间控制',
+          prop: 'ret_code',
+          align: 'center',
+          showHead: true
+        },
+        {
+          label: '车间作业控制',
+          prop: 'reprint_source_id',
+          align: 'center',
+          showHead: true
+        },
+        {
+          label: '工序',
+          prop: 'source_type',
+          align: 'center',
+          showHead: true
+        }
         ],
         data: [{
           do_code: 'PL20190911100038',
@@ -168,6 +168,14 @@
           source_type: 'A0-JJZJBP'
         }],
         height: 350
+      },
+      lableWidth: {
+        order: null,
+        item: null,
+        item_desc: null,
+        id: null,
+        printer: null,
+        period: null
       }
     },
     created: function () {
@@ -186,6 +194,19 @@
       }
       this.$nextTick(() => {
 
+      })
+    },
+    mounted: function () {
+      let _this = this;
+      this.$nextTick(function () {
+        let arr = []
+        for (let key in _this.lableWidth) {
+          arr.push(key)
+        }
+        for (var i = 0; i < arr.length; i++) {
+          let strLength = document.querySelector("#" + arr[i] + ' .el-form-item__label').offsetWidth + 2
+          _this.lableWidth[arr[i]] = strLength
+        }
       })
     },
     computed: {
@@ -335,7 +356,6 @@
     -webkit-font-smoothing: antialiased;
     margin-right: 4px;
   }
-
 </style>
 
 </html>

@@ -69,83 +69,87 @@
             </el-col>
           </el-row>
         </div>
-        <div class="search-box pod-search-box">
-          <el-row :gutter="24">
-            <el-form class="demo-ruleForm">
-              <el-col :span="12">
-                <el-form-item label="<core:text name = " podFrame.jsp.operation" />:" required
-                :label-width="lableWidth['jspPeriod']+'px'" id='jspPeriod'>
-                <el-input v-model="OPERATION" id="OPERATION" v-uppercase :disabled="!CAN_CHANGE_OPERATION"
-                  @keyup.enter.native="operationChangeEvent($event)">
-                  <el-button slot="append" icon="el-icon-search" :disabled="!CAN_CHANGE_OPERATION"
-                    onclick="browse('<core:text name = " podFrame.jsp.search_operation" />
-                  ','BROWSE_OPERATION','OPERATION','OPERATION',app)"></el-button>
-                </el-input>
-                </el-form-item>
-              </el-col>
+        <!-- <el-row class="pageheading" type="flex">
+                <el-col :xs="10" :sm="16" :md="17" :lg="18">
+                    <div v-cloak>{{title}}</div>
+                </el-col>
+                <el-col :xs="7" :sm="4" :md="3" :lg="6"><core:text name = "podFrame.jsp.order" />:<span id="SHOPORDER" v-cloak>{{SHOPORDER}}</span> </el-col>
+                <el-col :xs="7" :sm="4" :md="3" :lg="2"> <core:text name = "podFrame.jsp.site" />:<span id="SITE" v-cloak>{{site}}</span> </el-col>
+                <el-col :xs="7" :sm="4" :md="4" :lg="4"> <core:text name = "podFrame.jsp.user" />:<span id="USER_ID" v-cloak>{{userId}}</span>
+                </el-col>
+            </el-row> -->
+        <el-row :gutter="20" type="flex" style="padding-top: 10px;">
+          <el-form label-position="center" label-width="85px" style="width: 100%">
+            <el-col :span="12">
+              <el-form-item label="<core:text name = " podFrame.jsp.operation" />:" required>
+              <el-input v-model="OPERATION" id="OPERATION" v-uppercase :disabled="!CAN_CHANGE_OPERATION"
+                @keyup.enter.native="operationChangeEvent($event)">
+                <el-button slot="append" icon="el-icon-search" :disabled="!CAN_CHANGE_OPERATION"
+                  onclick="browse('<core:text name = " podFrame.jsp.search_operation" />
+                ','BROWSE_OPERATION','OPERATION','OPERATION',app)"></el-button>
+              </el-input>
+              </el-form-item>
+            </el-col>
 
-              <el-col :span="12">
-                <el-form-item label="<core:text name = " podFrame.jsp.resource" />:" required
-                :label-width="lableWidth['jspResource']+'px'" id='jspResource'>
-                <el-input v-model="RESOURCE" id="RESOURCE" v-uppercase :disabled="!CAN_CHANGE_RESOURCE"
-                  @keyup.enter.native="resourceChange($event)">
-                  <el-button slot="append" icon="el-icon-search" :disabled="!CAN_CHANGE_RESOURCE"
-                    onclick="browse('<core:text name = " podFrame.jsp.search_resource" />
-                  ','BROWSE_RESOURCE1','RESOURCE','RESRCE',app)"></el-button>
+            <el-col :span="12">
+              <el-form-item label="<core:text name = " podFrame.jsp.resource" />:" required>
+              <el-input v-model="RESOURCE" id="RESOURCE" v-uppercase :disabled="!CAN_CHANGE_RESOURCE"
+                @keyup.enter.native="resourceChange($event)">
+                <el-button slot="append" icon="el-icon-search" :disabled="!CAN_CHANGE_RESOURCE"
+                  onclick="browse('<core:text name = " podFrame.jsp.search_resource" />
+                ','BROWSE_RESOURCE1','RESOURCE','RESRCE',app)"></el-button>
+              </el-input>
+              </el-form-item>
+            </el-col>
+
+            <el-col :span="colLength" v-show="SHOW_CODE">
+              <el-form-item label="<core:text name = " podFrame.jsp.iqc" />:">
+              <el-input v-model.trim="barcode" style="padding-bottom: 13px;" id="POD_CODE"
+                @keyup.enter.native="enterCode($event)"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="colLength">
+              <el-form-item label="SFC:">
+                <el-input v-model.trim="SFC" v-uppercase @keyup.enter.native="enterSfc($event)" id="POD_SFC">
+                  <!-- <el-button slot="append" icon="el-icon-search" :on-icon-click="handleIconClick" onclick="browse('浏览车间作业控制','BROWSE_SFC','SFC','SFC',app)"></el-button> -->
                 </el-input>
-                </el-form-item>
-              </el-col>
-            </el-form>
-          </el-row>
-          <el-row :gutter="24">
-            <el-form class="demo-ruleForm">
-              <el-col :span="colLength" v-if="SHOW_CODE">
-                <!-- 一般不显示,暂时不考虑 -->
-                <el-form-item label="<core:text name = " podFrame.jsp.iqc" />:">
-                <el-input v-model.trim="barcode" style="padding-bottom: 13px;" id="POD_CODE"
-                  @keyup.enter.native="enterCode($event)"></el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="colLength">
-                <el-form-item label="SFC:" :label-width="lableWidth['SFC']+'px'" id='SFC'>
-                  <el-input v-model.trim="SFC" v-uppercase @keyup.enter.native="enterSfc($event)" id="POD_SFC">
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="4">
-                <el-form-item label="<core:text name = " podFrame.jsp.qty" />:" :label-width="lableWidth['qty']+'px'"
-                id='qty'>
-                <el-input v-model.number="QTY" disabled v-number-only style="padding-bottom: 13px;" id="NUM"
-                  v-on:focus="alterNum"></el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="4">
-                <el-form-item label="<core:text name = " podFrame.jsp.queue_qty" />:"
-                :label-width="lableWidth['queue']+'px'" id='queue'>
-                <el-input v-model.number="QUEUE_QTY" v-number-only style="padding-bottom: 13px;" id="QUEUE_QTY"
-                  readonly></el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="4">
-                <el-form-item label="<core:text name = " podFrame.jsp.inwork_qty" />:"
-                :label-width="lableWidth['inwork']+'px'" id='inwork'>
-                <el-input v-model.number="IN_WORK_QTY" v-number-only style="padding-bottom: 13px;" id="IN_WORK_QTY"
-                  readonly></el-input>
-                </el-form-item>
-              </el-col>
-            </el-form>
-          </el-row>
-          <el-row :gutter="24">
-            <el-form class="demo-ruleForm">
-              <el-col :span="24" style="padding-bottom: 10px;">
-                <el-form-item id="btnContents">
-                  <el-button v-for="btn in podBtns" :key="btn.BUTTON_ID" type="primary" v-bind:id="btn.BUTTON_ID"
-                    v-on:click="btnLogic(btn.BUTTON_ID)" v-cloak>{{btn.LABEL}}</el-button>
-                </el-form-item>
-              </el-col>
-            </el-form>
-          </el-row>
-        </div>
+                <!-- <div class="el-input el-input-group el-input-group--append" id="POD_SFC">
+                          	<input v-model.trim="SFC" class="el-input__inner"></input>
+                          	<div class="el-input-group__append">
+                          		<button type="button" class="el-button el-button--default" onclick="browse('浏览车间作业控制','BROWSE_SFC','SFC','SFC',app)">
+                          			<i class="el-icon-search"></i>
+                          		</button>
+                          	</div>
+                         </div> -->
+              </el-form-item>
+            </el-col>
+            <el-col :span="4">
+              <el-form-item label="<core:text name = " podFrame.jsp.qty" />:">
+              <el-input v-model.number="QTY" disabled v-number-only style="padding-bottom: 13px;" id="NUM"
+                v-on:focus="alterNum"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="4">
+              <el-form-item label="<core:text name = " podFrame.jsp.queue_qty" />:">
+              <el-input v-model.number="QUEUE_QTY" v-number-only style="padding-bottom: 13px;" id="QUEUE_QTY" readonly>
+              </el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="4">
+              <el-form-item label="<core:text name = " podFrame.jsp.inwork_qty" />:">
+              <el-input v-model.number="IN_WORK_QTY" v-number-only style="padding-bottom: 13px;" id="IN_WORK_QTY"
+                readonly></el-input>
+              </el-form-item>
+            </el-col>
+
+            <el-col :span="24" style="padding-bottom: 10px;">
+              <el-form-item id="btnContents">
+                <el-button v-for="btn in podBtns" :key="btn.BUTTON_ID" type="primary" v-bind:id="btn.BUTTON_ID"
+                  v-on:click="btnLogic(btn.BUTTON_ID)" v-cloak>{{btn.LABEL}}</el-button>
+              </el-form-item>
+            </el-col>
+          </el-form>
+        </el-row>
 
         <template v-if="frameBSrc == ''">
           <el-row type="flex">
