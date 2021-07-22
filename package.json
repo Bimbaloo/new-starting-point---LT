@@ -30,7 +30,7 @@
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
-    "xlsx": "^0.10.8"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "archiver": "^2.1.0",
